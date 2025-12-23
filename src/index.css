@@ -372,6 +372,54 @@
   animation-duration: 4s;
 }
 
+
+
+
+/* Country text animation */
+@keyframes countrySlide {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-country {
+  animation: countrySlide 0.6s ease-out;
+}
+
+/* Ken Burns background zoom */
+@keyframes kenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 10s ease-in-out forwards;
+}
+
+/* Infinite flag movement */
+@keyframes flagScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-flags {
+  animation: flagScroll 12s linear infinite;
+}
+
+
 /* 🙈 HIDE SCROLLBAR */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

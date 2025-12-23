@@ -4,6 +4,10 @@ import SearchBar from "./Hero/SearchBar";
 import UpcomingTrips from "./UpcomingTrips/UpcomingTrips";
 import HolidayPackages from "./UpcomingTrips/HolidayPackages";
 import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItineraries";
+import OffersSection from "./offers/OffersSection";
+import PopularAdventures from "./adventures/PopularAdventures";
+import Testimonials from "./Testimonials/Testimonials";
+import Footer from "./Footer";
 
 export default function Home() {
     return (
@@ -18,6 +22,10 @@ export default function Home() {
             <DreamsBanner />
 
             <RecentlyBookedItineraries />
+            <OffersSection />
+            <PopularAdventures />
+            <Testimonials />
+            <Footer />
         </>
     );
 }
