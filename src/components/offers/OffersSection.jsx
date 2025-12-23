@@ -4,92 +4,79 @@ export default function OffersSection() {
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* LEFT BIG CARD */}
-        <div className="relative rounded-2xl overflow-hidden h-[420px]">
+        <div className="relative rounded-2xl overflow-hidden h-[500px]">
           <img
             src="/assets/images/offers/offer1.png"
             alt="London"
-            className="w-full h-full object-cover"
+            className="w-full h-full"
           />
 
-          {/* Badge */}
-          <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-full">
+          <span className="absolute top-4  bg-[#EDF957] text-black text-xs font-bold px-3 py-1 ">
             GET 50% OFF
           </span>
 
-          {/* Text */}
           <div className="absolute bottom-6 left-6 text-white space-y-1">
-            <h3 className="text-lg font-semibold">
-              The Montcalm At Brewery London
+            <h3 className="text-xl font-semibold">
+              The Montcalm At Brewery <br /> London City
             </h3>
-            <p className="text-sm opacity-90">
-              City London City
-            </p>
-             <p className="text-xs font-semibold ">
-              Starting from <span className="text-[#EDF957] font-bold">$299</span>
+            <p className="text-md ">
+              Starting from <span className="text-[#EDF957] font-bold">₹29,999</span>
             </p>
           </div>
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/10"></div>
+          <div className="absolute inset-0"></div>
         </div>
 
         {/* RIGHT COLUMN */}
         <div className="md:col-span-2 grid grid-rows-2 gap-6">
 
           {/* TOP RIGHT CARD */}
-          <div className="relative rounded-2xl overflow-hidden h-[200px]">
+          <div className="relative rounded-2xl overflow-hidden h-[270px]">
             <img
               src="/assets/images/offers/offer2.png"
               alt="Mountains"
-              className="w-full h-full object-cover"
+              className="w-full h-full "
             />
 
-            <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-full">
+            <span className="absolute top-4  bg-[#EDF957] text-black text-xs font-bold px-3 py-1">
               GET 50% OFF
             </span>
 
-            <div className="absolute bottom-6 left-6 text-white space-y-1">
-             
-              <h3 className="text-lg font-semibold">
-                The Montcalm At Brewery
+            <div className="absolute bottom-5 px-3 text-white space-y-1 flex justify- items-center justify-between w-full">
+              <h3 className="text-xl font-semibold">
+                The Montcalm At Brewery <br/> London City
               </h3>
-              <p className="text-sm opacity-90">
-                London City
-              </p>
-               <p className="text-xs font-semibold opacity-90">
-                Starting from <span className="text-[#EDF957] font-bold">$199</span>
+              
+              <p className="text-base opacity-90  ">
+                Starting from <span className="text-[#EDF957] font-bold">₹19,999</span>
               </p>
             </div>
 
-            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute inset-0 "></div>
           </div>
 
           {/* BOTTOM RIGHT CARD */}
-          <div className="relative rounded-2xl overflow-hidden h-[200px]">
+          <div className="relative rounded-2xl overflow-hidden h-[205px]">
             <img
               src="/assets/images/offers/offer3.png"
               alt="Village"
-              className="w-full h-full object-cover"
+              className="w-full h-full"
             />
 
-            <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-full">
+            <span className="absolute top-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 ">
               GET 50% OFF
             </span>
 
-            <div className="absolute bottom-6 left-6 text-white space-y-1">
-            
-              <h3 className="text-lg font-semibold">
-                The Montcalm At Brewery
+            <div className="absolute bottom-4 px-3 text-white space-y-1 flex items-center justify-between w-full">
+              <h3 className="text-xl font-semibold">
+                The Montcalm At Brewery <br /> London City
               </h3>
-              <p className="text-sm opacity-90">
-                London City
-              </p>
-               <p className="text-xs font-semibold opacity-90">
-                Starting from  <span className="text-[#EDF957] font-bold">$249</span>
+              <p className="text-md">
+                Starting from <span className="text-[#EDF957] font-bold">₹24,999</span>
               </p>
             </div>
 
-            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="absolute inset-0"></div>
           </div>
 
         </div>

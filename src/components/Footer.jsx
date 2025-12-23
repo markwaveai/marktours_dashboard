@@ -3,92 +3,122 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="bg-white py-14">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-10 text-sm text-gray-600">
 
+      {/* TOP */}
+      <div
+        className="
+          max-w-7xl mx-auto px-6 text-sm
+          flex flex-col lg:flex-row
+          gap-10 md:gap-20 lg:gap-[280px]
+        "
+      >
         {/* CONTACT */}
         <div>
-          <h4 className="font-semibold text-black mb-4">CONTACT US</h4>
+          <h4 className="font-bold text-black mb-4">CONTACT US</h4>
           <p>Toll Free Customer Care</p>
-          <p className="mt-2">+123 456 7890</p>
-          <br />
-          <p>need support?</p>
-          <p className="mt-2 text-blue-600">support@marktour.com</p>
+          <p className="mt-2 text-[#551DEF] font-medium">
+            +(123) 456 7890 2666
+          </p>
+
+          <p className="mt-6">Need live support?</p>
+          <p className="mt-2 text-[#551DEF] font-medium">
+            support@marktour.com
+          </p>
         </div>
 
-        {/* COMPANY */}
-        <div>
-          <h4 className="font-semibold text-black mb-4">OUR COMPANY</h4>
-          <p>About Us</p>
-          <p className="mt-2">Careers</p>
-          <p className="mt-2">Blog</p>
-          <p className="mt-2">Magazine</p>
-        </div>
+        {/* RIGHT GROUP */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
 
-        {/* SUPPORT */}
-        <div>
-          <h4 className="font-semibold text-black mb-4">SUPPORT</h4>
-          <p>Contact</p>
-          <p className="mt-2">Legal Notice</p>
-          <p className="mt-2">Privacy Policy</p>
-          <p className="mt-2">Terms & Conditions</p>
-        </div>
+          {/* COMPANY */}
+          <div>
+            <h4 className="font-bold text-black mb-4">OUR COMPANY</h4>
+            <ul className="space-y-2">
+              <li>About Us</li>
+              <li>Careers</li>
+              <li>Blog</li>
+              <li>Press</li>
+              <li>Gift Cards</li>
+              <li>Magazine</li>
+            </ul>
+          </div>
 
-        {/* SERVICES */}
-        <div>
-          <h4 className="font-semibold text-black mb-4">OTHER SERVICES</h4>
-          <p>Activity Finder</p>
-          <p className="mt-2">Tour List</p>
-          <p className="mt-2">Flight Finder</p>
-          <p className="mt-2">Holiday Rental</p>
-        </div>
+          {/* SUPPORT */}
+          <div>
+            <h4 className="font-bold text-black mb-4">SUPPORT</h4>
+            <ul className="space-y-2">
+              <li>Contact</li>
+              <li>Legal Notice</li>
+              <li>Privacy Policy</li>
+              <li>Terms & Conditions</li>
+              <li>Sitemap</li>
+            </ul>
+          </div>
 
-        {/* MARKTOUR APP */}
-        <div>
-          <h4 className="font-semibold text-black mb-4">MARKTOUR APP</h4>
+          {/* SERVICES */}
+          <div>
+            <h4 className="font-bold text-black mb-4">OTHER SERVICES</h4>
+            <ul className="space-y-2">
+              <li>Activity Finder</li>
+              <li>Tour List</li>
+              <li>Flight Finder</li>
+              <li>Cruise Ticket</li>
+              <li>Holiday Rental</li>
+              <li>Travel Agents</li>
+            </ul>
+          </div>
 
-          {/* Apple */}
-          <div className="flex items-center gap-3 bg-gray-200 rounded-lg px-4 py-2 mb-3 w-[210px]">
-            <span>🍎</span>
-            <div className="text-xs leading-tight">
-              <p className="text-gray-500">Download on the</p>
-              <p className="font-semibold text-black">Apple Store</p>
+          {/* APP */}
+          <div>
+            <h4 className="font-bold text-black mb-4">MARKTOUR APP</h4>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-2 w-[210px]">
+                <img src="/assets/images/Apple.png" className="w-[28px]" />
+                <div className="text-xs">
+                  <p className="text-gray-500">Download on the</p>
+                  <p className="font-semibold">Apple Store</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-2 w-[210px]">
+                <img src="/assets/images/Playstore.png" className="w-[28px]" />
+                <div className="text-xs">
+                  <p className="text-gray-500">Download on the</p>
+                  <p className="font-semibold">Google Play</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Google */}
-          <div className="flex items-center gap-3 bg-gray-200 rounded-lg px-4 py-2 w-[210px]">
-            <span>▶️</span>
-            <div className="text-xs leading-tight">
-              <p className="text-gray-500">Download on the</p>
-              <p className="font-semibold text-black">Google Play</p>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* BOTTOM BAR */}
-      <div className="border-t mt-12 pt-6">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-
-          <div className="flex flex-wrap items-center gap-4">
+      {/* BOTTOM */}
+      <div className="border-t border-gray-300 mt-12">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+          <div className="flex flex-wrap gap-6">
             <span>© 2022 Marktour. All rights reserved.</span>
-            <span className="cursor-pointer hover:text-black">Privacy</span>
-            <span className="cursor-pointer hover:text-black">Terms</span>
-            <span className="cursor-pointer hover:text-black">Site Map</span>
+            <span>Privacy</span>
+            <span>Terms</span>
+            <span>Site Map</span>
           </div>
 
           <div className="flex items-center gap-6">
-            <span>🌐 English (US)</span>
+            <span className="flex items-center gap-2">
+              <img src="/assets/images/globe.png" className="w-[18px]" />
+              English (US)
+            </span>
+
             <div className="flex gap-3">
-              <span>f</span>
-              <span>🐦</span>
-              <span>📷</span>
-              <span>▶</span>
+              <img src="/assets/images/facebook.png" className="w-[18px]" />
+              <img src="/assets/images/twitter.png" className="w-[18px]" />
+              <img src="/assets/images/instagram.png" className="w-[18px]" />
+              <img src="/assets/images/youtube.png" className="w-[18px]" />
             </div>
           </div>
-
         </div>
       </div>
+
     </footer>
   );
 }

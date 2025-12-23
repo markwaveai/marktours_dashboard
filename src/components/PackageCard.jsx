@@ -3,8 +3,14 @@ const PackageCard = ({ image, name, tours }) => {
     <div className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group">
 
       {/* IMAGE AREA */}
-      <div className="relative w-[200px] h-[240px] flex items-center justify-center pb-[7px]">
-
+      <div
+        className="
+          relative w-[200px] h-[240px]
+          flex items-center justify-center pb-[7px]
+          transition-transform duration-300 ease-out
+          group-hover:scale-105
+        "
+      >
         {/* BACKGROUND OVAL PNG */}
         <img
           src="/assets/images/Oval-img.png"
@@ -17,7 +23,7 @@ const PackageCard = ({ image, name, tours }) => {
           <img
             src={image}
             alt={name}
-            className="w-full h-full"
+            className="w-full h-full "
           />
         </div>
       </div>

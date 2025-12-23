@@ -14,28 +14,20 @@ const flags = [
 ];
 
 export default function Hero() {
-  const slides = [
-    hero1,
-    hero2,
-    hero3,
-    hero4,
-  ];
-
+  const slides = [hero1, hero2, hero3, hero4];
   const [current, setCurrent] = useState(0);
 
-  // 🔁 Change slide + country every 4 seconds (REPEATED)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % flags.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative h-[90vh] overflow-hidden bg-black">
+    <section className="relative min-h-screen overflow-hidden bg-black">
 
-      {/* 🎥 Background Images */}
+      {/* BACKGROUND SLIDES */}
       {slides.map((img, index) => (
         <div
           key={index}
@@ -46,37 +38,33 @@ export default function Hero() {
         />
       ))}
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/25"></div>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0" />
 
-      {/* Navbar */}
-      <div className="relative z-30">
-        <NavBar />
-      </div>
+      {/* NAVBAR */}
+      <NavBar />
 
-      {/* Hero Content */}
-      <div className="relative z-20 h-full flex flex-col justify-center px-6 md:px-16 text-white">
+      {/* HERO CONTENT */}
+      <div className="relative z-20 min-h-screen flex flex-col justify-center px-6 md:px-16 text-white text-center md:text-left">
 
-        <p className="text-[#EEFB56] text-3xl font-bold tracking-widest">
+        <p className="text-[#EEFB56] text-xl md:text-3xl font-bold tracking-widest">
           WHERE DO
         </p>
 
-        <h1 className="text-4xl md:text-5xl font-bold mt-2">
+        <h1 className="text-3xl md:text-5xl font-bold mt-2">
           YOU WANT TO GO?
         </h1>
 
-        {/* 🔁 Repeating Country + Moving Flags */}
-        <div className="mt-6 flex items-center gap-8">
+        {/* COUNTRY + FLAGS */}
+        <div className="mt-6 flex flex-col md:flex-row items-center gap-6 md:gap-8">
 
-          {/* Country name (changes repeatedly) */}
           <div key={current} className="overflow-hidden h-10">
-            <p className="text-2xl font-bold animate-country">
+            <p className="text-xl md:text-2xl font-bold animate-country">
               {flags[current].label}
             </p>
           </div>
 
-          {/* Infinite Moving Flags */}
-          <div className="relative w-[260px] overflow-hidden">
+          <div className="relative w-[200px] sm:w-[240px] md:w-[260px] overflow-hidden">
             <div className="flex gap-6 animate-flags">
               {[...flags, ...flags].map((f, i) => (
                 <img
@@ -94,16 +82,28 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="text-[#EEFB56] font-semibold mt-7 max-w-xl text-xl opacity-90">
+        <p className="text-[#EEFB56] font-semibold mt-6 max-w-xl text-base md:text-xl opacity-90 mx-auto md:mx-0">
           Get the best prices on 2,000,000+ properties, worldwide
         </p>
       </div>
 
-      {/* Bottom Image */}
+      {/* 🌍 RESPONSIVE TRAVEL IMAGE (LEFT OFFSET) */}
       <img
         src="./src/assets/herobott.png"
         alt="Travel"
-        className="absolute bottom-0 left-1/3 -translate-x-1/2 z-20 w-[700px] h-[200px]"
+        className="
+          absolute bottom-0 z-20
+          left-[4%]
+          sm:left-[6%]
+          md:left-[8%]
+          w-[90%]
+          sm:w-[80%]
+          md:w-[700px]
+          h-auto
+          max-h-[140px]
+          object-contain
+          pointer-events-none
+        "
       />
     </section>
   );

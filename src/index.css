@@ -429,3 +429,44 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+@keyframes loop-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loop-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* INTERNATIONAL → LEFT */
+.animate-loop {
+  animation: loop-left 15s linear infinite;
+}
+
+/* NATIONAL → RIGHT */
+.animate-loop-reverse {
+  animation: loop-right 15s linear infinite;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}

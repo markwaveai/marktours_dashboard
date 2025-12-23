@@ -2,65 +2,80 @@ import dream1 from "/assets/dreams-images/dream1.png";
 import dream3 from "/assets/dreams-images/dreams3.png";
 import dream4 from "/assets/dreams-images/dreams4.png";
 import dream5 from "/assets/dreams-images/dream5.png";
+
 export default function DreamsBanner() {
   return (
-    <section className="w-full flex justify-center px-6 py-16">
+    <section className="w-full flex justify-center px-4 sm:px-6 py-12 sm:py-16">
       <div className="relative w-full max-w-[90rem] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
 
-        {/* 🔥 Moving Main Heading */}
-        <div className="overflow-hidden mt-2">
-          <h1 className="whitespace-nowrap text-[10rem] md:text-10xl font-extrabold tracking-widest animate-main-move opacity-80">
+        {/* 🔥 INNER SHADOW (LEFT + RIGHT FADE) */}
+        <div className="pointer-events-none absolute inset-0 z-20">
+          <div className="absolute left-0 top-0 h-full w-24 sm:w-40 bg-gradient-to-r from-[#240D62] to-transparent" />
+          <div className="absolute right-0 top-0 h-full w-24 sm:w-40 bg-gradient-to-l from-[#240D62] to-transparent" />
+        </div>
+
+        {/* 🔥 MOVING MAIN HEADING */}
+        <div className="overflow-hidden pt-6">
+          <h1
+            className="
+              whitespace-nowrap
+              font-black
+              font-black tracking-tight md:tracking-wide
+
+              text-[2rem]
+              md:text-[4rem]
+              lg:text-[6rem]
+              animate-main-move
+            "
+          >
             FROM DREAMS TO DESTINATION &nbsp; FROM DREAMS TO DESTINATION
           </h1>
         </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex flex-col items-center text-center py-6 px-6">
-          <p className="mt-1 text-lg md:text-4xl opacity-90">
+        {/* MAIN CONTENT */}
+        <div className="relative z-30 flex flex-col items-center text-center pb-[100px] px-4 sm:px-6">
+          <p className="text-base sm:text-xl md:text-3xl">
             World Best Travel Agency Company
           </p>
 
-          <p className="mt-2 text-3xl opacity-80">
+          <p className="mt-2 text-xl sm:text-2xl md:text-3xl">
             Since 2023
           </p>
 
-          <button className="mt-8 bg-[#EEFB56] text-black font-semibold px-8 py-3 rounded-full hover:bg-lime-300 transition">
+          <button className="mt-2 sm:mt-4 bg-[#EEFB56] text-black font-bold px-6 sm:px-8 py-3 rounded-full hover:bg-lime-300 transition">
             READ MORE
           </button>
         </div>
 
         {/* ================= DECORATIVE IMAGES ================= */}
 
-        {/* 1️⃣ Left – Eiffel Tower */}
+        {/* Eiffel Tower */}
         <img
           src={dream1}
           alt="Eiffel Tower"
-          className="absolute left-10 bottom-24 w-20 opacity-40 animate-float"
+          className="absolute left-4 sm:left-10 bottom-28 w-14 sm:w-20 opacity-40 animate-float"
         />
 
-        {/* 2️⃣ Bottom Left – Pyramid */}
+        {/* Pyramid */}
         <img
           src={dream5}
           alt="Pyramid"
-          className="absolute left-64 bottom-0 w-40 opacity-40 animate-float-delay-1"
+          className="absolute left-24 sm:left-64 bottom-0 w-28 sm:w-40 opacity-40 animate-float-delay-1"
         />
 
-        {/* 3️⃣ Center Bottom – Colosseum */}
+        {/* Colosseum */}
         <img
           src={dream3}
           alt="Colosseum"
-          className="absolute left-1/2 bottom-0 -translate-x-1/2 w-56 opacity-40 animate-float-delay-2"
+          className="absolute left-1/2 bottom-0 -translate-x-1/2 w-40 sm:w-56 opacity-40 animate-float-delay-2"
         />
 
-        {/* 4️⃣ Bottom Right – Statue */}
+        {/* Statue */}
         <img
           src={dream4}
           alt="Statue"
-          className="absolute right-28 bottom-0 w-44 opacity-40 animate-float-delay-1"
+          className="absolute right-6 sm:right-28 bottom-0 w-32 sm:w-44 opacity-40 animate-float-delay-1"
         />
-
-        
-
       </div>
     </section>
   );
