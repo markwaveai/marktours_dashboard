@@ -371,3 +371,13 @@
   left: 50%;
   animation-duration: 4s;
 }
+
+/* 🙈 HIDE SCROLLBAR */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

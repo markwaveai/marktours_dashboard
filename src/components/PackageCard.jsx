@@ -1,6 +1,6 @@
 const PackageCard = ({ image, name, tours }) => {
   return (
-    <div className="min-w-[200px] flex flex-col items-center text-center hover-scale cursor-pointer group">
+    <div className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group">
 
       {/* IMAGE AREA */}
       <div className="relative w-[200px] h-[240px] flex items-center justify-center pb-[7px]">
@@ -17,7 +17,7 @@ const PackageCard = ({ image, name, tours }) => {
           <img
             src={image}
             alt={name}
-            className="w-full h-full transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full"
           />
         </div>
       </div>

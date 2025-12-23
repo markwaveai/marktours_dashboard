@@ -1,5 +1,8 @@
-import { useRef, useState } from "react";
-
+import it1 from "/assets/itineraries-images/it1.png";
+import it2 from "/assets/itineraries-images/it2.png";
+import it3 from "/assets/itineraries-images/it3.png";
+import it4 from "/assets/itineraries-images/it4.png";
+import { useEffect, useRef, useState } from "react";
 const itineraries = [
     {
         title: "Couple Holiday: 3 Nights In Phuket",
@@ -27,6 +30,16 @@ const RecentlyBookedItineraries = () => {
     const scrollRef = useRef(null);
     const [open, setOpen] = useState(false);
 
+    const bannerImages = [it1, it2, it3, it4];
+    const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentBannerIndex((prev) => (prev + 1) % bannerImages.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
     const scroll = (dir) => {
         scrollRef.current.scrollBy({
             left: dir === "left" ? -340 : 340,
@@ -37,13 +50,13 @@ const RecentlyBookedItineraries = () => {
     return (
         /* FULL WIDTH BACKGROUND */
         <section
-            className="w-full py-16 bg-cover bg-center bg-no-repeat mt-8"
+            className="w-full pt-16 bg-cover bg-center bg-no-repeat mt-8"
             style={{
                 backgroundImage: "url('/assets/images/Background.png')",
             }}
         >
             {/* CENTERED CONTENT */}
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-8xl mx-auto px-6">
 
                 {/* HEADER */}
                 <div className="text-center mb-8">
@@ -172,8 +185,8 @@ const RecentlyBookedItineraries = () => {
 
                     {/* RIGHT ARROW */}
                     <button
-  onClick={() => scroll("right")}
-  className="
+                        onClick={() => scroll("right")}
+                        className="
     absolute -right-4 top-[48%] -translate-y-1/2
     bg-lime-400 text-white
     w-9 h-9 rounded-full
@@ -181,10 +194,36 @@ const RecentlyBookedItineraries = () => {
     shadow-lg z-30
     font-bold
   "
->
-  ❯
-</button>
+                    >
+                        ❯
+                    </button>
 
+                </div>
+            </div>
+            <div className="w-full my-20 relative  overflow-hidden group ">
+                <img
+                    src={bannerImages[currentBannerIndex]}
+                    alt="Plan your dream trip"
+                    className="w-full h-auto object-cover transition-opacity duration-1000 ease-in-out"
+                    key={currentBannerIndex}
+                />
+                <div className="absolute bottom-0 left-0 w-full bg-black/70 py-6 flex justify-center items-center gap-2 text-white text-2xl font-semibold ">
+                    <span>The Easiest Way to</span>
+                    <span className="text-yellow-400">Plan Your Dream Trip</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-6 h-6 border border-white rounded-full p-1 ml-2 cursor-pointer"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
+                    </svg>
                 </div>
             </div>
         </section>

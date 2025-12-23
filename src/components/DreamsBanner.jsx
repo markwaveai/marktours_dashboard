@@ -1,22 +1,26 @@
+import dream1 from "/assets/dreams-images/dream1.png";
+import dream3 from "/assets/dreams-images/dreams3.png";
+import dream4 from "/assets/dreams-images/dreams4.png";
+import dream5 from "/assets/dreams-images/dream5.png";
 export default function DreamsBanner() {
   return (
     <section className="w-full flex justify-center px-6 py-16">
-      <div className="relative w-full max-w-7xl rounded-2xl overflow-hidden bg-gradient-to-r from-[#240a82] via-[#5b27ff] to-[#240a82] text-white">
+      <div className="relative w-full max-w-[90rem] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
 
         {/* 🔥 Moving Main Heading */}
-        <div className="overflow-hidden mt-20">
-          <h1 className="whitespace-nowrap text-5xl md:text-6xl font-extrabold tracking-widest animate-main-move opacity-80">
+        <div className="overflow-hidden mt-2">
+          <h1 className="whitespace-nowrap text-[10rem] md:text-10xl font-extrabold tracking-widest animate-main-move opacity-80">
             FROM DREAMS TO DESTINATION &nbsp; FROM DREAMS TO DESTINATION
           </h1>
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col items-center text-center py-20 px-6">
-          <p className="mt-6 text-lg md:text-xl opacity-90">
+        <div className="relative z-10 flex flex-col items-center text-center py-6 px-6">
+          <p className="mt-1 text-lg md:text-4xl opacity-90">
             World Best Travel Agency Company
           </p>
 
-          <p className="mt-2 text-base opacity-80">
+          <p className="mt-2 text-3xl opacity-80">
             Since 2023
           </p>
 
@@ -29,38 +33,33 @@ export default function DreamsBanner() {
 
         {/* 1️⃣ Left – Eiffel Tower */}
         <img
-          src="/img/eiffel.png"
+          src={dream1}
           alt="Eiffel Tower"
           className="absolute left-10 bottom-24 w-20 opacity-40 animate-float"
         />
 
         {/* 2️⃣ Bottom Left – Pyramid */}
         <img
-          src="/img/pyramid.png"
+          src={dream5}
           alt="Pyramid"
-          className="absolute left-28 bottom-0 w-40 opacity-40 animate-float-delay-1"
+          className="absolute left-64 bottom-0 w-40 opacity-40 animate-float-delay-1"
         />
 
         {/* 3️⃣ Center Bottom – Colosseum */}
         <img
-          src="/img/colosseum.png"
+          src={dream3}
           alt="Colosseum"
           className="absolute left-1/2 bottom-0 -translate-x-1/2 w-56 opacity-40 animate-float-delay-2"
         />
 
         {/* 4️⃣ Bottom Right – Statue */}
         <img
-          src="/img/statue.png"
+          src={dream4}
           alt="Statue"
           className="absolute right-28 bottom-0 w-44 opacity-40 animate-float-delay-1"
         />
 
-        {/* 5️⃣ Right – Temple */}
-        <img
-          src="/img/temple.png"
-          alt="Temple"
-          className="absolute right-10 bottom-24 w-24 opacity-40 animate-float"
-        />
+        
 
       </div>
     </section>
