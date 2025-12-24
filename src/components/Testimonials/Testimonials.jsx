@@ -72,7 +72,7 @@ export default function Testimonials() {
                     ${textPosition}
                   `}
                 >
-                  <h3 className="text-base sm:text-lg font-semibold">
+                  <h3 className="text-base sm:text-xl opacity-90 font-bold text-center">
                     {card.title}
                   </h3>
                 </div>
