@@ -14,7 +14,7 @@ export default function Footer() {
       >
         {/* CONTACT */}
         <div>
-          <h4 className="font-bold text-black mb-4">CONTACT US</h4>
+          <h4 className="font-bold text-black mb-4 ">CONTACT US</h4>
           <p>Toll Free Customer Care</p>
           <p className="mt-2 text-[#551DEF] font-medium">
             +(123) 456 7890 2666
