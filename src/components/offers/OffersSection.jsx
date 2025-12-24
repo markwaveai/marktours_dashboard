@@ -1,10 +1,10 @@
 export default function OffersSection() {
   return (
-    <section className="w-full flex justify-center px-6 py-14 bg-white">
-      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="w-full flex justify-center px-6  bg-white pt-14">
+      <div className="w-full max-w-[90vw] grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {/* LEFT BIG CARD */}
-        <div className="relative rounded-2xl overflow-hidden h-[500px]">
+        <div className="relative rounded-2xl overflow-hidden h-[580px]">
           <img
             src="/assets/images/offers/offer1.png"
             alt="London"
@@ -31,7 +31,7 @@ export default function OffersSection() {
         <div className="md:col-span-2 grid grid-rows-2 gap-6">
 
           {/* TOP RIGHT CARD */}
-          <div className="relative rounded-2xl overflow-hidden h-[270px]">
+          <div className="relative rounded-2xl overflow-hidden h-[305px]">
             <img
               src="/assets/images/offers/offer2.png"
               alt="Mountains"
@@ -56,7 +56,7 @@ export default function OffersSection() {
           </div>
 
           {/* BOTTOM RIGHT CARD */}
-          <div className="relative rounded-2xl overflow-hidden h-[205px]">
+          <div className="relative rounded-2xl overflow-hidden h-[250px]">
             <img
               src="/assets/images/offers/offer3.png"
               alt="Village"

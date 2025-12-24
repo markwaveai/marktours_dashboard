@@ -189,7 +189,7 @@ export default function RecentlyBookedItineraries() {
       </div>
 
       {/* ====== BANNER ====== */}
-      <div className="w-full my-20 relative overflow-hidden aspect-[16/6]">
+      <div className="w-full mt-20 relative overflow-hidden aspect-[16/6]">
         {bannerImages.map((img, index) => (
           <img
             key={index}
