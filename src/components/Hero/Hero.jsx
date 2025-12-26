@@ -88,23 +88,7 @@ export default function Hero() {
       </div>
 
       {/* 🌍 RESPONSIVE TRAVEL IMAGE (LEFT OFFSET) */}
-      <img
-        src="./src/assets/herobott.png"
-        alt="Travel"
-        className="
-          absolute bottom-0 z-20
-          left-[4%]
-          sm:left-[6%]
-          md:left-[8%]
-          w-[90%]
-          sm:w-[80%]
-          md:w-[700px]
-          h-auto
-          max-h-[140px]
-          object-contain
-          pointer-events-none
-        "
-      />
+      
     </section>
   );
 }
