@@ -2,11 +2,11 @@ import PackageCard from "../PackageCard.jsx";
 
 const HolidayPackages = () => {
   return (
-    <div className="border border-gray-200 px-6 py-6 space-y-14 max-w-7xl mx-auto rounded-xl shadow-sm ">
+    <div className="border border-gray-200 px-6 py-6 space-y-14 max-w-[94vw] mx-auto rounded-xl shadow-sm ">
 
       {/* INTERNATIONAL */}
       <div>
-        <h3 className="text-indigo-500 text-md font-medium mb-6 pl-4">
+        <h3 className="text-indigo-500 text-md font-medium pb-6 pl-4">
           International Packages
         </h3>
 
@@ -30,7 +30,7 @@ const HolidayPackages = () => {
 
       {/* NATIONAL */}
       <div>
-        <h3 className="text-indigo-600 text-md font-medium mb-6 pl-4">
+        <h3 className="text-indigo-600 text-md font-medium pb-6 pl-4">
           National Packages
         </h3>
 

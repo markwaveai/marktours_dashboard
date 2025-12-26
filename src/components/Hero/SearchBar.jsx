@@ -20,7 +20,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-xl p-6 grid grid-cols-1 md:grid-cols-5 gap-6 w-full mx-auto"
+      className="rounded-xl py-6 grid grid-cols-1 md:grid-cols-5 gap-6 w-full mx-auto max-w-[94vw]"
     >
       {/* Name */}
       <div className="flex flex-col gap-2">

@@ -31,6 +31,11 @@ export default function RecentlyBookedItineraries() {
   const scrollRef = useRef(null);
   const [open, setOpen] = useState(false);
 
+  /* 🔥 ARROW STATES */
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  /* BANNER */
   const bannerImages = [it1, it2, it3, it4];
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
@@ -41,10 +46,27 @@ export default function RecentlyBookedItineraries() {
     return () => clearInterval(interval);
   }, []);
 
+  /* 🔥 CHECK SCROLL POSITION */
+  const checkScroll = () => {
+    if (!scrollRef.current) return;
+
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+  };
+
+  useEffect(() => {
+    checkScroll();
+  }, []);
+
+  /* SCROLL HANDLER */
   const scroll = (dir) => {
     if (!scrollRef.current) return;
 
     const card = scrollRef.current.querySelector(".trip-card");
+    if (!card) return;
+
     const gap = 24;
     const cardWidth = card.offsetWidth + gap;
 
@@ -71,8 +93,6 @@ export default function RecentlyBookedItineraries() {
 
         {/* FILTER BAR */}
         <div className="flex justify-center gap-3 mb-10 flex-wrap font-medium relative">
-
-          {/* DROPDOWN */}
           <div className="relative">
             <button
               onClick={() => setOpen(!open)}
@@ -120,15 +140,15 @@ export default function RecentlyBookedItineraries() {
         {/* ====== CAROUSEL ====== */}
         <div className="relative">
 
-          {/* LEFT ARROW (1st card border) */}
+          {/* LEFT ARROW */}
           <button
             onClick={() => scroll("left")}
-            className="
-              absolute -left-5 top-1/2 -translate-y-1/2
-              z-20
-              bg-white w-10 h-10 rounded-full shadow-lg
+            className={`
+              absolute -left-5 top-1/2 -translate-y-1/2 z-20
+              w-10 h-10 rounded-full shadow-lg
               flex items-center justify-center
-            "
+              ${canScrollLeft ? "bg-lime-400 text-white" : "bg-white text-black"}
+            `}
           >
             ❮
           </button>
@@ -136,6 +156,7 @@ export default function RecentlyBookedItineraries() {
           {/* SCROLL AREA */}
           <div
             ref={scrollRef}
+            onScroll={checkScroll}
             className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
           >
             {itineraries.map((item, index) => (
@@ -156,7 +177,7 @@ export default function RecentlyBookedItineraries() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full "
+                  className="w-full h-full"
                 />
 
                 <div className="absolute inset-0 bg-black/25 flex items-center px-5">
@@ -173,15 +194,15 @@ export default function RecentlyBookedItineraries() {
             ))}
           </div>
 
-          {/* RIGHT ARROW (3rd card border) */}
+          {/* RIGHT ARROW */}
           <button
             onClick={() => scroll("right")}
-            className="
-              absolute -right-5 top-1/2 -translate-y-1/2
-              z-20
-              bg-lime-400 text-white w-10 h-10 rounded-full shadow-lg
+            className={`
+              absolute -right-5 top-1/2 -translate-y-1/2 z-20
+              w-10 h-10 rounded-full shadow-lg
               flex items-center justify-center
-            "
+              ${canScrollRight ? "bg-lime-400 text-white" : "bg-white text-black"}
+            `}
           >
             ❯
           </button>
@@ -206,8 +227,16 @@ export default function RecentlyBookedItineraries() {
         <div className="absolute bottom-0 left-0 w-full bg-black/30 py-6 z-10">
           <div className="flex justify-center items-center gap-3 text-white text-2xl">
             <span>The Easiest Way to</span>
-            <span className="text-[#EEFB56] font-bold">Plan Your Dream Trip</span> 
-            <span><img src="/assets/images/arrow.png" alt="ARROW" width={40}/></span>
+            <span className="text-[#EEFB56] font-bold">
+              Plan Your Dream Trip
+            </span>
+            <span>
+              <img
+                src="/assets/images/arrow.png"
+                alt="ARROW"
+                width={40}
+              />
+            </span>
           </div>
         </div>
       </div>

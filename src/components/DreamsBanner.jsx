@@ -6,7 +6,7 @@ import dream5 from "/assets/dreams-images/dream5.png";
 export default function DreamsBanner() {
   return (
     <section className="w-full flex justify-center px-4 sm:px-6 py-12 sm:py-16">
-      <div className="relative w-full max-w-[90rem] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
+      <div className="relative w-full max-w-[94vw] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
 
         {/* 🔥 INNER SHADOW (LEFT + RIGHT FADE) */}
         <div className="pointer-events-none absolute inset-0 z-20">
