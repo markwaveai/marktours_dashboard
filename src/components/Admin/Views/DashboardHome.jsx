@@ -94,7 +94,7 @@ export default function DashboardHome() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* ------------------ USER STATUS DONUT ------------------ */}
+        
         <div className="bg-white p-6 rounded-xl shadow-sm border relative">
           <h3 className="text-lg font-semibold mb-4">
             User Status Distribution

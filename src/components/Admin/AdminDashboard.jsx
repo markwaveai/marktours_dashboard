@@ -55,7 +55,7 @@ export default function AdminDashboard() {
 
       {/* -------------------- DESKTOP SIDEBAR -------------------- */}
       <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col shadow-lg">
-        <div className="h-20 flex items-center px-8 border-b bg-[#EEFB56]">
+        <div className="h-20 flex items-center justify-center px-8 border-b">
           <img
             src="/assets/images/Layer 2.png"
             alt="Mark Tours"
