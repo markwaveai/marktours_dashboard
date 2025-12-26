@@ -1,11 +1,13 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, LineChart, Line, AreaChart, Area } from 'recharts';
 import usersData from "../../../data/users.json";
+import employeesData from "../../../data/employees.json";
 
 export default function DashboardHome() {
 
     // Stats Calculation
     const totalUsers = usersData.length;
     const activeUsers = usersData.filter(u => u.status === "Active").length;
+    const totalEmployees = employeesData.length;
     const criticalRisk = usersData.filter(u => u.riskLevel === "Critical").length;
     const totalPendingEMI = usersData.reduce((acc, user) => {
         const amount = parseInt(user.emiAmount.replace(/[^0-9]/g, '')) || 0;
@@ -45,9 +47,10 @@ export default function DashboardHome() {
         <div className="space-y-6">
 
             {/* Top Stats Widgets */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 <Widget title="Total Users" value={totalUsers} change="+12%" icon="👥" color="bg-blue-500" />
                 <Widget title="Active Users" value={activeUsers} change="+5%" icon="✅" color="bg-green-500" />
+                <Widget title="Employee Management" value={totalEmployees} change="+2" icon="💼" color="bg-indigo-500" />
                 <Widget title="Projected Month EMI" value={totalPendingEMI} change="-2%" icon="💳" color="bg-orange-500" />
                 <Widget title="Critical Risk" value={criticalRisk} change="0%" icon="⚠️" color="bg-red-500" />
             </div>
@@ -133,7 +136,7 @@ function Widget({ title, value, change, icon, color }) {
     return (
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-start justify-between">
             <div>
-                <p className="text-sm font-medium text-gray-500">{title}</p>
+                <p className="text-sm font-medium text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">{title}</p>
                 <h3 className="text-2xl font-bold text-gray-900 mt-1">{value}</h3>
                 <span className={`inline-block mt-2 text-xs font-medium px-2 py-0.5 rounded ${change.startsWith('+') ? 'bg-green-100 text-green-700' : change.startsWith('0') ? 'bg-gray-100 text-gray-700' : 'bg-red-100 text-red-700'}`}>
                     {change} from last month

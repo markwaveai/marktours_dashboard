@@ -13,7 +13,8 @@ import {
     LogOut,
     Menu,
     X,
-    CalendarCheck
+    CalendarCheck,
+    Briefcase
 } from "lucide-react";
 
 // Import Views
@@ -26,6 +27,7 @@ import EligibilityEngine from "./Views/EligibilityEngine";
 import ReportsLogs from "./Views/ReportsLogs";
 import CompanyPaid from "./Views/CompanyPaid";
 import TourAssignment from "./Views/TourAssignment";
+import EmployeeManagement from "./Views/EmployeeManagement";
 
 export default function AdminDashboard() {
     const [activeTab, setActiveTab] = useState("Dashboard");
@@ -34,6 +36,7 @@ export default function AdminDashboard() {
     const menuItems = [
         { name: "Dashboard", icon: LayoutDashboard, component: <DashboardHome /> },
         { name: "User Management", icon: Users, component: <UserManagement /> },
+        { name: "Employee Management", icon: Briefcase, component: <EmployeeManagement /> },
         { name: "Tour Assignment", icon: CalendarCheck, component: <TourAssignment /> },
         { name: "EMI & Payments", icon: CreditCard, component: <EMIPayments /> },
         { name: "Risk & Defaulters", icon: AlertTriangle, component: <RiskDefaulters /> },
@@ -51,8 +54,12 @@ export default function AdminDashboard() {
             {/* Sidebar (Desktop) */}
             <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col z-20 shadow-lg">
                 <div className="h-20 flex items-center px-8 border-b border-gray-100">
-                    <span className="text-3xl mr-2">📍</span>
-                    <span className="font-bold text-xl text-gray-800 tracking-tight">Mark Tours</span>
+                    <img
+                        src="/assets/images/logo.png"
+                        alt="Mark Tours"
+                        className="w-[70px] md:w-[90px] shrink-0"
+                    />
+
                 </div>
 
                 <nav className="flex-1 overflow-y-auto py-6 px-4">
@@ -61,9 +68,9 @@ export default function AdminDashboard() {
                             <li key={item.name}>
                                 <button
                                     onClick={() => setActiveTab(item.name)}
-                                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group ${activeTab === item.name
-                                            ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
-                                            : "text-gray-500 hover:bg-indigo-50 hover:text-indigo-600"
+                                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 group whitespace-nowrap overflow-hidden ${activeTab === item.name
+                                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+                                        : "text-gray-500 hover:bg-indigo-50 hover:text-indigo-600"
                                         }`}
                                 >
                                     <item.icon className={`w-5 h-5 mr-3 transition-colors ${activeTab === item.name ? "text-white" : "text-gray-400 group-hover:text-indigo-600"}`} />
@@ -138,7 +145,7 @@ export default function AdminDashboard() {
                                             setActiveTab(item.name);
                                             setIsMobileMenuOpen(false);
                                         }}
-                                        className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg ${activeTab === item.name ? "bg-indigo-600 text-white" : "text-gray-600"
+                                        className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg whitespace-nowrap ${activeTab === item.name ? "bg-indigo-600 text-white" : "text-gray-600"
                                             }`}
                                     >
                                         <item.icon className="w-5 h-5 mr-3" />
