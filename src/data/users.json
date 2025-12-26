@@ -10,13 +10,22 @@
     "passport": "-",
     "status": "Active",
     "tour": "Dubai",
+    "joiningDate": "2023-01-01",
     "nextEmiDate": "2024-01-15",
     "emiAmount": "₹15,000",
     "totalPaid": "₹45,000",
     "riskLevel": "Low",
-    "joiningDate": "2023-01-01",
-    "packageAmount": "₹1,50,000"
+    "packageAmount": "₹1,50,000",
+    "previousEmis": [
+      { "month": "Jan 2023", "amount": "₹15,000", "status": "Paid" },
+      { "month": "Feb 2023", "amount": "₹15,000", "status": "Paid" },
+      { "month": "Mar 2023", "amount": "₹15,000", "status": "Paid" },
+      { "month": "Apr 2023", "amount": "₹15,000", "status": "Paid" },
+      { "month": "May 2023", "amount": "₹15,000", "status": "Paid" },
+      { "month": "Jun 2023", "amount": "₹15,000", "status": "Paid" }
+    ]
   },
+
   {
     "id": 2,
     "name": "Priya Patel",
@@ -28,13 +37,18 @@
     "passport": "-",
     "status": "Late",
     "tour": "Sri Lanka",
+    "joiningDate": "2023-02-10",
     "nextEmiDate": "2023-12-30",
     "emiAmount": "₹12,500",
     "totalPaid": "₹25,000",
     "riskLevel": "High",
-    "joiningDate": "2023-02-10",
-    "packageAmount": "₹1,30,000"
+    "packageAmount": "₹1,30,000",
+    "previousEmis": [
+      { "month": "Feb 2023", "amount": "₹12,500", "status": "Paid" },
+      { "month": "Mar 2023", "amount": "₹12,500", "status": "Paid" }
+    ]
   },
+
   {
     "id": 3,
     "name": "Rahul Verma",
@@ -46,13 +60,18 @@
     "passport": "Uploaded",
     "status": "Active",
     "tour": "Singapore",
+    "joiningDate": "2023-03-05",
     "nextEmiDate": "2024-01-10",
     "emiAmount": "₹18,000",
     "totalPaid": "₹36,000",
     "riskLevel": "Low",
-    "joiningDate": "2023-03-05",
-    "packageAmount": "₹1,80,000"
+    "packageAmount": "₹1,80,000",
+    "previousEmis": [
+      { "month": "Mar 2023", "amount": "₹18,000", "status": "Paid" },
+      { "month": "Apr 2023", "amount": "₹18,000", "status": "Paid" }
+    ]
   },
+
   {
     "id": 4,
     "name": "Sneha Gupta",
@@ -64,12 +83,13 @@
     "passport": "Uploaded",
     "status": "Completed",
     "tour": "Thailand",
+    "joiningDate": "2022-12-15",
     "nextEmiDate": "-",
     "emiAmount": "₹0",
     "totalPaid": "₹1,20,000",
     "riskLevel": "None",
-    "joiningDate": "2022-12-15",
-    "packageAmount": "₹1,20,000"
+    "packageAmount": "₹1,20,000",
+    "previousEmis": []
   },
   {
     "id": 5,
@@ -82,12 +102,16 @@
     "passport": "-",
     "status": "Active",
     "tour": "Malaysia",
+    "joiningDate": "2023-04-18",
     "nextEmiDate": "2024-01-20",
     "emiAmount": "₹20,000",
     "totalPaid": "₹40,000",
     "riskLevel": "Medium",
-    "joiningDate": "2023-04-18",
-    "packageAmount": "₹1,60,000"
+    "packageAmount": "₹1,60,000",
+    "previousEmis": [
+      { "month": "Apr 2023", "amount": "₹20,000", "status": "Paid" },
+      { "month": "May 2023", "amount": "₹20,000", "status": "Paid" }
+    ]
   },
   {
     "id": 6,
@@ -105,7 +129,8 @@
     "totalPaid": "₹29,000",
     "riskLevel": "Low",
     "joiningDate": "2023-05-01",
-    "packageAmount": "₹1,50,000"
+    "packageAmount": "₹1,50,000",
+    "previousEmis": []
   },
   {
     "id": 7,
@@ -123,7 +148,8 @@
     "totalPaid": "₹16,000",
     "riskLevel": "Critical",
     "joiningDate": "2023-06-12",
-    "packageAmount": "₹1,20,000"
+    "packageAmount": "₹1,20,000",
+    "previousEmis": []
   },
   {
     "id": 8,
@@ -141,7 +167,8 @@
     "totalPaid": "₹26,000",
     "riskLevel": "Low",
     "joiningDate": "2023-07-20",
-    "packageAmount": "₹1,80,000"
+    "packageAmount": "₹1,80,000",
+    "previousEmis": []
   },
   {
     "id": 9,
@@ -159,7 +186,8 @@
     "totalPaid": "₹35,000",
     "riskLevel": "Medium",
     "joiningDate": "2023-08-10",
-    "packageAmount": "₹1,60,000"
+    "packageAmount": "₹1,60,000",
+    "previousEmis": []
   },
   {
     "id": 10,
@@ -177,7 +205,8 @@
     "totalPaid": "₹1,50,000",
     "riskLevel": "None",
     "joiningDate": "2022-11-05",
-    "packageAmount": "₹1,50,000"
+    "packageAmount": "₹1,50,000",
+    "previousEmis": []
   },
   {
     "id": 11,
@@ -195,7 +224,8 @@
     "totalPaid": "₹38,000",
     "riskLevel": "Low",
     "joiningDate": "2023-09-01",
-    "packageAmount": "₹1,30,000"
+    "packageAmount": "₹1,30,000",
+    "previousEmis": []
   },
   {
     "id": 12,
@@ -213,6 +243,7 @@
     "totalPaid": "₹15,500",
     "riskLevel": "High",
     "joiningDate": "2023-10-15",
-    "packageAmount": "₹1,20,000"
+    "packageAmount": "₹1,20,000",
+    "previousEmis": []
   }
 ]

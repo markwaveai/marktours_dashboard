@@ -195,5 +195,6 @@ function PlaneIcon() {
             <path d="M2 12h20" />
             <path d="M13 2l9 10-9 10" />
         </svg>
+       
     );
 }

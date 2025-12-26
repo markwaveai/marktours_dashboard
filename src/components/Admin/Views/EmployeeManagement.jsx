@@ -54,17 +54,39 @@ export default function EmployeeManagement() {
         setShowForm(true);
     };
 
+    /* ================= VALIDATION ================= */
     const validateForm = () => {
         const e = {};
-        if (!form.firstName) e.firstName = "Required";
-        if (!form.lastName) e.lastName = "Required";
-        if (!form.email.includes("@")) e.email = "Invalid email";
-        if (!isEdit && !/^\d{10}$/.test(form.phone))
-            e.phone = "10 digit mobile required";
+
+        if (!form.firstName) e.firstName = "First name is required";
+        if (!form.lastName) e.lastName = "Last name is required";
+
+        if (!form.email) {
+            e.email = "Email is required";
+        } else if (!form.email.includes("@")) {
+            e.email = "Invalid email format";
+        }
+
+        if (!isEdit) {
+            if (!form.phone) {
+                e.phone = "Mobile number is required";
+            } else if (!/^\d{10}$/.test(form.phone)) {
+                e.phone = "Mobile number must be 10 digits";
+            }
+        }
+
         setErrors(e);
-        return Object.keys(e).length === 0;
+
+        // 🔔 POPUP IF ERROR
+        if (Object.keys(e).length > 0) {
+            alert(Object.values(e)[0]); // show first error
+            return false;
+        }
+
+        return true;
     };
 
+    /* ================= SAVE ================= */
     const handleSave = () => {
         if (!validateForm()) return;
 
@@ -110,14 +132,13 @@ export default function EmployeeManagement() {
                 </div>
 
                 <div className="flex gap-3 items-center">
-                    {/* SEARCH */}
                     <div className="relative group">
                         <FiSearch
-                            className="absolute left-3 top-2.5 text-indigo-600 group-focus-within:text-indigo-800 transition-colors"
+                            className="absolute left-3 top-2.5 text-indigo-600"
                             size={16}
                         />
                         <input
-                            className="pl-9 pr-3 py-2 text-sm rounded-lg bg-gray-100 focus:bg-white border border-transparent focus:border-indigo-300 outline-none transition"
+                            className="pl-9 pr-3 py-2 text-sm rounded-lg bg-gray-100 focus:bg-white border border-transparent focus:border-indigo-300 outline-none"
                             placeholder="Search..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
@@ -138,22 +159,16 @@ export default function EmployeeManagement() {
                 <table className="w-full text-sm">
                     <thead className="bg-gray-100 border-b">
                         <tr>
-                            {[
-                                "S.No",
-                                "Name",
-                                "Email",
-                                "Mobile",
-                                "Branch",
-                                "Role",
-                                "Actions",
-                            ].map((h) => (
-                                <th
-                                    key={h}
-                                    className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase"
-                                >
-                                    {h}
-                                </th>
-                            ))}
+                            {["S.No", "Name", "Email", "Mobile", "Branch", "Role", "Actions"].map(
+                                (h) => (
+                                    <th
+                                        key={h}
+                                        className="px-4 py-3 text-left text-xs font-bold text-gray-700 uppercase"
+                                    >
+                                        {h}
+                                    </th>
+                                )
+                            )}
                         </tr>
                     </thead>
                     <tbody>
@@ -163,11 +178,9 @@ export default function EmployeeManagement() {
                                 className="border-b hover:bg-gray-50 transition"
                             >
                                 <td className="px-4 py-3 text-gray-500">{i + 1}</td>
-                                <td className="px-4 py-3 font-medium text-gray-900">
-                                    {e.name}
-                                </td>
-                                <td className="px-4 py-3 text-gray-600">{e.email}</td>
-                                <td className="px-4 py-3 text-gray-600">{e.phone}</td>
+                                <td className="px-4 py-3 font-medium">{e.name}</td>
+                                <td className="px-4 py-3">{e.email}</td>
+                                <td className="px-4 py-3">{e.phone}</td>
                                 <td className="px-4 py-3">
                                     <span className="px-2 py-1 text-xs rounded-full bg-blue-50 text-blue-700">
                                         {e.branch || "General"}
@@ -181,15 +194,13 @@ export default function EmployeeManagement() {
                                 <td className="px-4 py-3 flex gap-2">
                                     <button
                                         onClick={() => handleEdit(e)}
-                                        className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
-                                        title="Edit"
+                                        className="p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white"
                                     >
                                         <FiEdit />
                                     </button>
                                     <button
                                         onClick={() => handleDelete(e.id)}
-                                        className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition"
-                                        title="Delete"
+                                        className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-600 hover:text-white"
                                     >
                                         <FiTrash2 />
                                     </button>
@@ -210,20 +221,13 @@ export default function EmployeeManagement() {
                         onClick={(e) => e.stopPropagation()}
                         className="bg-white w-full max-w-xl rounded-xl shadow-xl"
                     >
-                        {/* MODAL HEADER */}
                         <div className="px-5 py-4 border-b flex justify-between items-center">
-                            <h3 className="text-lg font-bold text-gray-900">
+                            <h3 className="text-lg font-bold">
                                 {isEdit ? "Edit Employee" : "Add Employee"}
                             </h3>
-                            <button
-                                onClick={() => setShowForm(false)}
-                                className="text-gray-500 hover:text-black"
-                            >
-                                ✕
-                            </button>
+                            <button onClick={() => setShowForm(false)}>✕</button>
                         </div>
 
-                        {/* FORM */}
                         <div className="px-5 py-4 space-y-4">
                             <div className="grid grid-cols-2 gap-4">
                                 <input
@@ -256,10 +260,9 @@ export default function EmployeeManagement() {
                             <input
                                 placeholder="Mobile Number"
                                 disabled={isEdit}
-                                className={`border rounded-lg px-3 py-2 text-sm w-full ${isEdit
-                                        ? "bg-gray-100 text-gray-500 cursor-not-allowed"
-                                        : ""
-                                    }`}
+                                className={`border rounded-lg px-3 py-2 text-sm w-full ${
+                                    isEdit ? "bg-gray-100 cursor-not-allowed" : ""
+                                }`}
                                 value={form.phone}
                                 onChange={(e) =>
                                     setForm({
@@ -295,17 +298,16 @@ export default function EmployeeManagement() {
                             </select>
                         </div>
 
-                        {/* FOOTER */}
                         <div className="px-5 py-4 border-t bg-gray-50 flex justify-end gap-3">
                             <button
                                 onClick={() => setShowForm(false)}
-                                className="px-4 py-2 rounded-lg text-sm bg-gray-200 hover:bg-gray-300"
+                                className="px-4 py-2 rounded-lg bg-gray-200"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleSave}
-                                className="px-6 py-2 rounded-lg text-sm bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow"
+                                className="px-6 py-2 rounded-lg bg-indigo-600 text-white font-semibold"
                             >
                                 {isEdit ? "Update" : "Save"}
                             </button>

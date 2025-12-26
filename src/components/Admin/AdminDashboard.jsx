@@ -129,24 +129,18 @@ export default function AdminDashboard() {
 
           <h1 className="hidden md:block text-xl font-bold">{activeTab}</h1>
 
-          <div className="flex items-center gap-3">
-            <button className="p-2 relative text-gray-500 hover:text-indigo-600">
-              <Bell />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
-            </button>
-
-            <div className="hidden md:block text-right">
-              <p className="text-xs text-gray-500">Today</p>
-              <p className="text-sm font-bold">
-                {new Date().toLocaleDateString("en-US", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </p>
-            </div>
-          </div>
-        </header>
+                    <div className="flex items-center gap-2 md:gap-4">
+                        {/* <button className="p-2 relative text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-all">
+                            <Bell className="w-5 h-5" />
+                            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+                        </button> */}
+                        <div className="h-8 w-px bg-gray-200 mx-2 hidden md:block"></div>
+                        <div className="text-right hidden md:block">
+                            <p className="text-xs font-medium text-gray-500">Today</p>
+                            <p className="text-sm font-bold text-gray-800">{new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                        </div>
+                    </div>
+                </header>
 
         {/* -------------------- MOBILE BACKDROP -------------------- */}
         {isMobileMenuOpen && (
