@@ -13,8 +13,7 @@ import {
   Area,
 } from "recharts";
 
-import usersData from "../../../data/users.json";
-import employeesData from "../../../data/employees.json";
+import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,49 +27,21 @@ import {
   faMinus,
 } from "@fortawesome/free-solid-svg-icons";
 
+/* ------------------ HELPERS ------------------ */
+const isUserActive = (u) =>
+  u?.status === "Active" ||
+  u?.status === "ACTIVE" ||
+  u?.status === "active" ||
+  u?.is_active === true ||
+  u?.active === true;
+
 export default function DashboardHome() {
-  /* ------------------ STATS ------------------ */
-  const totalUsers = usersData.length;
-  const activeUsers = usersData.filter((u) => u.status === "Active").length;
-  const totalEmployees = employeesData.length;
-  const criticalRisk = usersData.filter(
-    (u) => u.riskLevel === "Critical"
-  ).length;
+  /* ------------------ STATE ------------------ */
+  const [usersData, setUsersData] = useState([]);
+  const [agentsData, setAgentsData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const totalPendingEMI = usersData
-    .reduce((acc, user) => {
-      const amount = parseInt(user.emiAmount.replace(/[^0-9]/g, "")) || 0;
-      return acc + amount;
-    }, 0)
-    .toLocaleString("en-IN", { style: "currency", currency: "INR" });
-
-  /* ------------------ USER STATUS PIE ------------------ */
-  const statusCounts = usersData.reduce((acc, user) => {
-    acc[user.status] = (acc[user.status] || 0) + 1;
-    return acc;
-  }, {});
-
-  const pieData = Object.keys(statusCounts).map((key) => ({
-    name: key,
-    value: statusCounts[key],
-  }));
-
-  /* ------------------ HORIZONTAL STACKED RISK DATA ------------------ */
-  const riskCounts = usersData.reduce((acc, user) => {
-    acc[user.riskLevel] = (acc[user.riskLevel] || 0) + 1;
-    return acc;
-  }, {});
-
-  const stackedRiskData = Object.keys(riskCounts).map((risk) => {
-    const usersInRisk = usersData.filter((u) => u.riskLevel === risk);
-    return {
-      name: risk,
-      Active: usersInRisk.filter((u) => u.status === "Active").length,
-      Inactive: usersInRisk.filter((u) => u.status !== "Active").length,
-    };
-  });
-
-  /* ------------------ EMI DATA ------------------ */
+  /* ------------------ EMI STATIC DATA ------------------ */
   const emiProjectionData = [
     { month: "Jan", collected: 4000, projected: 2400 },
     { month: "Feb", collected: 3000, projected: 1398 },
@@ -80,9 +51,93 @@ export default function DashboardHome() {
     { month: "Jun", collected: 2390, projected: 3800 },
   ];
 
+  /* ------------------ FETCH DATA ------------------ */
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const usersRes = await fetch(
+          "https://marktours-services-jn6cma3vvq-el.a.run.app/user-details"
+        );
+        const agentsRes = await fetch(
+          "https://marktours-services-jn6cma3vvq-el.a.run.app/agents"
+        );
+
+        const usersJson = await usersRes.json();
+        const agentsJson = await agentsRes.json();
+
+        const usersArray = Array.isArray(usersJson?.user_details)
+          ? usersJson.user_details
+          : [];
+
+        const agentsArray = Array.isArray(agentsJson?.agents)
+          ? agentsJson.agents
+          : [];
+
+        setUsersData(usersArray);
+        setAgentsData(agentsArray);
+      } catch (error) {
+        console.error("Dashboard API error:", error);
+        setUsersData([]);
+        setAgentsData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  /* ------------------ STATS ------------------ */
+  const totalUsers = usersData.length;
+  const activeUsers = usersData.filter(isUserActive).length;
+  const totalEmployees = agentsData.length;
+
+  const criticalRisk = usersData.filter(
+    (u) => u?.riskLevel === "Critical"
+  ).length;
+
+  const totalPendingEMI = usersData
+    .reduce((sum, u) => {
+      const amt = parseInt(
+        String(u?.emiAmount || "").replace(/\D/g, "")
+      );
+      return sum + (amt || 0);
+    }, 0)
+    .toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+    });
+
+  /* ------------------ PIE DATA ------------------ */
+  const statusCounts = usersData.reduce((acc, u) => {
+    const key = isUserActive(u) ? "Active" : "Inactive";
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+
+  const pieData = Object.keys(statusCounts).map((key) => ({
+    name: key,
+    value: statusCounts[key],
+  }));
+
+  /* ------------------ RISK BAR DATA ------------------ */
+  const riskLevels = ["Low", "Medium", "High", "Critical"];
+
+  const stackedRiskData = riskLevels.map((level) => {
+    const list = usersData.filter((u) => u?.riskLevel === level);
+    return {
+      name: level,
+      Active: list.filter(isUserActive).length,
+      Inactive: list.filter((u) => !isUserActive(u)).length,
+    };
+  });
+
+  if (loading) {
+    return <div className="text-center py-10">Loading dashboard...</div>;
+  }
+
   return (
     <div className="space-y-6">
-
       {/* ------------------ STAT CARDS ------------------ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <Widget title="Total Users" value={totalUsers} change="+12%" icon={faUsers} badge="bg-blue-600" />
@@ -92,78 +147,33 @@ export default function DashboardHome() {
         <Widget title="Critical Risk" value={criticalRisk} change="0%" icon={faTriangleExclamation} badge="bg-red-600" />
       </div>
 
+      {/* ------------------ CHARTS ------------------ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        
-        <div className="bg-white p-6 rounded-xl shadow-sm border relative">
+        {/* PIE */}
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
           <h3 className="text-lg font-semibold mb-4">
             User Status Distribution
           </h3>
 
-          <div className="h-[300px] relative">
+          <div className="h-[300px]">
             <ResponsiveContainer>
               <PieChart>
-                <Pie
-                  data={pieData}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={75}
-                  outerRadius={100}
-                  dataKey="value"
-                  paddingAngle={3}
-                >
-                  {pieData.map((entry, index) => {
-                    const softColors = {
-                      Active: "#a6a8e9ff",
-                      Completed: "#bbf7d0",
-                      Late: "#64748B",
-                      Defaulted: "#1E293B",
-                    };
-                    return (
-                      <Cell
-                        key={index}
-                        fill={softColors[entry.name] || "#94a3b8"}
-                      />
-                    );
-                  })}
+                <Pie data={pieData} dataKey="value" innerRadius={75} outerRadius={100}>
+                  {pieData.map((_, index) => (
+                    <Cell
+                      key={index}
+                      fill={["#22c55e", "#ef4444"][index % 2]}
+                    />
+                  ))}
                 </Pie>
                 <Tooltip />
               </PieChart>
             </ResponsiveContainer>
-
-            {/* CENTER TOTAL */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <p className="text-sm text-gray-500">Total Users</p>
-              <p className="text-3xl font-bold text-gray-900">{totalUsers}</p>
-            </div>
-          </div>
-
-          {/* LEGEND */}
-          <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-            {pieData.map((item) => (
-              <div key={item.name} className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 rounded-full"
-                  style={{
-                    backgroundColor:
-                      item.name === "Active"
-                        ? "#6366f1"
-                        : item.name === "Completed"
-                        ? "#bbf7d0"
-                        : item.name === "Late"
-                        ? "#64748B"
-                        : "#1E293B",
-                  }}
-                />
-                <span className="text-gray-600">
-                  {item.name} – {item.value}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
 
-        {/* ------------------ HORIZONTAL STACKED RISK BAR ------------------ */}
+        {/* RISK BAR */}
         <div className="bg-white p-6 rounded-xl shadow-sm border">
           <h3 className="text-lg font-semibold mb-4">
             Risk Level Analysis
@@ -171,28 +181,13 @@ export default function DashboardHome() {
 
           <div className="h-[300px]">
             <ResponsiveContainer>
-              <BarChart
-                data={stackedRiskData}
-                layout="vertical"
-                margin={{ left: 40 }}
-              >
+              <BarChart data={stackedRiskData} layout="vertical">
                 <XAxis type="number" />
-                <YAxis type="category" dataKey="name" />
+                <YAxis dataKey="name" type="category" />
                 <Tooltip />
                 <Legend />
-
-                <Bar
-                  dataKey="Active"
-                  stackId="risk"
-                  fill="#a6a8e9ff"
-                  radius={[0, 8, 8, 0]}
-                />
-                <Bar
-                  dataKey="Inactive"
-                  stackId="risk"
-                  fill="#bbf7d0"
-                  radius={[0, 8, 8, 0]}
-                />
+                <Bar dataKey="Active" stackId="a" fill="#22c55e" />
+                <Bar dataKey="Inactive" stackId="a" fill="#ef4444" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -210,12 +205,14 @@ export default function DashboardHome() {
                 <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip />
+
                 <Area
                   type="monotone"
                   dataKey="collected"
                   stroke="#6366f1"
                   fill="#c7d2fe"
                 />
+
                 <Area
                   type="monotone"
                   dataKey="projected"
@@ -236,7 +233,12 @@ export default function DashboardHome() {
 function Widget({ title, value, change, icon, badge }) {
   const isPositive = change.startsWith("+");
   const isNeutral = change.startsWith("0");
-  const trend = isPositive ? faArrowUp : isNeutral ? faMinus : faArrowDown;
+
+  const trend = isPositive
+    ? faArrowUp
+    : isNeutral
+    ? faMinus
+    : faArrowDown;
 
   const trendStyle = isPositive
     ? "bg-green-100 text-green-700"
@@ -252,6 +254,7 @@ function Widget({ title, value, change, icon, badge }) {
         <p className="text-sm text-gray-500 font-medium max-w-[70%]">
           {title}
         </p>
+
         <div className={`w-7 h-7 rounded-full ${badge} flex items-center justify-center`}>
           <FontAwesomeIcon icon={icon} className="text-white text-xs" />
         </div>
