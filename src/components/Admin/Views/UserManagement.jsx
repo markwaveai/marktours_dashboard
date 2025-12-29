@@ -234,7 +234,7 @@ export default function UserManagement() {
             {filteredUsers.map((u, i) => (
               <tr
                 key={u.id}
-                className="border-t border-gray-50 hover:bg-indigo-50/30 transition-all duration-200 "
+                className="border-t border-gray-50 hover:bg-indigo-50/50 transition-all duration-200 group/row"
               >
                 <td className="px-4 py-3">{i + 1}</td>
                 <td className="px-4 py-3">{u.name}</td>
@@ -263,21 +263,30 @@ export default function UserManagement() {
                   {renderDocStatus(u.passport)}
                 </td>
                 <td className="px-4 py-3">{u.joiningDate}</td>
+                {/* <td className="px-4 py-3">{u.status}</td> */}
                 <td className="px-4 py-3">
-  {u.status === "Active" ? (
-    <div className="flex items-center gap-2">
-      <span className="h-2.5 w-2.5 rounded-full bg-green-500"></span>
-      <span className="font-normal">{u.status}</span>
-    </div>
-  ) : (
-    <span>{u.status}</span>
-  )}
-</td>
+                  <div className="flex items-center gap-2">
+                    {/* STATUS TEXT */}
+                    <span
+                      className={`text-sm font-semibold
+    ${u.status === "Active"
+                          ? "text-green-600"
+                          : u.status === "Late"
+                            ? "text-orange-700"
+                            : u.status === "Completed"
+                              ? "text-blue-600"
+                              : "text-red-600"
+                        }`}
+                    >
+                      {u.status}
+                    </span>
+                  </div>
+                </td>
 
                 <td className="px-4 py-3">{u.tour}</td>
                 <td className="px-4 py-3 font-semibold text-gray-900">{u.packageAmount}</td>
-                <td className="px-4 py-3 relative group">
-                  <span className="cursor-help border-b border-dotted border-gray-400 ">
+                <td className="px-4 py-3 relative group" onClick={(e) => e.stopPropagation()}>
+                  <span className="cursor-help border-b border-dotted border-gray-400 text-xs">
                     {u.nextEmiDate}
                   </span>
 
