@@ -9,7 +9,6 @@ import {
   Settings,
   FileText,
   Gift,
-  Bell,
   LogOut,
   Menu,
   X,
@@ -31,16 +30,16 @@ import EmployeeManagement from "./Views/EmployeeManagement";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const menuItems = [
     { name: "Dashboard", icon: LayoutDashboard, component: <DashboardHome /> },
     { name: "User Management", icon: Users, component: <UserManagement /> },
     { name: "Employee Management", icon: Briefcase, component: <EmployeeManagement /> },
+    { name: "Tour Management", icon: Plane, component: <TourManagement /> },
     { name: "Tour Assignment", icon: CalendarCheck, component: <TourAssignment /> },
     { name: "EMI & Payments", icon: CreditCard, component: <EMIPayments /> },
     { name: "Risk & Defaulters", icon: AlertTriangle, component: <RiskDefaulters /> },
-    { name: "Tour Management", icon: Plane, component: <TourManagement /> },
     { name: "Eligibility Engine", icon: Settings, component: <EligibilityEngine /> },
     { name: "Reports & Audit Logs", icon: FileText, component: <ReportsLogs /> },
     { name: "Company-Paid (12th Month)", icon: Gift, component: <CompanyPaid /> },
@@ -53,9 +52,29 @@ export default function AdminDashboard() {
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
 
-      {/* -------------------- DESKTOP SIDEBAR -------------------- */}
-      <aside className="hidden md:flex w-64 bg-white border-r border-gray-200 flex-col shadow-lg">
-        <div className="h-20 flex items-center justify-center px-8 border-b">
+      {/* -------------------- SIDEBAR -------------------- */}
+      {/* UNIVERSAL BACKDROP */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`bg-white border-r border-gray-200 flex-col shadow-lg transition-all duration-300
+        ${isSidebarOpen ? "w-64 translate-x-0" : "w-0 -translate-x-full md:translate-x-0 overflow-hidden"}
+        fixed md:relative z-50 flex h-full`}
+      >
+        {/* HEADER WITH HAMBURGER BEFORE LOGO */}
+        <div className="h-20 flex items-center gap-3 px-4 border-b">
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 rounded-lg hover:bg-gray-100 "
+          >
+            {isSidebarOpen ? <X /> : <Menu />}
+          </button>
+
           <img
             src="/assets/images/Layer 2.png"
             alt="Mark Tours"
@@ -63,24 +82,22 @@ export default function AdminDashboard() {
           />
         </div>
 
+        {/* NAV */}
         <nav className="flex-1 overflow-y-auto py-6 px-4">
           <ul className="space-y-1">
             {menuItems.map((item) => (
               <li key={item.name}>
                 <button
                   onClick={() => setActiveTab(item.name)}
-                  className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all ${
-                    activeTab === item.name
+                  className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all whitespace-nowrap
+                    ${activeTab === item.name
                       ? "bg-indigo-600 text-white shadow-md"
                       : "text-gray-500 hover:bg-indigo-50 hover:text-indigo-600"
-                  }`}
+                    }`}
                 >
                   <item.icon
-                    className={`w-5 h-5 mr-3 ${
-                      activeTab === item.name
-                        ? "text-white"
-                        : "text-gray-400"
-                    }`}
+                    className={`w-5 h-5 mr-3 ${activeTab === item.name ? "text-white" : "text-gray-400"
+                      }`}
                   />
                   {item.name}
                 </button>
@@ -89,6 +106,7 @@ export default function AdminDashboard() {
           </ul>
         </nav>
 
+        {/* FOOTER */}
         <div className="p-4 border-t bg-gray-50">
           <div className="flex items-center gap-3 bg-white p-3 rounded-xl shadow-sm">
             <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center font-bold text-indigo-600">
@@ -113,90 +131,35 @@ export default function AdminDashboard() {
       {/* -------------------- MAIN CONTENT -------------------- */}
       <div className="flex-1 flex flex-col">
 
-        {/* -------------------- MOBILE HEADER -------------------- */}
+        {/* TOP HEADER */}
         <header className="h-16 bg-white border-b flex items-center justify-between px-6 sticky top-0 z-20">
-          <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100"
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </button>
-
-            {/* ✅ ACTIVE TAB SHOWN HERE */}
-            <span className="ml-3 font-bold truncate">{activeTab}</span>
+          <div className="flex items-center gap-4">
+            {!isSidebarOpen && (
+              <button
+                onClick={() => setIsSidebarOpen(true)}
+                className="p-2 rounded-lg hover:bg-gray-100 flex"
+              >
+                <Menu />
+              </button>
+            )}
+            <h1 className="text-xl font-bold">{activeTab}</h1>
           </div>
 
-          <h1 className="hidden md:block text-xl font-bold">{activeTab}</h1>
-
-                    <div className="flex items-center gap-2 md:gap-4">
-                        {/* <button className="p-2 relative text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-full transition-all">
-                            <Bell className="w-5 h-5" />
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
-                        </button> */}
-                        <div className="h-8 w-px bg-gray-200 mx-2 hidden md:block"></div>
-                        <div className="text-right hidden md:block">
-                            <p className="text-xs font-medium text-gray-500">Today</p>
-                            <p className="text-sm font-bold text-gray-800">{new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
-                        </div>
-                    </div>
-                </header>
-
-        {/* -------------------- MOBILE BACKDROP -------------------- */}
-        {isMobileMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/50 z-30 md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
-
-        {/* -------------------- MOBILE SIDEBAR -------------------- */}
-        <aside
-          className={`fixed top-0 left-0 w-64 h-full bg-white z-40 transform transition-transform md:hidden ${
-            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <div className="h-16 flex items-center px-6 border-b bg-[#EEFB56]">
-            <img src="/assets/images/Layer 2.png" className="w-20" />
+          <div className="text-right hidden md:block">
+            <p className="text-xs text-gray-500">Today</p>
+            <p className="text-sm font-bold">
+              {new Date().toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </p>
           </div>
+        </header>
 
-          <nav className="p-4">
-            <ul className="space-y-1">
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  <button
-                    onClick={() => {
-                      setActiveTab(item.name);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-                      activeTab === item.name
-                        ? "bg-indigo-600 text-white"
-                        : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
-                    }`}
-                  >
-                    <item.icon className="w-5 h-5 mr-3" />
-                    {item.name}
-                  </button>
-                </li>
-              ))}
-
-              <li className="pt-4 border-t">
-                <Link
-                  to="/"
-                  className="flex items-center px-4 py-3 text-red-600"
-                >
-                  <LogOut className="w-5 h-5 mr-3" />
-                  Logout
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </aside>
-
-        {/* -------------------- PAGE CONTENT -------------------- */}
+        {/* PAGE CONTENT */}
         <main className="flex-1 overflow-auto p-4 md:p-8">
-          <div className="max-w-7xl mx-auto animate-fade-in-up">
+          <div className="max-w-7xl mx-auto">
             {ActiveComponent}
           </div>
         </main>
