@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiTrash2, FiSearch } from "react-icons/fi";
 
 const BASE_URL = "https://marktours-services-jn6cma3vvq-el.a.run.app";
 const AGENT_ID = 10001;
 
 export default function UserManagement() {
   const [usersData, setUsersData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const [expandedUserId, setExpandedUserId] = useState(null);
+  const [extraDetails, setExtraDetails] = useState([]);
+  const [extraLoading, setExtraLoading] = useState(false);
 
   const [showForm, setShowForm] = useState(false);
   const [originalUser, setOriginalUser] = useState(null);
-
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [extraDetails, setExtraDetails] = useState([]);
-  const [extraLoading, setExtraLoading] = useState(false);
 
   const emptyForm = {
     user_id: null,
@@ -29,15 +29,12 @@ export default function UserManagement() {
 
   /* ================= GET USERS ================= */
   const fetchUsers = async () => {
-    setLoading(true);
     try {
       const res = await fetch(`${BASE_URL}/user-details`);
       const data = await res.json();
       setUsersData(data.user_details || []);
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -45,11 +42,23 @@ export default function UserManagement() {
     fetchUsers();
   }, []);
 
-  /* ================= GET EXTRA DETAILS ================= */
-  const fetchExtraDetails = async (user) => {
-    setSelectedUser(user);
-    setExtraDetails([]);
+  /* ================= SEARCH ================= */
+  const filteredUsers = usersData.filter((u) =>
+    `${u.name} ${u.email} ${u.mobile} ${u.branch}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+
+  /* ================= ROW CLICK ================= */
+  const toggleRow = async (user) => {
+    if (expandedUserId === user.user_id) {
+      setExpandedUserId(null);
+      return;
+    }
+
+    setExpandedUserId(user.user_id);
     setExtraLoading(true);
+    setExtraDetails([]);
 
     try {
       const res = await fetch(
@@ -74,15 +83,7 @@ export default function UserManagement() {
   /* ================= EDIT ================= */
   const handleEdit = (u) => {
     setOriginalUser(u);
-    setForm({
-      user_id: u.user_id,
-      name: u.name,
-      address: u.address,
-      branch: u.branch,
-      mobile: u.mobile,
-      email: u.email,
-      is_active: u.is_active,
-    });
+    setForm({ ...u });
     setShowForm(true);
   };
 
@@ -91,16 +92,8 @@ export default function UserManagement() {
     const isUpdate = Boolean(originalUser);
 
     const payload = isUpdate
-      ? {
-          user_id: originalUser.user_id,
-          agent_id: AGENT_ID,
-          ...form,
-        }
-      : {
-          agent_id: AGENT_ID,
-          ...form,
-          is_active: true,
-        };
+      ? { agent_id: AGENT_ID, ...form }
+      : { agent_id: AGENT_ID, ...form, is_active: true };
 
     const url = isUpdate
       ? `${BASE_URL}/user-details/${originalUser.user_id}`
@@ -113,9 +106,7 @@ export default function UserManagement() {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
       if (!res.ok) throw new Error();
-
       fetchUsers();
       setShowForm(false);
     } catch {
@@ -132,180 +123,227 @@ export default function UserManagement() {
 
   return (
     <div className="bg-white rounded-xl shadow border">
-      <div className="p-6 flex justify-between border-b">
-        <h2 className="font-bold text-lg">User Management</h2>
-        <button
-          onClick={handleAddUser}
-          className="bg-indigo-600 text-white px-5 py-2 rounded-lg"
-        >
-          + Add User
-        </button>
+      {/* HEADER */}
+      <div className="p-6 flex justify-between items-center border-b">
+        <div>
+          <h2 className="text-xl font-bold">Travel Assessment</h2>
+          <p className="text-sm text-gray-500">
+            Manage traveler records & roles
+          </p>
+        </div>
+
+        <div className="flex gap-3">
+          <div className="relative">
+            <FiSearch className="absolute left-3 top-3 text-gray-400" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search traveler info..."
+              className="pl-10 pr-4 py-2 border rounded-lg text-sm w-64"
+            />
+          </div>
+
+          <button
+            onClick={handleAddUser}
+            className="bg-indigo-600 text-white px-5 py-2 rounded-lg"
+          >
+            + Add Member
+          </button>
+        </div>
       </div>
 
-      {/* ================= USERS TABLE ================= */}
-      <table className="w-full text-sm">
-        <thead className="bg-gray-50">
-          <tr>
-            {["S.No", "Name", "Email", "Mobile", "Branch", "Status", "Action"].map(
-              (h) => (
-                <th key={h} className="px-4 py-3">
-                  {h}
-                </th>
-              )
-            )}
-          </tr>
-        </thead>
-        <tbody>
-          {usersData.map((u, i) => (
-            <tr
-              key={u.user_id}
-              className="hover:bg-gray-100 cursor-pointer"
-              onClick={() => fetchExtraDetails(u)}
-            >
-              <td className="px-4 py-2">{i + 1}</td>
-              <td className="px-4 py-2">{u.name}</td>
-              <td className="px-4 py-2">{u.email}</td>
-              <td className="px-4 py-2">{u.mobile}</td>
-              <td className="px-4 py-2">{u.branch}</td>
-              <td className="px-4 py-2">
-                {u.is_active ? "Active" : "Inactive"}
-              </td>
-              <td className="px-4 py-2 flex gap-3">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleEdit(u);
-                  }}
-                >
-                  <FiEdit />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDelete(u.user_id);
-                  }}
-                >
-                  <FiTrash2 />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* TABLE HEADER */}
+      <div className="grid grid-cols-7 gap-4 px-6 py-3 text-xs font-semibold text-gray-500 bg-gray-50">
+        <div>S.NO</div>
+        <div>NAME</div>
+        <div>EMAIL</div>
+        <div>MOBILE</div>
+        <div>BRANCH</div>
+        <div>ROLE</div>
+        <div>ACTIONS</div>
+      </div>
 
-      {/* ================= EXTRA DETAILS (FULL FIELDS) ================= */}
-      {selectedUser && (
-        <div className="p-6 border-t bg-gray-50">
-          <h3 className="font-bold text-lg mb-4">
-            Extra Details – {selectedUser.name} (ID: {selectedUser.user_id})
-          </h3>
+      {/* USERS */}
+      {filteredUsers.map((u, i) => (
+        <div key={u.user_id} className="border-b">
+          {/* MAIN ROW */}
+          <div
+            onClick={() => toggleRow(u)}
+            className="grid grid-cols-7 gap-4 px-6 py-4 text-sm cursor-pointer hover:bg-gray-50"
+          >
+            <div>{i + 1}</div>
+            <div className="font-medium">{u.name}</div>
+            <div>{u.email}</div>
+            <div>{u.mobile}</div>
+            <div>{u.branch}</div>
+            <div>{u.is_active ? "Agent" : "Inactive"}</div>
+            <div className="flex gap-3">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleEdit(u);
+                }}
+                className="text-indigo-600"
+              >
+                <FiEdit />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(u.user_id);
+                }}
+                className="text-red-500"
+              >
+                <FiTrash2 />
+              </button>
+            </div>
+          </div>
 
-          {extraLoading && <p>Loading...</p>}
+          {/* EXPANDED DETAILS */}
+          {expandedUserId === u.user_id && (
+            <div className="bg-gray-50 px-6 pb-6">
+              {extraLoading && <p className="py-4">Loading details...</p>}
 
-          {!extraLoading && extraDetails.length === 0 && (
-            <p>No extra details found</p>
-          )}
+              {!extraLoading && extraDetails.length === 0 && (
+                <p className="py-4 text-gray-500">
+                  No extra details found
+                </p>
+              )}
 
-          {!extraLoading && extraDetails.length > 0 && (
-            <div className="overflow-x-auto">
-              <table className="w-full text-xs border">
-                <thead className="bg-gray-200">
-                  <tr>
-                    {[
-                      "Passenger",
-                      "Surname",
-                      "Mobile",
-                      "Passport No",
-                      "Issued By",
-                      "Passport Available",
-                      "DOB",
-                      "Nationality",
-                      "Gender",
-                      "Tour Code",
-                      "Agreed",
-                      "Passport Image",
-                      "Aadhar Front",
-                      "Aadhar Back",
-                      "Pancard",
-                      "Created",
-                    ].map((h) => (
-                      <th key={h} className="px-2 py-2">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {extraDetails.map((d) => (
-                    <tr key={d.id} className="border-t">
-                      <td className="px-2 py-1">{d.name || "-"}</td>
-                      <td className="px-2 py-1">{d.surname || "-"}</td>
-                      <td className="px-2 py-1">{d.mobile || "-"}</td>
-                      <td className="px-2 py-1">{d.passportno || "-"}</td>
-                      <td className="px-2 py-1">{d.issuedby || "-"}</td>
-                      <td className="px-2 py-1">
-                        {d.is_passport_available ? "Yes" : "No"}
-                      </td>
-                      <td className="px-2 py-1">{d.dob || "-"}</td>
-                      <td className="px-2 py-1">{d.nationality || "-"}</td>
-                      <td className="px-2 py-1">{d.gender || "-"}</td>
-                      <td className="px-2 py-1">{d.tour_code || "-"}</td>
-                      <td className="px-2 py-1">
-                        {d.isagreed ? "Yes" : "No"}
-                      </td>
-                      <td className="px-2 py-1">
-                        {d.passport_image_url ? "Uploaded" : "-"}
-                      </td>
-                      <td className="px-2 py-1">
-                        {d.aadhar_front_url ? "Uploaded" : "-"}
-                      </td>
-                      <td className="px-2 py-1">
-                        {d.aadhar_back_url ? "Uploaded" : "-"}
-                      </td>
-                      <td className="px-2 py-1">
-                        {d.pancard_url ? "Uploaded" : "-"}
-                      </td>
-                      <td className="px-2 py-1">
-                        {new Date(d.created_at).toLocaleString()}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {!extraLoading && extraDetails.length > 0 && (
+                <div className="overflow-x-auto mt-4">
+                  <table className="w-full text-xs border rounded-lg">
+                    <thead className="bg-gray-200">
+                      <tr>
+                        {[
+                          "S.No",
+                          "Name",
+                          "Surname",
+                          "Mobile",
+                          "Passport No",
+                          "Issued By",
+                          "Passport",
+                          "DOB",
+                          "Nationality",
+                          "Gender",
+                          "Tour Code",
+                          "Agreed",
+                          "Aadhar Front",
+                          "Aadhar Back",
+                          "Created",
+                        ].map((h) => (
+                          <th key={h} className="px-3 py-2 text-left">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {extraDetails.map((d, index) => (
+                        <tr key={d.id} className="border-t bg-white">
+                          <td className="px-3 py-2">{index + 1}</td>
+                          <td className="px-3 py-2">{d.name || "-"}</td>
+                          <td className="px-3 py-2">{d.surname || "-"}</td>
+                          <td className="px-3 py-2">{d.mobile || "-"}</td>
+                          <td className="px-3 py-2">{d.passportno || "-"}</td>
+                          <td className="px-3 py-2">{d.issuedby || "-"}</td>
+
+                          <td className="px-3 py-2">
+                            <div
+                              className={
+                                d.is_passport_available
+                                  ? "text-green-600 font-semibold"
+                                  : "text-red-500 font-semibold"
+                              }
+                            >
+                              {d.is_passport_available ? "YES" : "NO"}
+                            </div>
+                            {d.is_passport_available &&
+                              d.passport_image_url && (
+                                <button
+                                  onClick={() =>
+                                    window.open(
+                                      d.passport_image_url,
+                                      "_blank"
+                                    )
+                                  }
+                                  className="text-indigo-600 underline text-xs mt-1"
+                                >
+                                  View
+                                </button>
+                              )}
+                          </td>
+
+                          <td className="px-3 py-2">{d.dob || "-"}</td>
+                          <td className="px-3 py-2">
+                            {d.nationality || "-"}
+                          </td>
+                          <td className="px-3 py-2">{d.gender || "-"}</td>
+                          <td className="px-3 py-2">{d.tour_code || "-"}</td>
+                          <td className="px-3 py-2">
+                            {d.isagreed ? "Yes" : "No"}
+                          </td>
+
+                          <td className="px-3 py-2">
+                            {d.aadhar_front_url ? (
+                              <>
+                                <div className="text-green-600 font-semibold">
+                                  UPLOADED
+                                </div>
+                                <button
+                                  onClick={() =>
+                                    window.open(
+                                      d.aadhar_front_url,
+                                      "_blank"
+                                    )
+                                  }
+                                  className="text-indigo-600 underline text-xs"
+                                >
+                                  View
+                                </button>
+                              </>
+                            ) : (
+                              "-"
+                            )}
+                          </td>
+
+                          <td className="px-3 py-2">
+                            {d.aadhar_back_url ? (
+                              <>
+                                <div className="text-green-600 font-semibold">
+                                  UPLOADED
+                                </div>
+                                <button
+                                  onClick={() =>
+                                    window.open(
+                                      d.aadhar_back_url,
+                                      "_blank"
+                                    )
+                                  }
+                                  className="text-indigo-600 underline text-xs"
+                                >
+                                  View
+                                </button>
+                              </>
+                            ) : (
+                              "-"
+                            )}
+                          </td>
+
+                          <td className="px-3 py-2">
+                            {new Date(d.created_at).toLocaleString()}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
           )}
         </div>
-      )}
-
-      {/* ================= FORM MODAL ================= */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center">
-          <div className="bg-white p-8 rounded-xl w-[600px]">
-            <h3 className="text-xl font-bold mb-6">
-              {originalUser ? "Edit User" : "Add User"}
-            </h3>
-
-            {["name", "email", "mobile", "branch", "address"].map((k) => (
-              <input
-                key={k}
-                placeholder={k}
-                value={form[k]}
-                onChange={(e) =>
-                  setForm({ ...form, [k]: e.target.value })
-                }
-                className="w-full border px-3 py-2 mb-3"
-              />
-            ))}
-
-            <button
-              onClick={handleSave}
-              className="bg-indigo-600 text-white px-6 py-2 rounded"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-      )}
+      ))}
     </div>
   );
 }
