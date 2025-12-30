@@ -6,37 +6,43 @@ export default function OffersSection() {
         {/* 🔹 TOP 3 HIGHLIGHT CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-          {/* Card 1 (Logo on top-left) */}
-          <div className="relative rounded-2xl overflow-hidden h-[300px]">
+          {/* Card 1 */}
+          <div className="group relative rounded-2xl overflow-hidden h-[300px] cursor-pointer">
             <img
               src="/assets/images/offers/offer4.png"
-              className="w-full h-full"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
+
             <img
               src="/assets/images/logo1.png"
-              className="absolute top-4 left-5 w-10 h-12 z-10"
+              className="absolute top-4 left-5 w-5 h-6 z-10"
             />
-            <div className="absolute inset-0 bg-black/30" />
-            <div className="absolute bottom-5 left-5 text-white">
+
+            <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/50" />
+
+            <div className="absolute bottom-5 left-5 text-white transition-all duration-500 group-hover:-translate-y-2">
               <h3 className="font-semibold text-lg">
                 South Indian Delights <br /> & Elegant
               </h3>
             </div>
           </div>
 
-          {/* Card 2 (NO logo) */}
-          <div className="relative rounded-2xl overflow-hidden h-[300px]">
+          {/* Card 2 */}
+          <div className="group relative rounded-2xl overflow-hidden h-[300px] cursor-pointer">
             <img
               src="/assets/images/offers/offer6.png"
-              className="w-full h-full"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/20" />
-            <div className="absolute top-5 left-12 text-white text-sm leading-tight">
+
+            <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/45" />
+
+            <div className="absolute top-5 left-12 text-white text-sm leading-tight transition-all duration-500 group-hover:-translate-y-2">
               Where every moment is a <br />
               celebration of South Indian <br />
               culture and heritage
             </div>
-            <div className="absolute bottom-5 left-6 text-white text-xs">
+
+            <div className="absolute bottom-5 left-6 text-white text-xs transition-all duration-500 group-hover:-translate-y-2">
               Bangalore <br />
               Coorg Village <br />
               Sakleshpur <br />
@@ -44,19 +50,17 @@ export default function OffersSection() {
             </div>
           </div>
 
-          {/* Card 3 (Logo inline with text) */}
-          <div className="relative rounded-2xl overflow-hidden h-[300px]">
+          {/* Card 3 */}
+          <div className="group relative rounded-2xl overflow-hidden h-[300px] cursor-pointer">
             <img
               src="/assets/images/offers/offer5.png"
-              className="w-full h-full"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-black/20" />
 
-            <div className="absolute bottom-5 left-5 text-white flex items-center gap-2">
-              <img
-                src="/assets/images/logo1.png"
-                className="w-10 h-12 mt-1"
-              />
+            <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/45" />
+
+            <div className="absolute bottom-5 left-5 text-white flex items-center gap-2 transition-all duration-500 group-hover:-translate-y-2">
+              <img src="/assets/images/logo1.png" className="w-10 h-12 mt-1" />
               <h3 className="font-semibold text-lg leading-tight">
                 Culinary <br /> Authenticity
               </h3>
@@ -69,38 +73,44 @@ export default function OffersSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* LEFT BIG CARD */}
-          <div className="relative rounded-2xl overflow-hidden h-[520px]">
+          <div className="group relative rounded-2xl overflow-hidden h-[520px] cursor-pointer">
             <img
               src="/assets/images/offers/offer1.png"
-              className="w-full h-full"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md">
+
+            <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
               GET 50% OFF
             </span>
-            <div className="absolute bottom-6 left-6 text-white">
+
+            <div className="absolute bottom-6 left-6 text-white transition-all duration-500 group-hover:-translate-y-2">
               <h3 className="text-xl font-semibold leading-tight">
                 The Montcalm At Brewery <br /> London City
               </h3>
               <p className="text-sm mt-1">
-                Starting from <span className="text-[#EDF957] font-bold">₹29,999</span>
+                Starting from{" "}
+                <span className="text-[#EDF957] font-bold">₹29,999</span>
               </p>
             </div>
-            <div className="absolute inset-0" />
+
+            <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/50" />
           </div>
 
           {/* RIGHT COLUMN */}
           <div className="lg:col-span-2 grid grid-rows-2 gap-6">
 
             {/* TOP RIGHT */}
-            <div className="relative rounded-2xl overflow-hidden h-[250px]">
+            <div className="group relative rounded-2xl overflow-hidden h-[250px] cursor-pointer">
               <img
                 src="/assets/images/offers/offer2.png"
-                className="w-full h-full "
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md">
+
+              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
                 GET 50% OFF
               </span>
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
+
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white transition-all duration-500 group-hover:-translate-y-2">
                 <h3 className="text-xl font-semibold leading-tight">
                   The Montcalm At Brewery <br /> London City
                 </h3>
@@ -109,19 +119,22 @@ export default function OffersSection() {
                   <span className="text-[#EDF957] font-bold">₹19,999</span>
                 </p>
               </div>
-              <div className="absolute inset-0" />
+
+              <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/50" />
             </div>
 
             {/* BOTTOM RIGHT */}
-            <div className="relative rounded-2xl overflow-hidden h-[250px]">
+            <div className="group relative rounded-2xl overflow-hidden h-[250px] cursor-pointer">
               <img
                 src="/assets/images/offers/offer3.png"
-                className="w-full h-full"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md">
+
+              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
                 GET 50% OFF
               </span>
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
+
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white transition-all duration-500 group-hover:-translate-y-2">
                 <h3 className="text-xl font-semibold leading-tight">
                   The Montcalm At Brewery <br /> London City
                 </h3>
@@ -130,7 +143,8 @@ export default function OffersSection() {
                   <span className="text-[#EDF957] font-bold">₹24,999</span>
                 </p>
               </div>
-              <div className="absolute inset-0" />
+
+              <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/50" />
             </div>
 
           </div>
