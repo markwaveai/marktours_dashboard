@@ -1,7 +1,6 @@
 import DreamsBanner from "./DreamsBanner";
 import Hero from "./Hero/Hero";
 import SearchBar from "./Hero/SearchBar";
-import UpcomingTrips from "./UpcomingTrips/UpcomingTrips";
 import HolidayPackages from "./UpcomingTrips/HolidayPackages";
 import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItineraries";
 import OffersSection from "./offers/OffersSection";
@@ -15,10 +14,8 @@ export default function Home() {
         <>
             <Hero />
             <SearchBar />
-            <UpcomingTours />
 
-            {/* Sections from markwave_tours_anjili */}
-            <UpcomingTrips />
+            <UpcomingTours />
             <HolidayPackages />
 
             <DreamsBanner />
