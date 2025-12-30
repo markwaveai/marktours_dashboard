@@ -8,7 +8,6 @@ import HolidayPackages from "./UpcomingTrips/HolidayPackages";
 import DreamsBanner from "./DreamsBanner";
 import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItineraries";
 import OffersSection from "./offers/OffersSection";
-import PopularAdventures from "./adventures/PopularAdventures";
 import Testimonials from "./Testimonials/Testimonials";
 import Footer from "./Footer";
 
@@ -31,15 +30,12 @@ export default function Home() {
 
       <DreamsBanner />
 
-      <RecentlyBookedItineraries />
-      <OffersSection />
-      <PopularAdventures />
+            <RecentlyBookedItineraries />
+            <OffersSection />
 
-      {/* Tour Services Section (Tabs + Dynamic Content) */}
-      <Outlet />
-
-      <Testimonials />
-      <Footer />
-    </>
-  );
+            <TourServices />
+            <Testimonials />
+            <Footer />
+        </>
+    );
 }

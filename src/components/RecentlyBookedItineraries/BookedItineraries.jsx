@@ -1,29 +1,25 @@
-import it1 from "/assets/itineraries-images/it1.png";
-import it2 from "/assets/itineraries-images/it2.png";
-import it3 from "/assets/itineraries-images/it3.png";
-import it4 from "/assets/itineraries-images/it4.png";
 import { useEffect, useRef, useState } from "react";
 
 const itineraries = [
   {
-    title: "Couple Holiday: 3 Nights In Phuket",
-    subtitle: "Phuket (3N)",
-    image: "/assets/images/Background1.png",
+    title: "Couple Holiday: 3 Nights",
+    subtitle: "In Phuket",
+    image: "/assets/itineraries-images/it8.png",
   },
   {
-    title: "Solo Retreat: 5 Nights in Krabi And Phuket",
-    subtitle: "Phuket (3N)",
-    image: "/assets/images/Background2.png",
+    title: "Solo Retreat: 5 Nights",
+    subtitle: "Krabi And Phuket",
+    image: "/assets/itineraries-images/it7.png",
   },
   {
-    title: "Family Getaway: 7 Nights In Halong Bay",
-    subtitle: "Hanoi (1N) +3 more",
-    image: "/assets/images/Background3.png",
+    title: "Couple Holiday: 3 Nights",
+    subtitle: "In Phuket",
+    image: "/assets/itineraries-images/it6.png",
   },
   {
-    title: "Nature Escape",
-    subtitle: "Vietnam Hills",
-    image: "/assets/images/Background4.png",
+    title: "Solo Retreat: 5 Nights",
+    subtitle: "Krabi And Phuket",
+    image: "/assets/itineraries-images/it5.png",
   },
 ];
 
@@ -31,36 +27,21 @@ export default function RecentlyBookedItineraries() {
   const scrollRef = useRef(null);
   const [open, setOpen] = useState(false);
 
-  /*  ARROW STATES */
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  /* BANNER */
-  const bannerImages = [it1, it2, it3, it4];
-  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBannerIndex((prev) => (prev + 1) % bannerImages.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  /* 🔥 CHECK SCROLL POSITION */
   const checkScroll = () => {
     if (!scrollRef.current) return;
 
     const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-
     setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
   };
 
   useEffect(() => {
     checkScroll();
   }, []);
 
-  /* SCROLL HANDLER */
   const scroll = (dir) => {
     if (!scrollRef.current) return;
 
@@ -68,46 +49,34 @@ export default function RecentlyBookedItineraries() {
     if (!card) return;
 
     const gap = 24;
-    const cardWidth = card.offsetWidth + gap;
+    const width = card.offsetWidth + gap;
 
     scrollRef.current.scrollBy({
-      left: dir === "left" ? -cardWidth : cardWidth,
+      left: dir === "left" ? -width : width,
       behavior: "smooth",
     });
   };
 
   return (
-    <section
-      className="w-full py-16 bg-cover bg-center bg-no-repeat mt-8"
-      style={{ backgroundImage: "url('/assets/images/Background.png')" }}
-    >
+    <section className="w-full bg-[#EEFB56] py-16 mt-10">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center mb-3">
-          <p className="text-md text-white">Modern & Beautiful</p>
-          <h2 className="text-3xl font-bold text-[#EDF957]">
+        <div className="text-center mb-6">
+          <p className="text-sm text-gray-800">Modern & Beautiful</p>
+          <h2 className="text-3xl font-bold text-black">
             RECENTLY BOOKED ITINERARIES
           </h2>
         </div>
 
         {/* FILTER BAR */}
-        <div className="flex justify-center gap-3 mb-10 flex-wrap font-medium relative">
+        <div className="flex justify-center gap-3 mb-10 flex-wrap font-medium">
           <div className="relative">
             <button
               onClick={() => setOpen(!open)}
-              className="flex items-center gap-2 px-5 py-1.5 rounded-full text-sm bg-indigo-700 text-white border"
+              className="flex items-center gap-2 px-5 py-1.5 rounded-full text-sm  text-black border border-black"
             >
-              All Destinations
-              <svg
-                className={`w-4 h-4 transition-transform ${open ? "rotate-180" : ""}`}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M19 9l-7 7-7-7" />
-              </svg>
+              All Destinations ▼
             </button>
 
             {open && (
@@ -129,7 +98,7 @@ export default function RecentlyBookedItineraries() {
             (item) => (
               <button
                 key={item}
-                className="px-5 py-1.5 rounded-full text-sm bg-white/95 text-gray-800"
+                className="px-5 py-1.5 rounded-full text-sm bg-white text-black"
               >
                 {item}
               </button>
@@ -137,17 +106,15 @@ export default function RecentlyBookedItineraries() {
           )}
         </div>
 
-        {/* ====== CAROUSEL ====== */}
+        {/* CAROUSEL */}
         <div className="relative">
 
           {/* LEFT ARROW */}
           <button
             onClick={() => scroll("left")}
-            className={`
-              absolute -left-5 top-1/2 -translate-y-1/2 z-20
-              w-10 h-10 rounded-full shadow-lg
-              flex items-center justify-center
-              ${canScrollLeft ? "bg-lime-400 text-white" : "bg-white text-black"}
+            className={`absolute -left-6 top-1/2 -translate-y-1/2 z-20
+              w-10 h-10 rounded-full shadow-md flex items-center justify-center
+              ${canScrollLeft ? "bg-black text-white" : "bg-white text-black"}
             `}
           >
             ❮
@@ -166,9 +133,9 @@ export default function RecentlyBookedItineraries() {
                   trip-card
                   flex-shrink-0
                   w-full
-                  sm:w-[calc(50%-12px)]
-                  lg:w-[calc(33.333%-16px)]
-                  h-[210px]
+                  sm:w-[48%]
+                  lg:w-[32%]
+                  h-[230px]
                   rounded-2xl
                   overflow-hidden
                   relative
@@ -177,15 +144,24 @@ export default function RecentlyBookedItineraries() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                 />
 
-                <div className="absolute inset-0 bg-black/25 flex items-center px-5">
-                  <div className="w-full text-center">
-                    <h3 className="text-[#EDF957] font-semibold text-xl leading-snug">
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-black/20 flex items-end">
+                  <div
+                    className={`w-full text-center py-3 px-4
+                      ${
+                        index % 2 === 0
+                          ? "bg-indigo-600 text-white"
+                          : "bg-[#D4E232] text-black"
+                      }
+                    `}
+                  >
+                    <h3 className="font-semibold text-sm">
                       {item.title}
                     </h3>
-                    <p className="text-white text-md mt-1">
+                    <p className="text-xs">
                       {item.subtitle}
                     </p>
                   </div>
@@ -197,18 +173,15 @@ export default function RecentlyBookedItineraries() {
           {/* RIGHT ARROW */}
           <button
             onClick={() => scroll("right")}
-            className={`
-              absolute -right-5 top-1/2 -translate-y-1/2 z-20
-              w-10 h-10 rounded-full shadow-lg
-              flex items-center justify-center
-              ${canScrollRight ? "bg-lime-400 text-white" : "bg-white text-black"}
+            className={`absolute -right-6 top-1/2 -translate-y-1/2 z-20
+              w-10 h-10 rounded-full shadow-md flex items-center justify-center
+              ${canScrollRight ? "bg-black text-white" : "bg-white text-black"}
             `}
           >
             ❯
           </button>
         </div>
       </div>
-
     </section>
   );
 }
