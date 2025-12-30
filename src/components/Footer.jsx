@@ -14,15 +14,37 @@ export default function Footer() {
       >
         {/* CONTACT */}
         <div>
-          <h4 className="font-bold text-black mb-4 ">CONTACT US</h4>
-          <p>Toll Free Customer Care</p>
+          <h4 className="font-bold text-black mb-4">CONTACT US</h4>
+
+          <p>📞Toll Free Customer Care</p>
           <p className="mt-2 text-[#551DEF] font-medium">
-            +(123) 456 7890 2666
+            +91 9247534848
           </p>
 
-          <p className="mt-6">Need live support?</p>
+          <p className="mt-6">📧Need live support?</p>
           <p className="mt-2 text-[#551DEF] font-medium">
-            support@marktour.com
+            <a
+              href="mailto:info@marktours.in"
+              onClick={(e) => e.stopPropagation()}
+              className="hover:underline cursor-pointer"
+            >
+              {/* support@marktour.com */}
+              info@marktours.in
+            </a>
+          </p>
+
+          <p className="mt-6">📌Location</p>
+          <p className="mt-2 text-[#551DEF] font-medium">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=405, PSR Prime Towers Road, APHB Colony, Indira Nagar, Gachibowli, Hyderabad, TS 500032, India"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="hover:underline cursor-pointer"
+            >
+              405, PSR Prime Towers Road, APHB Colony, Indira Nagar,
+              Gachibowli, Hyderabad, TS 500032, India
+            </a>
           </p>
         </div>
 
@@ -73,7 +95,11 @@ export default function Footer() {
 
             <div className="space-y-3">
               <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-2 w-[210px]">
-                <img src="/assets/images/Apple.png" className="w-[28px]" />
+                <img
+                  src="/assets/images/Apple.png"
+                  alt="Apple Store"
+                  className="w-[28px]"
+                />
                 <div className="text-xs">
                   <p className="text-gray-500">Download on the</p>
                   <p className="font-semibold">Apple Store</p>
@@ -81,7 +107,11 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-2 w-[210px]">
-                <img src="/assets/images/Playstore.png" className="w-[28px]" />
+                <img
+                  src="/assets/images/Playstore.png"
+                  alt="Play Store"
+                  className="w-[28px]"
+                />
                 <div className="text-xs">
                   <p className="text-gray-500">Download on the</p>
                   <p className="font-semibold">Google Play</p>
@@ -96,6 +126,7 @@ export default function Footer() {
       {/* BOTTOM */}
       <div className="border-t border-gray-300 mt-12">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+
           <div className="flex flex-wrap gap-6">
             <span>© 2022 Marktour. All rights reserved.</span>
             <span>Privacy</span>
@@ -105,17 +136,48 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
-              <img src="/assets/images/globe.png" className="w-[18px]" />
+              <img
+                src="/assets/images/globe.png"
+                alt="Language"
+                className="w-[18px]"
+              />
               English (US)
             </span>
 
             <div className="flex gap-3">
-              <img src="/assets/images/facebook.png" className="w-[18px]" />
-              <img src="/assets/images/twitter.png" className="w-[18px]" />
-              <img src="/assets/images/instagram.png" className="w-[18px]" />
-              <img src="/assets/images/youtube.png" className="w-[18px]" />
+              {/* <img src="/assets/images/facebook.png" alt="Facebook" className="w-[18px]" /> */}
+              <a
+                href="https://www.facebook.com/share/r/1KWCivD2wD/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src="/assets/images/facebook.png"
+                  alt="Facebook"
+                  className="w-[18px] cursor-pointer"
+                />
+              </a>
+
+              <img src="/assets/images/twitter.png" alt="Twitter" className="w-[18px]" />
+              {/* <img src="/assets/images/instagram.png" alt="Instagram" className="w-[18px]" /> */}
+              <a
+                href="https://www.instagram.com/marktours.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src="/assets/images/instagram.png"
+                  alt="Instagram"
+                  className="w-[18px] cursor-pointer"
+                />
+              </a>
+
+              <img src="/assets/images/youtube.png" alt="YouTube" className="w-[18px]" />
             </div>
           </div>
+
         </div>
       </div>
 
