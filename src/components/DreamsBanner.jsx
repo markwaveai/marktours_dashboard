@@ -1,7 +1,8 @@
 import dream1 from "/assets/dreams-images/dream1.png";
 import dream3 from "/assets/dreams-images/dreams3.png";
-import dream4 from "/assets/dreams-images/dreams4.png";
-import dream5 from "/assets/dreams-images/dream5.png";
+import dream4 from "/assets/dreams-images/dreams4.png"; 
+import dream5 from "/assets/dreams-images/Clipart.png";
+import dream6 from "/assets/dreams-images/dream6.png";
 
 export default function DreamsBanner() {
   return (
@@ -52,30 +53,38 @@ export default function DreamsBanner() {
         {/* Eiffel Tower */}
         <img
           src={dream1}
-          alt="Eiffel Tower"
-          className="absolute left-4 sm:left-10 bottom-28 w-14 sm:w-20 opacity-40 animate-float"
+          alt="Eiffel Tower"  
+          className="absolute left-4 sm:left-10 bottom-28 w-14 sm:w-20  "
         />
 
         {/* Pyramid */}
         <img
-          src={dream5}
+          src={dream3}
           alt="Pyramid"
-          className="absolute left-24 sm:left-64 bottom-0 w-28 sm:w-40 opacity-40 animate-float-delay-1"
-        />
+          className="absolute left-24 sm:left-64 bottom-0 w-28 sm:w-40 "
+        />  
 
         {/* Colosseum */}
         <img
-          src={dream3}
+          src={dream4}
           alt="Colosseum"
-          className="absolute left-1/2 bottom-0 -translate-x-1/2 w-40 sm:w-56 opacity-40 animate-float-delay-2"
+          className="absolute left-1/2 bottom-0 -translate-x-1/2 w-40 sm:w-56 "
         />
 
         {/* Statue */}
         <img
-          src={dream4}
+          src={dream6}
           alt="Statue"
-          className="absolute right-6 sm:right-28 bottom-0 w-32 sm:w-44 opacity-40 animate-float-delay-1"
+          className="absolute right-6 sm:right-28 bottom-0 w-32 sm:w-44 "
         />
+
+        {/* Statue */}
+        <img
+          src={dream5}
+          alt="Statue"
+          className="absolute right-6 sm:right-28 bottom-0 w-32 sm:w-44 "
+        />
+
       </div>
     </section>
   );

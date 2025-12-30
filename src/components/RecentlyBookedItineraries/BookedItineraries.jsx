@@ -31,7 +31,7 @@ export default function RecentlyBookedItineraries() {
   const scrollRef = useRef(null);
   const [open, setOpen] = useState(false);
 
-  /* 🔥 ARROW STATES */
+  /*  ARROW STATES */
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 

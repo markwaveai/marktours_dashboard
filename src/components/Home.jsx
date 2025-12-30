@@ -7,6 +7,7 @@ import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItinera
 import OffersSection from "./offers/OffersSection";
 import PopularAdventures from "./adventures/PopularAdventures";
 import Testimonials from "./Testimonials/Testimonials";
+import UpcomingTours from "./Hero/UpcomingTours";
 import Footer from "./Footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <>
             <Hero />
             <SearchBar />
+            <UpcomingTours />
 
             {/* Sections from markwave_tours_anjili */}
             <UpcomingTrips />
