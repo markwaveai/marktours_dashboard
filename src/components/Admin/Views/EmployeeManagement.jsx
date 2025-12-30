@@ -397,11 +397,10 @@ export default function EmployeeManagement() {
                             <button
                                 onClick={handleSave}
                                 disabled={loading}
-                                className={`px-6 py-2 rounded-lg text-white ${
-                                    loading
+                                className={`px-6 py-2 rounded-lg text-white ${loading
                                         ? "bg-indigo-300"
                                         : "bg-indigo-600"
-                                }`}
+                                    }`}
                             >
                                 {loading ? "Saving..." : "Save"}
                             </button>

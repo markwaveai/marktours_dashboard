@@ -237,14 +237,14 @@ function Widget({ title, value, change, icon, badge }) {
   const trend = isPositive
     ? faArrowUp
     : isNeutral
-    ? faMinus
-    : faArrowDown;
+      ? faMinus
+      : faArrowDown;
 
   const trendStyle = isPositive
     ? "bg-green-100 text-green-700"
     : isNeutral
-    ? "bg-gray-100 text-gray-700"
-    : "bg-red-100 text-red-700";
+      ? "bg-gray-100 text-gray-700"
+      : "bg-red-100 text-red-700";
 
   const isEMI = title.toLowerCase().includes("emi");
 
