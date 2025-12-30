@@ -27,22 +27,26 @@ import ReportsLogs from "./Views/ReportsLogs";
 import CompanyPaid from "./Views/CompanyPaid";
 import TourAssignment from "./Views/TourAssignment";
 import EmployeeManagement from "./Views/EmployeeManagement";
+import InterestedCandidates from "./Views/InterestedCandidates";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const menuItems = [
     { name: "Dashboard", icon: LayoutDashboard, component: <DashboardHome /> },
     { name: "User Management", icon: Users, component: <UserManagement /> },
     { name: "Employee Management", icon: Briefcase, component: <EmployeeManagement /> },
     { name: "Tour Management", icon: Plane, component: <TourManagement /> },
-    { name: "Tour Assignment", icon: CalendarCheck, component: <TourAssignment /> },
-    { name: "EMI & Payments", icon: CreditCard, component: <EMIPayments /> },
-    { name: "Risk & Defaulters", icon: AlertTriangle, component: <RiskDefaulters /> },
-    { name: "Eligibility Engine", icon: Settings, component: <EligibilityEngine /> },
-    { name: "Reports & Audit Logs", icon: FileText, component: <ReportsLogs /> },
-    { name: "Company-Paid (12th Month)", icon: Gift, component: <CompanyPaid /> },
+    { name: "Interested Candidates", icon: Users, component: <InterestedCandidates /> },
+
+    // Disabled items (visible but inactive)
+    { name: "Tour Assignment", icon: CalendarCheck, component: <TourAssignment />, disabled: true },
+    { name: "EMI & Payments", icon: CreditCard, component: <EMIPayments />, disabled: true },
+    { name: "Risk & Defaulters", icon: AlertTriangle, component: <RiskDefaulters />, disabled: true },
+    { name: "Eligibility Engine", icon: Settings, component: <EligibilityEngine />, disabled: true },
+    { name: "Reports & Audit Logs", icon: FileText, component: <ReportsLogs />, disabled: true },
+    { name: "Company-Paid (12th Month)", icon: Gift, component: <CompanyPaid />, disabled: true },
   ];
 
   const ActiveComponent =
@@ -53,24 +57,16 @@ export default function AdminDashboard() {
     <div className="flex h-screen bg-gray-50 overflow-hidden">
 
       {/* -------------------- SIDEBAR -------------------- */}
-      {/* UNIVERSAL BACKDROP */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-
       <aside
         className={`bg-white border-r border-gray-200 flex-col shadow-lg transition-all duration-300
         ${isSidebarOpen ? "w-64 translate-x-0" : "w-0 -translate-x-full md:translate-x-0 overflow-hidden"}
         fixed md:relative z-50 flex h-full`}
       >
-        {/* HEADER WITH HAMBURGER BEFORE LOGO */}
+        {/* HEADER */}
         <div className="h-20 flex items-center gap-3 px-4 border-b">
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-lg hover:bg-gray-100 "
+            className="p-2 rounded-lg hover:bg-gray-100"
           >
             {isSidebarOpen ? <X /> : <Menu />}
           </button>
@@ -83,26 +79,38 @@ export default function AdminDashboard() {
         </div>
 
         {/* NAV */}
-        <nav className="flex-1 overflow-y-auto py-6 px-4">
+        <nav className="flex-1 overflow-y-auto py-6 px-4 scrollbar-hide">
           <ul className="space-y-1">
-            {menuItems.map((item) => (
-              <li key={item.name}>
-                <button
-                  onClick={() => setActiveTab(item.name)}
-                  className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all whitespace-nowrap
-                    ${activeTab === item.name
-                      ? "bg-indigo-600 text-white shadow-md"
-                      : "text-gray-500 hover:bg-indigo-50 hover:text-indigo-600"
-                    }`}
-                >
-                  <item.icon
-                    className={`w-5 h-5 mr-3 ${activeTab === item.name ? "text-white" : "text-gray-400"
+            {menuItems.map((item) => {
+              const isActive = activeTab === item.name && !item.disabled;
+
+              return (
+                <li key={item.name}>
+                  <button
+                    onClick={() => {
+                      if (!item.disabled) {
+                        setActiveTab(item.name);
+                      }
+                    }}
+                    className={`w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all whitespace-nowrap
+                      ${
+                        isActive
+                          ? "bg-indigo-600 text-white shadow-md"
+                          : "text-gray-500 hover:bg-indigo-50 hover:text-indigo-600"
+                      }
+                      ${item.disabled ? "cursor-not-allowed opacity-70" : ""}
+                    `}
+                  >
+                    <item.icon
+                      className={`w-5 h-5 mr-3 ${
+                        isActive ? "text-white" : "text-gray-400"
                       }`}
-                  />
-                  {item.name}
-                </button>
-              </li>
-            ))}
+                    />
+                    {item.name}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -137,7 +145,7 @@ export default function AdminDashboard() {
             {!isSidebarOpen && (
               <button
                 onClick={() => setIsSidebarOpen(true)}
-                className="p-2 rounded-lg hover:bg-gray-100 flex"
+                className="p-2 rounded-lg hover:bg-gray-100"
               >
                 <Menu />
               </button>
