@@ -10,6 +10,7 @@ import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItinera
 import OffersSection from "./offers/OffersSection";
 import Testimonials from "./Testimonials/Testimonials";
 import Footer from "./Footer";
+import WhatsApplogo from "./Hero/WhatsApplogo";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ export default function Home() {
 
       <Testimonials />
       <Footer />
+      <WhatsApplogo/>
     </>
   );
 }
