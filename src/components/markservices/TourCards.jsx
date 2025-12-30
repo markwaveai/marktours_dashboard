@@ -24,10 +24,10 @@ const packages = [
 
 export default function TourCards() {
   return (
-    <div className="relative bg-white rounded-[32px] px-6 md:px-10 py-12 shadow-xl border overflow-hidden">
-      {/* Prevent horizontal scroll */}
+    <div className="relative bg-white rounded-[32px] px-6 md:px-10 py-12 border overflow-hidden">
+      
       <div className="w-full overflow-hidden">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
           {packages.map((item, i) => (
             <div
               key={i}
