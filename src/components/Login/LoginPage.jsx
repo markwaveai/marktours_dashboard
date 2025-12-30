@@ -18,13 +18,22 @@ export default function LoginPage() {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-900 relative overflow-hidden">
-
+z
             {/* Background Elements */}
-            <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-[-20%] left-[20%] w-[500px] h-[500px] bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] 
+rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob"
+style={{ backgroundColor: "#00E5FF" }}></div>
 
-            <div className="relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl">
+<div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] 
+rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob animation-delay-2000"
+style={{ backgroundColor: "#00BFFF" }}></div>
+
+<div className="absolute bottom-[-20%] left-[20%] w-[500px] h-[500px] 
+rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob animation-delay-4000"
+style={{ backgroundColor: "#38E8FF" }}></div>
+
+
+            <div className="relative z-10 w-full max-w-md p-8 bg-white/10 backdrop-blur-md border border-blue/20 rounded-2xl shadow-2xl">
 
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
