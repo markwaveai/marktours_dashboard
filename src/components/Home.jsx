@@ -1,32 +1,45 @@
-import DreamsBanner from "./DreamsBanner";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+
 import Hero from "./Hero/Hero";
 import SearchBar from "./Hero/SearchBar";
+import UpcomingTours from "./Hero/UpcomingTours";
 import HolidayPackages from "./UpcomingTrips/HolidayPackages";
+import DreamsBanner from "./DreamsBanner";
 import RecentlyBookedItineraries from "./RecentlyBookedItineraries/BookedItineraries";
 import OffersSection from "./offers/OffersSection";
 import PopularAdventures from "./adventures/PopularAdventures";
 import Testimonials from "./Testimonials/Testimonials";
-import UpcomingTours from "./Hero/UpcomingTours";
 import Footer from "./Footer";
-import TourServices from "./markservices/TourServices";
 
 export default function Home() {
-    return (
-        <>
-            <Hero />
-            <SearchBar />
+  const navigate = useNavigate();
 
-            <UpcomingTours />
-            <HolidayPackages />
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      navigate("/tour-services");
+    }
+  }, []);
 
-            <DreamsBanner />
+  return (
+    <>
+      <Hero />
+      <SearchBar />
 
-            <RecentlyBookedItineraries />
-            <OffersSection />
-            <PopularAdventures />
-            <TourServices />
-            <Testimonials />
-            <Footer />
-        </>
-    );
+      <UpcomingTours />
+      <HolidayPackages />
+
+      <DreamsBanner />
+
+      <RecentlyBookedItineraries />
+      <OffersSection />
+      <PopularAdventures />
+
+      {/* Tour Services Section (Tabs + Dynamic Content) */}
+      <Outlet />
+
+      <Testimonials />
+      <Footer />
+    </>
+  );
 }

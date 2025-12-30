@@ -6,8 +6,12 @@ import LoginPage from "./components/Login/LoginPage";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import Splash from "./components/Splash";
 
-import TourServices from "./components/markservices/TourServices";
+import TourServicesLayout from "./components/markservices/TourServicesLayout";
+import TourCards from "./components/markservices/TourCards";
 import AirTicketing from "./components/markservices/AirTicketing";
+import Visas from "./components/markservices/Visas";
+import CruiseHolidays from "./components/markservices/CruiseHolidays";
+import HotelsandResort from "./components/markservices/HotelsandResort";
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -18,14 +22,18 @@ export default function App() {
         <Splash onFinish={() => setShowSplash(false)} />
       ) : (
         <Routes>
-          {/* Existing Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />}>
+            <Route path="tour-services" element={<TourServicesLayout />}>
+              <Route index element={<TourCards />} />
+              <Route path="air" element={<AirTicketing />} />
+              <Route path="visa" element={<Visas />} />
+              <Route path="cruise" element={<CruiseHolidays />} />
+              <Route path="hotels" element={<HotelsandResort />} />
+            </Route>
+          </Route>
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-
-          {/* ✅ NEW ROUTES */}
-          <Route path="/tour-services" element={<TourServices />} />
-          <Route path="/air-ticketing" element={<AirTicketing />} />
         </Routes>
       )}
     </>
