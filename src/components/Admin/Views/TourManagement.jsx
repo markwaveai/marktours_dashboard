@@ -9,10 +9,46 @@ const tourImages = {
   default: "/assets/tours/default.jpg",
 };
 
+function TourImage({ src, tourName, className }) {
+  const getFallback = (name = "") => {
+    const lower = name.toLowerCase();
+    if (lower.includes("dubai")) return tourImages.dubai;
+    if (lower.includes("thailand")) return tourImages.thailand;
+    if (lower.includes("singapore")) return tourImages.singapore;
+    if (lower.includes("malaysia")) return tourImages.malaysia;
+    if (lower.includes("bali")) return tourImages.bali;
+    return tourImages.default;
+  };
+
+  const fallback = getFallback(tourName);
+  const [imgSrc, setImgSrc] = useState(src || fallback);
+  const [hasFailed, setHasFailed] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(src || fallback);
+    setHasFailed(false);
+  }, [src, fallback]);
+
+  return (
+    <img
+      src={imgSrc}
+      alt={tourName}
+      className={className}
+      onError={() => {
+        if (!hasFailed) {
+          setImgSrc(fallback);
+          setHasFailed(true);
+        }
+      }}
+    />
+  );
+}
+
 export default function TourManagement() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const [formData, setFormData] = useState({
     id: null,
@@ -37,33 +73,24 @@ export default function TourManagement() {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const fetchTours = () => {
-    setLoading(true);
+  const fetchTours = (isInitial = false) => {
+    if (isInitial) setLoading(true);
     fetch("https://marktours-services-jn6cma3vvq-el.a.run.app/tours-config")
       .then((res) => res.json())
       .then((data) => {
         setTours(data.tours || []);
-        setLoading(false);
+        if (isInitial) setLoading(false);
       })
       .catch((err) => {
         console.error("API error:", err);
-        setLoading(false);
+        if (isInitial) setLoading(false);
       });
   };
 
   useEffect(() => {
-    fetchTours();
+    fetchTours(true);
   }, []);
 
-  const getTourImage = (name = "") => {
-    const lower = name.toLowerCase();
-    if (lower.includes("dubai")) return tourImages.dubai;
-    if (lower.includes("thailand")) return tourImages.thailand;
-    if (lower.includes("singapore")) return tourImages.singapore;
-    if (lower.includes("malaysia")) return tourImages.malaysia;
-    if (lower.includes("bali")) return tourImages.bali;
-    return tourImages.default;
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -150,6 +177,30 @@ export default function TourManagement() {
       .catch((err) => console.error("Delete tour failed:", err));
   };
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Image is too large. Please select a file smaller than 2MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadstart = () => setUploading(true);
+    reader.onloadend = () => {
+      setFormData((prev) => ({ ...prev, tour_image_url: reader.result }));
+      setUploading(false);
+      // Reset input value so same file can be selected again if needed
+      e.target.value = "";
+    };
+    reader.onerror = () => {
+      alert("Failed to read file.");
+      setUploading(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleCreateClick = () => {
     resetForm();
     setShowCreateModal(true);
@@ -158,10 +209,21 @@ export default function TourManagement() {
   const handleEditClick = (tour) => {
     setFormData({
       ...tour,
+      slots: tour.slots?.toString() || "",
+      package_price: tour.package_price?.toString() || "",
+      available_slots: tour.available_slots?.toString() || "",
+      booked_slots: tour.booked_slots?.toString() || "",
+      days_count: tour.days_count?.toString() || "",
+      nights_count: tour.nights_count?.toString() || "",
+      emi_per_month: tour.emi_per_month?.toString() || "",
+      tour_image_url: tour.tour_image_url || "",
       start_date: tour.start_date?.split("T")[0] || "",
       end_date: tour.end_date?.split("T")[0] || "",
       arrival_at: tour.arrival_at?.split("T")[0] || "",
       depature_at: tour.depature_at?.split("T")[0] || "",
+      tour_description: tour.tour_description || "",
+      arrivals_place: tour.arrivals_place || "",
+      depature_place: tour.depature_place || "",
     });
     setIsEdit(true);
     setShowCreateModal(true);
@@ -213,9 +275,9 @@ export default function TourManagement() {
           >
             <div className="flex gap-3">
               <div className="w-[60%] h-[80px] rounded-lg overflow-hidden">
-                <img
-                  src={tour.tour_image_url || getTourImage(tour.tour_name)}
-                  alt={tour.tour_name}
+                <TourImage
+                  src={tour.tour_image_url}
+                  tourName={tour.tour_name}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -251,13 +313,13 @@ export default function TourManagement() {
             <div className="mt-3 flex gap-2">
               <button
                 onClick={() => handleEditClick(tour)}
-                className="flex-1 py-2 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700"
+                className="flex-1 py-2 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-semibold hover:bg-emerald-100 transition-colors"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDeleteTour(tour.tour_code)}
-                className="flex-1 py-2 rounded-lg bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700"
+                className="flex-1 py-2 rounded-lg bg-rose-50 text-rose-700 text-xs font-semibold hover:bg-rose-100 transition-colors"
               >
                 Delete
               </button>
@@ -425,42 +487,70 @@ export default function TourManagement() {
                 </div>
 
                 {isEdit && (
-                  <>
-                    <div>
-                      <label className="text-xs font-semibold text-gray-500">Available Slots</label>
-                      <input
-                        type="number"
-                        name="available_slots"
-                        placeholder="Available Slots"
-                        value={formData.available_slots}
-                        onChange={handleChange}
-                        className="w-full border rounded-lg p-2 text-sm"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-semibold text-gray-500">Booked Slots</label>
-                      <input
-                        type="number"
-                        name="booked_slots"
-                        placeholder="Booked Slots"
-                        value={formData.booked_slots}
-                        onChange={handleChange}
-                        className="w-full border rounded-lg p-2 text-sm"
-                      />
-                    </div>
-                  </>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500">Available Slots</label>
+                    <input
+                      type="number"
+                      name="available_slots"
+                      placeholder="Available Slots"
+                      value={formData.available_slots}
+                      onChange={handleChange}
+                      className="w-full border rounded-lg p-2 text-sm"
+                    />
+                  </div>
                 )}
 
                 <div className="col-span-2">
                   <label className="text-xs font-semibold text-gray-500">Image URL</label>
-                  <input
-                    name="tour_image_url"
-                    placeholder="Image URL"
-                    value={formData.tour_image_url}
-                    onChange={handleChange}
-                    className="w-full border rounded-lg p-2 text-sm"
-                  />
+                  <div className="flex gap-2">
+                    <input
+                      name="tour_image_url"
+                      placeholder="Image URL"
+                      value={formData.tour_image_url?.startsWith('data:') ? 'Local Image Selected' : formData.tour_image_url}
+                      onChange={handleChange}
+                      className="flex-1 border rounded-lg p-2 text-sm"
+                      readOnly={formData.tour_image_url?.startsWith('data:')}
+                    />
+                    <button
+                      type="button"
+                      disabled={uploading}
+                      onClick={() => document.getElementById('tour-file-input').click()}
+                      className={`px-3 py-2 rounded-lg text-xs font-semibold border flex items-center shrink-0 transition-colors ${uploading
+                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                        : "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100"
+                        }`}
+                    >
+                      {uploading ? "Reading..." : "Upload"}
+                    </button>
+                    <input
+                      id="tour-file-input"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                  </div>
+                  {formData.tour_image_url && (
+                    <div className="mt-2 relative w-20 h-20 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 shrink-0">
+                      <img
+                        src={formData.tour_image_url}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, tour_image_url: "" }))}
+                        className="absolute top-0.5 right-0.5 bg-black/50 text-white rounded-full p-0.5 hover:bg-black/70"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 <div className="col-span-2">
