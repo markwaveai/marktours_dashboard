@@ -8,6 +8,7 @@ import PopularAdventures from "./adventures/PopularAdventures";
 import Testimonials from "./Testimonials/Testimonials";
 import UpcomingTours from "./Hero/UpcomingTours";
 import Footer from "./Footer";
+import TourServices from "./markservices/TourServices";
 
 export default function Home() {
     return (
@@ -23,6 +24,7 @@ export default function Home() {
             <RecentlyBookedItineraries />
             <OffersSection />
             <PopularAdventures />
+            <TourServices />
             <Testimonials />
             <Footer />
         </>
