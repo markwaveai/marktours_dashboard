@@ -30,12 +30,14 @@ export default function Home() {
 
       <DreamsBanner />
 
-            <RecentlyBookedItineraries />
-            <OffersSection />
+      <RecentlyBookedItineraries />
+      <OffersSection />
+      
+      {/* Tour Services Section (Tabs + Dynamic Content) */}
+      <Outlet />
 
-            <TourServices />
-            <Testimonials />
-            <Footer />
-        </>
-    );
+      <Testimonials />
+      <Footer />
+    </>
+  );
 }
