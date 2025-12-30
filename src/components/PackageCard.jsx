@@ -8,7 +8,7 @@ const PackageCard = ({ image, name, tours }) => {
           relative w-[200px] h-[240px]
           flex items-center justify-center pb-[7px]
           transition-transform duration-300 ease-out
-          group-hover:scale-110
+          group-hover:scale-105
         "
       >
         {/* BACKGROUND OVAL PNG */}

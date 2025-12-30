@@ -31,7 +31,7 @@ export default function RecentlyBookedItineraries() {
   const scrollRef = useRef(null);
   const [open, setOpen] = useState(false);
 
-  /* 🔥 ARROW STATES */
+  /*  ARROW STATES */
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -78,7 +78,7 @@ export default function RecentlyBookedItineraries() {
 
   return (
     <section
-      className="w-full pt-16 bg-cover bg-center bg-no-repeat mt-8"
+      className="w-full py-16 bg-cover bg-center bg-no-repeat mt-8"
       style={{ backgroundImage: "url('/assets/images/Background.png')" }}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -209,37 +209,6 @@ export default function RecentlyBookedItineraries() {
         </div>
       </div>
 
-      {/* ====== BANNER ====== */}
-      <div className="w-full mt-20 relative overflow-hidden aspect-[16/6]">
-        {bannerImages.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            alt="Plan your dream trip"
-            className={`
-              absolute inset-0 w-full h-full object-cover
-              transition-opacity duration-1000 ease-in-out
-              ${index === currentBannerIndex ? "opacity-100" : "opacity-0"}
-            `}
-          />
-        ))}
-
-        <div className="absolute bottom-0 left-0 w-full bg-black/30 py-6 z-10">
-          <div className="flex justify-center items-center gap-3 text-white text-2xl">
-            <span>The Easiest Way to</span>
-            <span className="text-[#EEFB56] font-bold">
-              Plan Your Dream Trip
-            </span>
-            <span>
-              <img
-                src="/assets/images/arrow.png"
-                alt="ARROW"
-                width={40}
-              />
-            </span>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
