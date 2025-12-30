@@ -6,6 +6,7 @@ export default function SearchBar() {
     phone: "",
     email: "",
     destination: "",
+    pincode: "",
   });
 
   const handleChange = (e) => {
@@ -33,7 +34,7 @@ export default function SearchBar() {
           2xl:px-14 2xl:py-8
           grid grid-cols-1
           sm:grid-cols-2
-          md:grid-cols-5
+          md:grid-cols-6
           gap-5 md:gap-6
           items-end
           shadow-lg
@@ -49,15 +50,7 @@ export default function SearchBar() {
             placeholder="Enter Name Here"
             value={form.name}
             onChange={handleChange}
-            className="
-              w-full
-              bg-white border border-gray-700   rounded-lg
-              px-4 py-2
-              sm:py-2.5
-              2xl:px-5 2xl:py-3
-              2xl:text-lg
-              outline-none
-            "
+            className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 sm:py-2.5 2xl:px-5 2xl:py-3 2xl:text-lg outline-none"
           />
         </div>
 
@@ -71,16 +64,7 @@ export default function SearchBar() {
             placeholder="Enter Phone Number"
             value={form.phone}
             onChange={handleChange}
-            className="
-              w-full
-              bg-white border border-gray-700
-              rounded-lg
-              px-4 py-2
-              sm:py-2.5
-              2xl:px-5 2xl:py-3
-              2xl:text-lg
-              outline-none
-            "
+            className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 sm:py-2.5 2xl:px-5 2xl:py-3 2xl:text-lg outline-none"
           />
         </div>
 
@@ -94,56 +78,51 @@ export default function SearchBar() {
             placeholder="Enter Email"
             value={form.email}
             onChange={handleChange}
-            className="
-              w-full
-              bg-white border border-gray-700
-              rounded-lg
-              px-4 py-2
-              sm:py-2.5
-              2xl:px-5 2xl:py-3
-              2xl:text-lg
-              outline-none
-            "
+            className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 sm:py-2.5 2xl:px-5 2xl:py-3 2xl:text-lg outline-none"
           />
         </div>
 
-       <div className="flex flex-col gap-2">
+        {/* Destination */}
+        <div className="flex flex-col gap-2">
           <label className="text-sm sm:text-base 2xl:text-lg font-semibold text-black">
-            DESTINATION
+            Destination
           </label>
           <input
             name="destination"
             placeholder="Enter Destination"
             value={form.destination}
             onChange={handleChange}
-            className="
-              w-full
-              bg-white border border-gray-700
-              rounded-lg
-              px-4 py-2
-              sm:py-2.5
-              2xl:px-5 2xl:py-3
-              2xl:text-lg
-              outline-none
-            "
+            className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 sm:py-2.5 2xl:px-5 2xl:py-3 2xl:text-lg outline-none"
           />
         </div>
 
-        {/* Submit */}
+        {/* Pincode */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm sm:text-base 2xl:text-lg font-semibold text-black">
+            Pincode
+          </label>
+          <input
+            name="pincode"
+            placeholder="Enter Pincode"
+            value={form.pincode}
+            onChange={handleChange}
+            className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 sm:py-2.5 2xl:px-5 2xl:py-3 2xl:text-lg outline-none"
+          />
+        </div>
+
+        {/* Submit Button */}
         <div className="flex w-full">
           <button
             type="submit"
             className="
-              w-[200px]
+              w-full
               bg-[#6A2CF3]
               hover:bg-purple-700
               text-white
               transition
               rounded-lg
               font-semibold
-              py-2.5
-              sm:py-3
-              2xl:py-4
+              py-2.5 sm:py-3 2xl:py-4
               2xl:text-lg
             "
           >

@@ -27,7 +27,7 @@ import ReportsLogs from "./Views/ReportsLogs";
 import CompanyPaid from "./Views/CompanyPaid";
 import TourAssignment from "./Views/TourAssignment";
 import EmployeeManagement from "./Views/EmployeeManagement";
-import InterestedCandidates from "./Views/InterestedCandidates";
+import CustomerInterested from "./Views/CustomerInterested";
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -38,7 +38,7 @@ export default function AdminDashboard() {
     { name: "User Management", icon: Users, component: <UserManagement /> },
     { name: "Employee Management", icon: Briefcase, component: <EmployeeManagement /> },
     { name: "Tour Management", icon: Plane, component: <TourManagement /> },
-    { name: "Interested Candidates", icon: Users, component: <InterestedCandidates /> },
+    { name: "Customer Interested", icon: Users, component: <CustomerInterested /> },
 
     // Disabled items (visible but inactive)
     { name: "Tour Assignment", icon: CalendarCheck, component: <TourAssignment />, disabled: true },

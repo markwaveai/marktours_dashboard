@@ -18,7 +18,7 @@ export default function LoginPage() {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-900 relative overflow-hidden">
-z
+
             {/* Background Elements */}
           <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] 
 rounded-full mix-blend-screen filter blur-3xl opacity-25 animate-blob"
