@@ -3,7 +3,7 @@ import whatsapp from "./../../../public/assets/images/WhatsApp.png"
 
 const WhatsApplogo = () => {
   return (
-   <div className="fixed bottom-4 right-4 z-50 w-[60px] h-[60px]">
+   <div className="fixed bottom-6  right-4 z-50 w-[60px] h-[100px]">
             <a  href="https://api.whatsapp.com/send?phone=9247534848&text=Hello" target='_blank'>
                 <img src={whatsapp} alt="" />
             </a>

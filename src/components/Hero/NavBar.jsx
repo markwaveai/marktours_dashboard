@@ -8,12 +8,12 @@ export default function NavBar() {
   const [showBooking, setShowBooking] = useState(false);
 
   const menuItems = [
-    "National",
-    "International",
-    "Cruises",
-    "Visa",
-    "Flights",
-    "Gallery",
+    "NATIONAL",
+    "INTERNATIONAL",
+    "CRUISES",
+    "VISA",
+    "FLIGHTS",
+    "GALLERY",
   ];
 
   useEffect(() => {
@@ -28,20 +28,20 @@ export default function NavBar() {
 
         <img src="/assets/images/logo.png" className="w-[70px] md:w-[90px]" />
 
-        <div className="hidden lg:flex bg-[#EEFB56]/70 backdrop-blur-md px-8 py-2.5 rounded-xl gap-8 text-sm font-semibold">
-          {menuItems.map((item) => (
-            <span key={item} className="cursor-pointer">
-              {item}
-            </span>
-          ))}
-        </div>
+        <div className="flex items-center gap-4">
+          <div className="hidden lg:flex bg-black/40 backdrop-blur-md px-10 py-3 rounded-full gap-10 text-xs font-bold text-white tracking-wider">
+            {menuItems.map((item) => (
+              <span key={item} className="cursor-pointer hover:text-[#EEFB56] transition-colors">
+                {item}
+              </span>
+            ))}
+          </div>
 
-        <div className="flex items-center gap-3">
           <div className="hidden sm:block">
             <BookNowButton variant="yellow" onClick={() => setShowBooking(true)} />
           </div>
 
-          <button to="/login" className="hidden sm:flex border px-4 py-2 rounded-xl text-white">
+          <button className="hidden sm:flex border border-white/60 px-6 py-2 rounded-full text-white text-sm font-medium hover:bg-white hover:text-black transition-all">
             Login / Register
           </button>
 
@@ -52,14 +52,14 @@ export default function NavBar() {
 
         {open && (
           <div className="absolute top-full left-0 w-full px-4 pt-4 lg:hidden">
-            <div className="bg-[#0b1c2d]/90 p-5 rounded-2xl text-white">
-              <div className="flex flex-col gap-4">
+            <div className="bg-[#0b1c2d]/95 backdrop-blur-lg p-6 rounded-3xl text-white shadow-2xl">
+              <div className="flex flex-col gap-4 text-center">
                 {menuItems.map((item) => (
-                  <span key={item}>{item}</span>
+                  <span key={item} className="text-sm font-bold tracking-widest">{item}</span>
                 ))}
               </div>
 
-              <div className="mt-6 flex flex-col gap-3">
+              <div className="mt-8 flex flex-col gap-4">
                 <BookNowButton
                   variant="yellow"
                   onClick={() => {
@@ -67,9 +67,9 @@ export default function NavBar() {
                     setShowBooking(true);
                   }}
                 />
-                <Link to="/login" className="border py-2 rounded-full text-center">
+                <button className="border border-white/40 py-3 rounded-full text-center text-sm font-medium">
                   Login / Register
-                </Link>
+                </button>
               </div>
             </div>
           </div>

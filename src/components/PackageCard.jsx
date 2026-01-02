@@ -1,6 +1,26 @@
+import { useRef } from "react";
+
 const PackageCard = ({ image, name, tours, video }) => {
+  const videoRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => console.log("Video play interrupted", err));
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
   return (
-    <div className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group">
+    <div 
+      className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
 
       {/* IMAGE AREA */}
       <div
@@ -22,18 +42,19 @@ const PackageCard = ({ image, name, tours, video }) => {
         <div className="w-[158px] h-[194px] overflow-hidden z-10 rounded-[45%]">
           {video ? (
             <video
+              ref={videoRef}
               src={video}
-              autoPlay
               loop
               muted
               playsInline
               className="w-full h-full object-cover"
+              poster={image}
             />
           ) : (
             <img
               src={image}
               alt={name}
-              className="w-full h-full"
+              className="w-full h-full object-cover"
             />
           )}
         </div>

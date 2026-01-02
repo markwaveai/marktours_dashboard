@@ -45,7 +45,8 @@ export default function UpcomingTours() {
       const w = window.innerWidth;
       setIsMobile(w < 768);
       if (w >= 1024) setCardsToShow(4);
-      else if (w >= 768) setCardsToShow(2);
+      else if (w >= 768) setCardsToShow(3);
+      else if (w >= 480) setCardsToShow(2);
       else setCardsToShow(1);
     };
     updateLayout();
@@ -54,7 +55,7 @@ export default function UpcomingTours() {
   }, []);
 
   const canGoLeft = startIndex > 0;
-  const canGoRight = startIndex < tours.length - 1;
+  const canGoRight = startIndex < tours.length - cardsToShow;
 
   /* ======================================================
      📱 MOBILE VIEW (ARROWS + CLICK → NEXT)
@@ -64,12 +65,7 @@ export default function UpcomingTours() {
       <>
         <section className="w-full px-4 py-8">
           <div
-            className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl cursor-pointer"
-            onClick={() =>
-              setStartIndex((prev) =>
-                prev === tours.length - 1 ? 0 : prev + 1
-              )
-            }
+            className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl"
           >
             {/* Background Image */}
             <img
@@ -87,7 +83,9 @@ export default function UpcomingTours() {
                 e.stopPropagation();
                 if (canGoLeft) setStartIndex(startIndex - 1);
               }}
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full active:scale-95"
+              disabled={!canGoLeft}
+              className={`absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full transition-all ${canGoLeft ? "active:scale-95 opacity-100" : "opacity-30 cursor-not-allowed"
+                }`}
             >
               <ChevronLeft size={28} />
             </button>
@@ -98,7 +96,9 @@ export default function UpcomingTours() {
                 e.stopPropagation();
                 if (canGoRight) setStartIndex(startIndex + 1);
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full active:scale-95"
+              disabled={!canGoRight}
+              className={`absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full transition-all ${canGoRight ? "active:scale-95 opacity-100" : "opacity-30 cursor-not-allowed"
+                }`}
             >
               <ChevronRight size={28} />
             </button>
@@ -118,28 +118,10 @@ export default function UpcomingTours() {
                   e.stopPropagation();
                   setOpenModal(true);
                 }}
-                className="mt-6 bg-lime-300 text-black px-10 py-3 rounded-full font-bold text-base shadow-lg active:scale-95 transition"
+                className="mt-6 bg-[#EEFB56] text-black px-10 py-3 rounded-full font-bold text-base shadow-lg active:scale-95 transition"
               >
                 Book Now
               </button>
-            </div>
-
-            {/* SQUARE INDICATORS */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-              {tours.map((_, i) => (
-                <span
-                  key={i}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setStartIndex(i);
-                  }}
-                  className={`w-4 h-4 cursor-pointer ${
-                    i === startIndex
-                      ? "bg-lime-300"
-                      : "bg-white/60"
-                  }`}
-                />
-              ))}
             </div>
           </div>
         </section>
@@ -170,19 +152,17 @@ export default function UpcomingTours() {
           <div className="flex gap-4">
             <ChevronLeft
               onClick={() => canGoLeft && setStartIndex((i) => i - 1)}
-              className={`text-2xl transition ${
-                canGoLeft
-                  ? "text-blue-600 cursor-pointer hover:scale-125"
-                  : "text-black/20 cursor-not-allowed"
-              }`}
+              className={`text-2xl transition ${canGoLeft
+                ? "text-blue-600 cursor-pointer hover:scale-125"
+                : "text-black/20 cursor-not-allowed"
+                }`}
             />
             <ChevronRight
               onClick={() => canGoRight && setStartIndex((i) => i + 1)}
-              className={`text-2xl transition ${
-                canGoRight
-                  ? "text-blue-600 cursor-pointer hover:scale-125"
-                  : "text-black/20 cursor-not-allowed"
-              }`}
+              className={`text-2xl transition ${canGoRight
+                ? "text-blue-600 cursor-pointer hover:scale-125"
+                : "text-black/20 cursor-not-allowed"
+                }`}
             />
           </div>
         </div>
