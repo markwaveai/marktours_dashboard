@@ -193,6 +193,10 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Version Number */}
+      <div className="fixed bottom-1 right-1 text-[10px] text-gray-500 z-50 opacity-60">
+        v1.0.0
+      </div>
     </footer>
   );
 }

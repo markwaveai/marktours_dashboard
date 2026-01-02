@@ -18,7 +18,7 @@ const AutoScroller = ({ children }) => {
           el.scrollLeft = 0;
         }
       }
-    }, 20);
+    }, 10);
 
     return () => clearInterval(interval);
   }, [paused]);
