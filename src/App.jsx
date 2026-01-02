@@ -21,7 +21,8 @@ export default function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route path="tour-services" element={<TourServicesLayout />}>
+            {/* Removed path="tour-services" to flatten the URL structure */}
+            <Route element={<TourServicesLayout />}>
               <Route index element={<TourCards />} />
               <Route path="air" element={<AirTicketing />} />
               <Route path="visa" element={<Visas />} />

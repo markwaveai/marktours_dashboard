@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 
 const tabs = [
-  { label: "Holiday Packages", path: "/tour-services" },
-  { label: "Air Ticketing", path: "/tour-services/air" },
-  { label: "Visas", path: "/tour-services/visa" },
-  { label: "Cruise Holidays", path: "/tour-services/cruise" },
-  { label: "Hotels & Resort Planning", path: "/tour-services/hotels" },
+  { label: "Holiday Packages", path: "/" },
+  { label: "Air Ticketing", path: "/air" },
+  { label: "Visas", path: "/visa" },
+  { label: "Cruise Holidays", path: "/cruise" },
+  { label: "Hotels & Resort Planning", path: "/hotels" },
 ];
 
 export default function TourHeader() {
@@ -25,10 +25,9 @@ export default function TourHeader() {
             to={tab.path}
             end
             className={({ isActive }) =>
-              `px-6 py-2 rounded-full border text-sm transition ${
-                isActive
-                  ? "bg-white shadow font-semibold"
-                  : "bg-gray-100 hover:bg-white"
+              `px-6 py-2 rounded-full border text-sm transition ${isActive
+                ? "bg-white shadow font-semibold"
+                : "bg-gray-100 hover:bg-white"
               }`
             }
           >

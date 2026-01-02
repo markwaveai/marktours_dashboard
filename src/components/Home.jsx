@@ -15,11 +15,11 @@ import WhatsApplogo from "./Hero/WhatsApplogo";
 export default function Home() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      navigate("/tour-services");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window.location.pathname === "/") {
+  //     navigate("/tour-services");
+  //   }
+  // }, []);
 
   return (
     <>
@@ -33,13 +33,13 @@ export default function Home() {
 
       <RecentlyBookedItineraries />
       <OffersSection />
-      
+
       {/* Tour Services Section (Tabs + Dynamic Content) */}
       <Outlet />
 
       <Testimonials />
       <Footer />
-      <WhatsApplogo/>
+      <WhatsApplogo />
     </>
   );
 }
