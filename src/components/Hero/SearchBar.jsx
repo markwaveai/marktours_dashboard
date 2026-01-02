@@ -48,9 +48,9 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 2xl:px-20 mt-8">
+    <div className="hidden md:block w-full px-4 sm:px-6 2xl:px-20 mt-8">
       {/* ✅ Heading */}
-      <h2 className="text-center text-2xl sm:text-3xl font-bold text-black mb-6">
+      <h2 className="hidden md:block text-center text-2xl sm:text-3xl font-bold text-black mb-6">
        PLAN YOUR TRIP
       </h2>
 
