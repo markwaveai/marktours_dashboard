@@ -89,7 +89,7 @@ export default function TourCards() {
 
       {/* 🌫 GLASS CONTAINER */}
       <div className="relative rounded-[32px] px-6 md:px-10 py-12
-        bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl">
+        bg-white/20 backdrop-blur-xl border border-white/30 ">
 
         {/*  INFINITE SCROLL */}
         <div className="overflow-hidden">
@@ -99,7 +99,7 @@ export default function TourCards() {
               <div
                 key={i}
                 className="card relative min-w-[240px] h-[340px]
-                rounded-[28px] overflow-hidden shadow-xl
+                rounded-[28px] overflow-hidden 
                 bg-white/10 backdrop-blur-lg border border-white/20"
               >
                 {/* IMAGE */}

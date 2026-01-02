@@ -5,35 +5,153 @@ import BookNowButton from "../BookNowButton";
 import BookingModal from "../BookingModal";
 
 const tours = [
-  { title: "Goa Long Weekend", offer: "Flat 25% Off", image: "/assets/images/adventures/adv1.png" },
-  { title: "Manali Snow Escape", offer: "Flat 30% Off", image: "/assets/images/adventures/adv2.png" },
-  { title: "Kerala Backwaters", offer: "Flat 30% Off", image: "/assets/images/adventures/adv3.png" },
-  { title: "Dubai Shopping", offer: "Flat 30% Off", image: "/assets/images/adventures/adv4.png" },
-  { title: "Bali Island Escape", offer: "Flat 20% Off", image: "/assets/images/adventures/adv5.png" },
+  {
+    title: "Goa Long Weekend",
+    offer: "Flat 25% Off",
+    image: "/assets/images/adventures/adv1.png",
+  },
+  {
+    title: "Manali Snow Escape",
+    offer: "Flat 30% Off",
+    image: "/assets/images/adventures/adv2.png",
+  },
+  {
+    title: "Kerala Backwaters",
+    offer: "Flat 30% Off",
+    image: "/assets/images/adventures/adv3.png",
+  },
+  {
+    title: "Dubai Shopping Festival",
+    offer: "Flat 30% Off",
+    image: "/assets/images/adventures/adv4.png",
+  },
+  {
+    title: "Bali Island Escape",
+    offer: "Flat 20% Off",
+    image: "/assets/images/adventures/adv5.png",
+  },
 ];
-
-const GAP = 24;
 
 export default function UpcomingTours() {
   const [startIndex, setStartIndex] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [flippedIndex, setFlippedIndex] = useState(null);
   const [cardsToShow, setCardsToShow] = useState(4);
+  const [isMobile, setIsMobile] = useState(false);
 
+  /* ------------------ RESPONSIVE LOGIC ------------------ */
   useEffect(() => {
-    const updateCards = () => {
-      if (window.innerWidth >= 1024) setCardsToShow(4);
-      else if (window.innerWidth >= 768) setCardsToShow(2);
+    const updateLayout = () => {
+      const w = window.innerWidth;
+      setIsMobile(w < 768);
+      if (w >= 1024) setCardsToShow(4);
+      else if (w >= 768) setCardsToShow(2);
       else setCardsToShow(1);
     };
-    updateCards();
-    window.addEventListener("resize", updateCards);
-    return () => window.removeEventListener("resize", updateCards);
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
   const canGoLeft = startIndex > 0;
-  const canGoRight = startIndex < tours.length - cardsToShow;
+  const canGoRight = startIndex < tours.length - 1;
 
+  /* ======================================================
+     📱 MOBILE VIEW (ARROWS + CLICK → NEXT)
+  ====================================================== */
+  if (isMobile) {
+    return (
+      <>
+        <section className="w-full px-4 py-8">
+          <div
+            className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl cursor-pointer"
+            onClick={() =>
+              setStartIndex((prev) =>
+                prev === tours.length - 1 ? 0 : prev + 1
+              )
+            }
+          >
+            {/* Background Image */}
+            <img
+              src={tours[startIndex].image}
+              alt={tours[startIndex].title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/40" />
+
+            {/* LEFT ARROW */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (canGoLeft) setStartIndex(startIndex - 1);
+              }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full active:scale-95"
+            >
+              <ChevronLeft size={28} />
+            </button>
+
+            {/* RIGHT ARROW */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (canGoRight) setStartIndex(startIndex + 1);
+              }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full active:scale-95"
+            >
+              <ChevronRight size={28} />
+            </button>
+
+            {/* Content */}
+            <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-white">
+              <h2 className="text-2xl font-bold leading-snug">
+                {tours[startIndex].title}
+              </h2>
+
+              <p className="text-lg font-semibold mt-2">
+                {tours[startIndex].offer}
+              </p>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenModal(true);
+                }}
+                className="mt-6 bg-lime-300 text-black px-10 py-3 rounded-full font-bold text-base shadow-lg active:scale-95 transition"
+              >
+                Book Now
+              </button>
+            </div>
+
+            {/* SQUARE INDICATORS */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+              {tours.map((_, i) => (
+                <span
+                  key={i}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setStartIndex(i);
+                  }}
+                  className={`w-4 h-4 cursor-pointer ${
+                    i === startIndex
+                      ? "bg-lime-300"
+                      : "bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
+      </>
+    );
+  }
+
+  /* ======================================================
+     💻 TABLET + DESKTOP VIEW (UNCHANGED)
+  ====================================================== */
   return (
     <>
       <section className="w-full px-4 md:px-10 2xl:px-24 py-10 overflow-hidden">
@@ -52,22 +170,28 @@ export default function UpcomingTours() {
           <div className="flex gap-4">
             <ChevronLeft
               onClick={() => canGoLeft && setStartIndex((i) => i - 1)}
-              className={`text-2xl transition duration-300 ${canGoLeft ? "text-blue-600 cursor-pointer hover:scale-125" : "text-black/20 cursor-not-allowed"
-                }`}
+              className={`text-2xl transition ${
+                canGoLeft
+                  ? "text-blue-600 cursor-pointer hover:scale-125"
+                  : "text-black/20 cursor-not-allowed"
+              }`}
             />
             <ChevronRight
               onClick={() => canGoRight && setStartIndex((i) => i + 1)}
-              className={`text-2xl transition duration-300 ${canGoRight ? "text-blue-600 cursor-pointer hover:scale-125" : "text-black/20 cursor-not-allowed"
-                }`}
+              className={`text-2xl transition ${
+                canGoRight
+                  ? "text-blue-600 cursor-pointer hover:scale-125"
+                  : "text-black/20 cursor-not-allowed"
+              }`}
             />
           </div>
         </div>
 
-        {/* Carousel Container */}
-        <div className="overflow-hidden mx-[-12px]">
+        {/* Carousel */}
+        <div className="overflow-hidden">
           <motion.div
             animate={{
-              x: -(startIndex * (100 / cardsToShow)) + "%",
+              x: `-${startIndex * (100 / cardsToShow)}%`,
             }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="flex"
@@ -80,24 +204,25 @@ export default function UpcomingTours() {
                   key={i}
                   style={{
                     flex: `0 0 ${100 / cardsToShow}%`,
-                    perspective: "1000px"
+                    perspective: "1000px",
                   }}
-                  className="px-3 h-[260px] md:h-[300px]"
+                  className="px-3 h-[300px]"
                   onMouseEnter={() => setFlippedIndex(i)}
                   onMouseLeave={() => setFlippedIndex(null)}
                   onClick={() => setFlippedIndex(isFlipped ? null : i)}
                 >
-                  {/* Flip Wrapper */}
                   <div
                     className="relative w-full h-full transition-transform duration-700 cursor-pointer"
                     style={{
                       transformStyle: "preserve-3d",
-                      transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                      transform: isFlipped
+                        ? "rotateY(180deg)"
+                        : "rotateY(0deg)",
                     }}
                   >
-                    {/* FRONT SIDE */}
+                    {/* Front */}
                     <div
-                      className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg border border-gray-100"
+                      className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg"
                       style={{ backfaceVisibility: "hidden" }}
                     >
                       <img
@@ -106,19 +231,19 @@ export default function UpcomingTours() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                        <h3 className="text-xl font-bold leading-tight">
+                      <div className="absolute bottom-0 p-5 text-white">
+                        <h3 className="text-xl font-bold">
                           {tour.title}
                         </h3>
-                        <p className="text-sm font-medium opacity-90 mt-1">
+                        <p className="text-sm mt-1">
                           {tour.offer}
                         </p>
                       </div>
                     </div>
 
-                    {/* BACK SIDE */}
+                    {/* Back */}
                     <div
-                      className="absolute inset-0 rounded-2xl bg-indigo-950 text-white flex flex-col justify-center items-center text-center px-6 shadow-xl"
+                      className="absolute inset-0 rounded-2xl bg-indigo-950 text-white flex flex-col justify-center items-center text-center px-6"
                       style={{
                         backfaceVisibility: "hidden",
                         transform: "rotateY(180deg)",
@@ -127,17 +252,11 @@ export default function UpcomingTours() {
                       <h3 className="text-xl font-bold mb-2">
                         {tour.title}
                       </h3>
-                      <div className="w-12 h-1 bg-yellow-400 rounded-full mb-4" />
-                      <p className="text-sm font-semibold text-yellow-400 mb-3">
+                      <p className="text-yellow-400 mb-4">
                         {tour.offer}
                       </p>
-                      <p className="text-xs text-gray-300 mb-6 leading-relaxed line-clamp-3">
-                        Experience the best of {tour.title} with our curated adventure packages. Perfectly planned for your next getaway.
-                      </p>
-
                       <BookNowButton
                         variant="yellow"
-                        className="px-8 py-2.5 rounded-full font-bold text-sm shadow-lg hover:bg-yellow-300 transition-colors"
                         onClick={(e) => {
                           e.stopPropagation();
                           setOpenModal(true);
@@ -152,11 +271,7 @@ export default function UpcomingTours() {
         </div>
       </section>
 
-      {/* Booking Modal */}
-      <BookingModal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-      />
+      <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
     </>
   );
 }

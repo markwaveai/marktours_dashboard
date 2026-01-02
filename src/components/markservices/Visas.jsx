@@ -1,7 +1,7 @@
 import visaImg from "/assets/images/visas.png"; 
 export default function Visas() {
   return (
-    <div className="w-full rounded-[28px] p-10 md:p-14 flex flex-col md:flex-row items-center justify-between  border">
+    <div className="w-full rounded-[28px] p-10 md:p-14 flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-between  border">
 
       {/* LEFT CONTENT */}
       <div className="max-w-xl">

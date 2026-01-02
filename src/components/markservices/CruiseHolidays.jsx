@@ -49,9 +49,16 @@ export default function CruiseHolidays() {
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 5);
   };
 
+  /* 🔁 Scroll exactly ONE card */
   const scroll = (dir) => {
-    const cardWidth = scrollRef.current.clientWidth / 4;
-    scrollRef.current.scrollBy({
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const card = el.querySelector(".cruise-card");
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth;
+    el.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
     });
@@ -103,12 +110,22 @@ export default function CruiseHolidays() {
       </button>
 
       {/* Cards */}
-      <div ref={scrollRef} className="flex overflow-hidden">
+      <div
+        ref={scrollRef}
+        className="flex overflow-hidden scroll-smooth"
+      >
         {cruises.map((c, i) => (
-          <div key={i} className="w-1/4 px-3 flex-shrink-0">
+          <div
+            key={i}
+            className="
+              cruise-card flex-shrink-0 px-3
+              w-full sm:w-1/2 lg:w-1/4
+            "
+          >
             <div className="h-[320px] rounded-[22px] overflow-hidden relative">
               <img
                 src={c.image}
+                alt={c.title}
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/10" />

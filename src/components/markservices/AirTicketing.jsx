@@ -17,7 +17,7 @@ export default function AirTicketing() {
         "
         >
           {/* LEFT CONTENT */}
-          <div className="max-w-xl">
+          <div className="max-w-xl text-center md:text-left">
             <h1 className="text-3xl md:text-4xl font-bold text-[#4B2EFF] leading-tight">
               FLY IN STYLE ARRIVE <br /> IN COMFORT
             </h1>

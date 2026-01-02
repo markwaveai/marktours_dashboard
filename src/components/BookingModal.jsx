@@ -7,7 +7,8 @@ export default function BookingModal({ open, onClose }) {
   const [render, setRender] = useState(open);
   const [closing, setClosing] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+
+  const [errors, setErrors] = useState({});
 
   const [form, setForm] = useState({
     name: "",
@@ -32,52 +33,86 @@ export default function BookingModal({ open, onClose }) {
 
   /* ================= HANDLE INPUT ================= */
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setError("");
+    const { name, value } = e.target;
+
+    // Name → letters, numbers & underscore
+    if (name === "name") {
+      if (!/^[a-zA-Z0-9_\s]*$/.test(value)) return;
+    }
+
+    // Phone → digits only
+    if (name === "phone") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 10) return;
+    }
+
+    // Pincode → digits only
+    if (name === "pincode") {
+      if (!/^\d*$/.test(value)) return;
+      if (value.length > 6) return;
+    }
+
+    // Email → lowercase only
+    if (name === "email") {
+      setForm({ ...form, email: value.toLowerCase() });
+      setErrors({ ...errors, email: "" });
+      return;
+    }
+
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: "" });
   };
 
   /* ================= SUBMIT ================= */
   const handleSubmit = async () => {
-    if (!form.name || !form.phone || !form.email) {
-      setError("Please fill all required fields");
-      return;
+    const newErrors = {};
+
+    if (!form.name) newErrors.name = "Name is required";
+    if (!form.phone) newErrors.phone = "Phone number is required";
+    if (!form.email) newErrors.email = "Email is required";
+    if (!form.destination) newErrors.destination = "Destination is required";
+
+    if (form.phone && form.phone.length !== 10) {
+      newErrors.phone = "Phone number must be exactly 10 digits";
     }
 
-    if (!/^\d{10}$/.test(form.phone)) {
-      setError("Phone number must be 10 digits");
+    if (form.pincode && form.pincode.length !== 6) {
+      newErrors.pincode = "Pincode must be exactly 6 digits";
+    }
+
+    if (
+      form.email &&
+      !/^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,}$/.test(form.email)
+    ) {
+      newErrors.email =
+        "Email must contain lowercase letters, numbers and dots only";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
     const payload = {
       name: form.name,
-      mobile: form.phone,       // ✅ REQUIRED KEY
+      mobile: form.phone,
       email: form.email,
       pincode: form.pincode,
       destination: form.destination,
-      status: "Interested",     // ✅ REQUIRED BY BACKEND
+      status: "Interested",
     };
-
-    console.log("📦 PAYLOAD 👉", payload);
 
     try {
       setLoading(true);
 
       const res = await fetch(API_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
-      console.log("✅ RESPONSE 👉", data);
+      if (!res.ok) throw new Error("Failed");
 
-      if (!res.ok) {
-        throw new Error("Failed to save data");
-      }
-
-      // Reset form
       setForm({
         name: "",
         phone: "",
@@ -86,11 +121,11 @@ export default function BookingModal({ open, onClose }) {
         destination: "",
       });
 
+      setErrors({});
       alert("Submitted successfully!");
       onClose();
-    } catch (err) {
-      console.error("❌ ERROR:", err);
-      setError("Failed to submit. Please try again.");
+    } catch {
+      alert("Failed to submit. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -113,31 +148,39 @@ export default function BookingModal({ open, onClose }) {
 
         {/* FORM */}
         <div className="space-y-4 text-black">
+          {/* Name */}
           <div>
             <label className="text-sm font-semibold">Name</label>
             <input
               name="name"
               value={form.name}
               onChange={handleChange}
-              type="text"
               placeholder="Enter Name Here"
               className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm"
             />
+            {errors.name && (
+              <p className="text-red-600 text-xs mt-1">{errors.name}</p>
+            )}
           </div>
 
+          {/* Phone */}
           <div>
             <label className="text-sm font-semibold">Phone Number</label>
             <input
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              type="text"
+              inputMode="numeric"
               maxLength={10}
-              placeholder="Enter Phone Number (10 digits)"
+              placeholder="Enter Phone Number"
               className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm"
             />
+            {errors.phone && (
+              <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
+            )}
           </div>
 
+          {/* Email */}
           <div>
             <label className="text-sm font-semibold">Email</label>
             <input
@@ -145,38 +188,53 @@ export default function BookingModal({ open, onClose }) {
               value={form.email}
               onChange={handleChange}
               type="email"
-              placeholder="Enter Email Here"
+              placeholder="Enter Email ID"
               className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm"
             />
+            {errors.email && (
+              <p className="text-red-600 text-xs mt-1">{errors.email}</p>
+            )}
           </div>
 
+          {/* Pincode */}
           <div>
             <label className="text-sm font-semibold">PinCode</label>
             <input
               name="pincode"
               value={form.pincode}
               onChange={handleChange}
-              type="text"
-              placeholder="Enter Pincode"
+              inputMode="numeric"
+              maxLength={6}
+              placeholder="Enter PIN Number"
               className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm"
             />
+            {errors.pincode && (
+              <p className="text-red-600 text-xs mt-1">{errors.pincode}</p>
+            )}
           </div>
 
+          {/* Destination */}
           <div>
             <label className="text-sm font-semibold">Destination</label>
-            <input
+            <select
               name="destination"
               value={form.destination}
               onChange={handleChange}
-              type="text"
-              placeholder="Select your Destination"
-              className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm"
-            />
+              className="w-full mt-1 px-4 py-2 rounded-lg border outline-none text-sm bg-white"
+            >
+              <option value="">Select Destination</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Dubai">Dubai</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Bali">Bali</option>
+              <option value="Thailand">Thailand</option>
+            </select>
+            {errors.destination && (
+              <p className="text-red-600 text-xs mt-1">
+                {errors.destination}
+              </p>
+            )}
           </div>
-
-          {error && (
-            <p className="text-red-600 text-sm font-medium">{error}</p>
-          )}
 
           <button
             onClick={handleSubmit}

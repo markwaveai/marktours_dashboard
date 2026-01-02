@@ -52,9 +52,16 @@ export default function HotelsandResort() {
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 5);
   };
 
+  /* 🔁 Scroll exactly ONE card */
   const scroll = (dir) => {
-    const cardWidth = scrollRef.current.clientWidth / 4;
-    scrollRef.current.scrollBy({
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const card = el.querySelector(".hotel-card");
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth;
+    el.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
     });
@@ -106,9 +113,18 @@ export default function HotelsandResort() {
       </button>
 
       {/* CARDS */}
-      <div ref={scrollRef} className="flex overflow-hidden">
+      <div
+        ref={scrollRef}
+        className="flex overflow-hidden scroll-smooth"
+      >
         {hotels.map((h, i) => (
-          <div key={i} className="w-1/4 px-3 flex-shrink-0">
+          <div
+            key={i}
+            className="
+              hotel-card flex-shrink-0 px-3
+              w-full sm:w-1/2 lg:w-1/4
+            "
+          >
             <div className="h-[320px] rounded-[22px] overflow-hidden relative group">
               {/* IMAGE */}
               <img
@@ -117,7 +133,7 @@ export default function HotelsandResort() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
 
-              {/* DARK OVERLAY — FIXED */}
+              {/* DARK OVERLAY */}
               <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
               {/* NIGHT BADGE */}
@@ -125,7 +141,7 @@ export default function HotelsandResort() {
                 {h.nights}
               </span>
 
-              {/* LIKE BUTTON ❤️ */}
+              {/* LIKE BUTTON */}
               <button
                 type="button"
                 onClick={() => toggleLike(i)}
@@ -145,7 +161,7 @@ export default function HotelsandResort() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 text-center px-4">
                 <h3 className="font-semibold text-lg">{h.title}</h3>
 
-                {/* ⭐ STARS WITH ORIGINAL ANIMATION */}
+                {/* STARS */}
                 <div className="flex gap-1 mt-2">
                   {Array(5)
                     .fill(0)
