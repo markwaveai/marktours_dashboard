@@ -1,36 +1,11 @@
-import { useEffect, useState } from "react";
-const marktours = "/assets/images/Flash_Screen.png";
+import { useEffect } from "react";
 const rotatingLogo = "/assets/images/rotating_logo.png";
-const travelVideo = "/assets/Travel-Video.mp4";
-const toursBg = "/assets/images/tours_bg.png";
 const splashbrand = "/assets/images/splash_brand.png";
 
-const leftImages = [
-  "/assets/splash-images/splash1.jpg",
-  "/assets/splash-images/splash2.jpg",
-  "/assets/splash-images/splash3.jpg",
-];
 
-const rightImages = [
-  "/assets/splash-images/splash4.jpg",
-  "/assets/splash-images/splash5.jpg",
-  "/assets/splash-images/splash6.jpg",
-];
 
 export default function Splash({ onFinish }) {
-  const [pairIndex, setPairIndex] = useState(0);
 
-
-  // Show left+right images together (fast)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPairIndex((prev) => {
-        if (prev < 3) return prev + 1;
-        return prev;
-      });
-    }, 350);
-    return () => clearInterval(interval);
-  }, []);
 
 
 

@@ -41,9 +41,9 @@ export default function NavBar() {
             <BookNowButton variant="yellow" onClick={() => setShowBooking(true)} />
           </div>
 
-          <Link to="/login" className="hidden sm:flex border px-4 py-2 rounded-xl text-white">
+          <button to="/login" className="hidden sm:flex border px-4 py-2 rounded-xl text-white">
             Login / Register
-          </Link>
+          </button>
 
           <button onClick={() => setOpen(!open)} className="lg:hidden text-white text-3xl">
             ☰
