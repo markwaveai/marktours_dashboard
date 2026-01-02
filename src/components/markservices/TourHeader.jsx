@@ -11,7 +11,7 @@ const tabs = [
 export default function TourHeader() {
   return (
     <>
-      <div className="text-center mb-8">
+      <div className="text-center mb-6 md:mb-8 px-4">
         <p className="text-sm text-gray-500">Modern & Beautiful</p>
         <h2 className="text-2xl md:text-3xl font-bold">
           MARK TOURS SERVICES

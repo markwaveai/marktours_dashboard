@@ -3,21 +3,16 @@ import heroVideo from "/assets/travel.mp4";
 
 export default function Hero() {
   return (
-    <section className="">
-
+    <section className="relative w-full h-[50vh] md:h-[80vh] overflow-hidden">
       <video
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-fill"
         src={heroVideo}
         autoPlay
         loop
         muted
-        playsInline 
+        playsInline
       />
-
-      <div className="">
-        <NavBar />
-      </div>
-
+      <NavBar />
     </section>
   );
 }

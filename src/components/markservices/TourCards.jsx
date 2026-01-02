@@ -88,8 +88,8 @@ export default function TourCards() {
       `}</style>
 
       {/* 🌫 GLASS CONTAINER */}
-      <div className="relative rounded-[32px] px-6 md:px-10 py-12
-        bg-white/20 backdrop-blur-xl border border-white/30 ">
+      <div className="relative rounded-none md:rounded-[32px] px-6 md:px-10 py-6 md:py-12
+        bg-white/20 backdrop-blur-xl border-none md:border md:border-white/30 ">
 
         {/*  INFINITE SCROLL */}
         <div className="overflow-hidden">
@@ -150,7 +150,7 @@ export default function TourCards() {
         </div>
 
         {/* BOOK NOW */}
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-6 md:mt-12">
           <BookNowButton
             variant="yellow"
             className="px-12 py-3 text-base rounded-full"

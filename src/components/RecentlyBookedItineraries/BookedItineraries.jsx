@@ -133,8 +133,8 @@ export default function RecentlyBookedItineraries() {
                   trip-card
                   flex-shrink-0
                   w-full
-                  sm:w-[48%]
-                  lg:w-[32%]
+                  sm:w-[45%]
+                  lg:w-[30%]
                   h-[230px]
                   rounded-2xl
                   overflow-hidden
@@ -151,10 +151,9 @@ export default function RecentlyBookedItineraries() {
                 <div className="absolute inset-0 bg-black/20 flex items-end">
                   <div
                     className={`w-full text-center py-3 px-4
-                      ${
-                        index % 2 === 0
-                          ? "bg-indigo-600 text-white"
-                          : "bg-[#D4E232] text-black"
+                      ${index % 2 === 0
+                        ? "bg-indigo-600 text-white"
+                        : "bg-[#D4E232] text-black"
                       }
                     `}
                   >

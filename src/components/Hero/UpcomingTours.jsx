@@ -54,89 +54,27 @@ export default function UpcomingTours() {
     return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
+  // Clamp startIndex when cardsToShow changes to prevent empty spaces
+  useEffect(() => {
+    const maxIndex = Math.max(0, tours.length - cardsToShow);
+    if (startIndex > maxIndex) {
+      setStartIndex(maxIndex);
+    }
+  }, [cardsToShow]);
+
   const canGoLeft = startIndex > 0;
   const canGoRight = startIndex < tours.length - cardsToShow;
 
   /* ======================================================
      📱 MOBILE VIEW (ARROWS + CLICK → NEXT)
   ====================================================== */
-  if (isMobile) {
-    return (
-      <>
-        <section className="w-full px-4 py-8">
-          <div
-            className="relative h-[420px] rounded-3xl overflow-hidden shadow-xl"
-          >
-            {/* Background Image */}
-            <img
-              src={tours[startIndex].image}
-              alt={tours[startIndex].title}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40" />
-
-            {/* LEFT ARROW */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (canGoLeft) setStartIndex(startIndex - 1);
-              }}
-              disabled={!canGoLeft}
-              className={`absolute left-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full transition-all ${canGoLeft ? "active:scale-95 opacity-100" : "opacity-30 cursor-not-allowed"
-                }`}
-            >
-              <ChevronLeft size={28} />
-            </button>
-
-            {/* RIGHT ARROW */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (canGoRight) setStartIndex(startIndex + 1);
-              }}
-              disabled={!canGoRight}
-              className={`absolute right-3 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-2 rounded-full transition-all ${canGoRight ? "active:scale-95 opacity-100" : "opacity-30 cursor-not-allowed"
-                }`}
-            >
-              <ChevronRight size={28} />
-            </button>
-
-            {/* Content */}
-            <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 text-white">
-              <h2 className="text-2xl font-bold leading-snug">
-                {tours[startIndex].title}
-              </h2>
-
-              <p className="text-lg font-semibold mt-2">
-                {tours[startIndex].offer}
-              </p>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setOpenModal(true);
-                }}
-                className="mt-6 bg-[#EEFB56] text-black px-10 py-3 rounded-full font-bold text-base shadow-lg active:scale-95 transition"
-              >
-                Book Now
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
-      </>
-    );
-  }
 
   /* ======================================================
      💻 TABLET + DESKTOP VIEW (UNCHANGED)
   ====================================================== */
   return (
     <>
-      <section className="w-full px-4 md:px-10 2xl:px-24 py-10 overflow-hidden">
+      <section className="w-full px-4 md:px-10 2xl:px-24 py-4 md:py-10 overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -186,7 +124,7 @@ export default function UpcomingTours() {
                     flex: `0 0 ${100 / cardsToShow}%`,
                     perspective: "1000px",
                   }}
-                  className="px-3 h-[300px]"
+                  className="px-3 h-[360px] md:h-[300px]"
                   onMouseEnter={() => setFlippedIndex(i)}
                   onMouseLeave={() => setFlippedIndex(null)}
                   onClick={() => setFlippedIndex(isFlipped ? null : i)}

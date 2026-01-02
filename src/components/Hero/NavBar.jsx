@@ -24,7 +24,7 @@ export default function NavBar() {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 w-full z-30 px-4 md:px-10 py-5 flex items-center justify-between">
+      <nav className="absolute top-0 left-0 w-full z-50 px-4 md:px-10 py-5 flex items-center justify-between">
 
         <img src="/assets/images/logo.png" className="w-[70px] md:w-[90px]" />
 
@@ -50,27 +50,39 @@ export default function NavBar() {
           </button>
         </div>
 
+        {/* BACKDROP TO CLOSE MENU ON CLICK OUTSIDE */}
         {open && (
-          <div className="absolute top-full left-0 w-full px-4 pt-4 lg:hidden">
-            <div className="bg-[#0b1c2d]/95 backdrop-blur-lg p-6 rounded-3xl text-white shadow-2xl">
-              <div className="flex flex-col gap-4 text-center">
-                {menuItems.map((item) => (
-                  <span key={item} className="text-sm font-bold tracking-widest">{item}</span>
-                ))}
-              </div>
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setOpen(false)}
+          />
+        )}
 
-              <div className="mt-8 flex flex-col gap-4">
-                <BookNowButton
-                  variant="yellow"
-                  onClick={() => {
-                    setOpen(false);
-                    setShowBooking(true);
-                  }}
-                />
-                <button className="border border-white/40 py-3 rounded-full text-center text-sm font-medium">
-                  Login / Register
-                </button>
-              </div>
+        {open && (
+          <div className="fixed top-0 right-0 h-full w-[280px] bg-[#0b1c2d]/95 backdrop-blur-md z-50 p-6 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+            <div className="flex justify-end mb-8">
+              <button onClick={() => setOpen(false)} className="text-white text-2xl font-bold">✕</button>
+            </div>
+
+            <div className="flex flex-col gap-6">
+              {menuItems.map((item) => (
+                <span key={item} className="text-lg font-medium text-white active:text-yellow-400 border-b border-white/10 pb-2 cursor-pointer">
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-auto flex flex-col gap-4">
+              <BookNowButton
+                variant="yellow"
+                onClick={() => {
+                  setOpen(false);
+                  setShowBooking(true);
+                }}
+              />
+              <Link to="/login" className="border border-white/30 py-3 rounded-xl text-center text-white hover:bg-white/10">
+                Login / Register
+              </Link>
             </div>
           </div>
         )}
