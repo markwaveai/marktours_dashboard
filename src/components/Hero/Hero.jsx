@@ -1,5 +1,5 @@
 import NavBar from "./NavBar";
-import heroVideo from "/assets/Travel-Video.mp4";
+import heroVideo from "/assets/travel.mp4";
 
 export default function Hero() {
   return (

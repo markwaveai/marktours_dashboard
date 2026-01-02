@@ -17,19 +17,78 @@ const HolidayPackages = () => {
 
         <div className="overflow-x-hidden">
           <div className="flex gap-6 animate-loop">
-            <PackageCard image="/assets/images/Bali.png" name="Bali" tours="18 Tours" />
-            <PackageCard image="/assets/images/Malaysia.png" name="Malaysia" tours="18 Tours" />
-            <PackageCard image="/assets/images/Singapore.png" name="Singapore" tours="18 Tours" />
-            <PackageCard image="/assets/images/Dubai.png" name="Dubai" tours="18 Tours" />
-            <PackageCard image="/assets/images/Phuket.png" name="Phuket" tours="18 Tours" />
-            <PackageCard image="/assets/images/Srilanka.png" name="Srilanka" tours="18 Tours" />
+            <PackageCard 
+            
+              video="/assets/11.mp4"
+              name="Bali" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Malaysia.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
+              name="Malaysia" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Singapore.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
+              name="Singapore" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Dubai.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
+              name="Dubai" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+             
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
+              name="Phuket" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Srilanka.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
+              name="Srilanka" 
+              tours="18 Tours" 
+            />
 
-            <PackageCard image="/assets/images/Bali.png" name="Bali" tours="18 Tours" />
-            <PackageCard image="/assets/images/Malaysia.png" name="Malaysia" tours="18 Tours" />
-            <PackageCard image="/assets/images/Singapore.png" name="Singapore" tours="18 Tours" />
-            <PackageCard image="/assets/images/Dubai.png" name="Dubai" tours="18 Tours" />
-            <PackageCard image="/assets/images/Phuket.png" name="Phuket" tours="18 Tours" />
-            <PackageCard image="/assets/images/Srilanka.png" name="Srilanka" tours="18 Tours" />
+            <PackageCard  
+              video="/assets/11.mp4"
+              name="Bali" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Malaysia.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
+              name="Malaysia" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Singapore.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
+              name="Singapore" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Dubai.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
+              name="Dubai" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Phuket.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
+              name="Phuket" 
+              tours="18 Tours" 
+            />
+            <PackageCard 
+              image="/assets/images/Srilanka.png" 
+              video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
+              name="Srilanka" 
+              tours="18 Tours" 
+            />
           </div>
         </div>
       </div>

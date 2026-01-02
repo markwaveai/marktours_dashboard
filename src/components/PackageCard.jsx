@@ -1,4 +1,4 @@
-const PackageCard = ({ image, name, tours }) => {
+const PackageCard = ({ image, name, tours, video }) => {
   return (
     <div className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group">
 
@@ -18,13 +18,24 @@ const PackageCard = ({ image, name, tours }) => {
           className="absolute inset-0 w-full h-full object-contain"
         />
 
-        {/* FOREGROUND IMAGE */}
-        <div className="w-[158px] h-[194px] overflow-hidden z-10">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full "
-          />
+        {/* FOREGROUND IMAGE/VIDEO */}
+        <div className="w-[158px] h-[194px] overflow-hidden z-10 rounded-[45%]">
+          {video ? (
+            <video
+              src={video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full"
+            />
+          )}
         </div>
       </div>
 
