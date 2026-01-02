@@ -53,7 +53,7 @@ const HolidayPackages = () => {
 
         <AutoScroller>
           <PackageCard
-            video="/assets/11.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
             name="Bali"
           />
           <PackageCard
@@ -82,7 +82,7 @@ const HolidayPackages = () => {
           />
 
           <PackageCard
-            video="/assets/11.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
             name="Bali"
           />
           <PackageCard
