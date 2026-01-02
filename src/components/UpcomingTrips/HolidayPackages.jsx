@@ -68,16 +68,17 @@ const HolidayPackages = () => {
           />
           <PackageCard
             image="/assets/images/Dubai.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
             name="Dubai"
           />
           <PackageCard
+            image="/assets/images/Phuket.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
             name="Phuket"
           />
           <PackageCard
             image="/assets/images/Srilanka.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
             name="Srilanka"
           />
 
