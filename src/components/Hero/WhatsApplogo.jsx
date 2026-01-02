@@ -7,6 +7,7 @@ const WhatsApplogo = () => {
             <a  href="https://api.whatsapp.com/send?phone=9247534868&text=Hello" target='_blank'>
                 <img src={whatsapp} alt="" />
             </a>
+            <p className='text-xs font-semibold h-4'>Quick chat</p>
             </div>
   )
 }

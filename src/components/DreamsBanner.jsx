@@ -15,7 +15,47 @@ export default function DreamsBanner() {
   return (
     <>
       <section className="w-full flex justify-center px-4 sm:px-6 py-12 sm:py-16">
-        <div className="relative w-full max-w-[94vw] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
+        {/* ================= MOBILE VIEW (NEW DESIGN) ================= */}
+        <div className="md:hidden relative w-full aspect-[4/5] bg-[#4E13F8] rounded-3xl overflow-hidden text-white shadow-2xl">
+          
+          <div className="relative z-10 flex flex-col items-center pt-14 w-full">
+            {/* 🔥 MOVING MAIN HEADING (MOBILE) */}
+            <div className="w-full overflow-hidden">
+              <h1 className="whitespace-nowrap font-black tracking-tight text-[3rem] leading-tight animate-main-move text-center">
+                FROM DREAMS TO DESTINATION &nbsp; FROM DREAMS TO DESTINATION
+              </h1>
+            </div>
+            <p className="text-[0.7rem] font-bold tracking-wide mt-1">World Best Travel Agency Company</p>
+            
+            <BookNowButton 
+              variant="yellow" 
+              className="mt-8 px-8 py-3 rounded-full uppercase text-xs font-bold tracking-wider"
+              onClick={() => setOpenModal(true)}
+            />
+          </div>
+
+          {/* Central Image (Taj Mahal / Clipart) */}
+          <div className="absolute inset-x-0 bottom-[20%]  flex justify-center  z-10">
+            <img src={dream5} alt="Dream Destination" className="w-[40%] object-contain h-[80%] mr-50" />
+          </div>
+
+          <div className="absolute inset-x-0 bottom-[35%] flex justify-end mr-5 z-10">
+            <img src={dream6} alt="Dream Destination" className="w-[40%] object-contain" />
+          </div>
+
+          {/* Bottom/Side Sketches */}
+          {/* Left Tower */}
+          <img src={dream1} alt="Tower" className="absolute left-6 bottom-24 w-8 opacity-70 brightness-0 invert" /> 
+          
+          {/* Sketchy Colosseum (Left Bottom) */}
+          <img src={dream4} alt="Colosseum" className="absolute -left-6 bottom-0 w-36 opacity-50 brightness-0 invert" />
+          
+          {/* Pyramid (Right Bottom) */}
+          <img src={dream3} alt="Pyramid" className="absolute -right-4 bottom-0 w-32 opacity-50 brightness-0 invert" />
+        </div>
+
+        {/* ================= DESKTOP / TABLET VIEW (ORIGINAL) ================= */}
+        <div className="hidden md:block relative w-full max-w-[94vw] rounded-2xl overflow-hidden bg-gradient-to-r from-[#240D62] via-[#491BC8] to-[#240D62] text-white">
 
           {/* 🔥 INNER SHADOW */}
           <div className="pointer-events-none absolute inset-0 z-20">

@@ -47,6 +47,18 @@ export default function Footer() {
             </a>
           </p>
         </div>
+         <div className="w-[450px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.2720863888385!2d78.3547356!3d17.4466866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93bc3378b007%3A0xc9feddc1a9553150!2s405%2C%20PSR%20Prime%20Towers%20Rd%2C%20DLF%20Cyber%20City%2C%20Indira%20Nagar%2C%20Gachibowli%2C%20Hyderabad%2C%20Telangana%20500032!5e0!3m2!1sen!2sin!4v1767347886916!5m2!1sen!2sin"
+            width="100%"
+            height="90%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="rounded-lg"
+          />
+        </div>
 
         {/* RIGHT GROUP */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
