@@ -1,14 +1,12 @@
-import { NavLink } from "react-router-dom";
-
 const tabs = [
-  { label: "Holiday Packages", path: "/" },
-  { label: "Air Ticketing", path: "/air" },
-  { label: "Visas", path: "/visa" },
-  { label: "Cruise Holidays", path: "/cruise" },
-  { label: "Hotels & Resort Planning", path: "/hotels" },
+  { label: "Holiday Packages", id: "packages" },
+  { label: "Air Ticketing", id: "air" },
+  { label: "Visas", id: "visa" },
+  { label: "Cruise Holidays", id: "cruise" },
+  { label: "Hotels & Resort Planning", id: "hotels" },
 ];
 
-export default function TourHeader() {
+export default function TourHeader({ activeTab, setActiveTab }) {
   return (
     <>
       <div className="text-center mb-6 md:mb-8 px-4">
@@ -19,20 +17,17 @@ export default function TourHeader() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
-        {tabs.map((tab, i) => (
-          <NavLink
-            key={i}
-            to={tab.path}
-            end
-            className={({ isActive }) =>
-              `px-6 py-2 rounded-full border text-sm transition ${isActive
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-6 py-2 rounded-full border text-sm transition ${activeTab === tab.id
                 ? "bg-white shadow font-semibold"
                 : "bg-gray-100 hover:bg-white"
-              }`
-            }
+              }`}
           >
             {tab.label}
-          </NavLink>
+          </button>
         ))}
       </div>
     </>

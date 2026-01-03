@@ -30,7 +30,7 @@ export default function OffersSection() {
           {/* Card 2 */}
           <div className="group relative rounded-2xl overflow-hidden h-[300px] cursor-pointer">
             <img
-              src="/assets/images/offers/offer6.png"
+              src="/assets/images/offers/offer6.jpeg"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
 
@@ -53,7 +53,7 @@ export default function OffersSection() {
           {/* Card 3 */}
           <div className="group relative rounded-2xl overflow-hidden h-[300px] cursor-pointer">
             <img
-              src="/assets/images/offers/offer5.png"
+              src="/assets/images/offers/offer5.jpeg"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
 

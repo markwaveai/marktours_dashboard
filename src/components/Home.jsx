@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import Hero from "./Hero/Hero";
+import TourServicesLayout from "./markservices/TourServicesLayout";
 import SearchBar from "./Hero/SearchBar";
 import UpcomingTours from "./Hero/UpcomingTours";
 import HolidayPackages from "./UpcomingTrips/HolidayPackages";
@@ -35,7 +36,7 @@ export default function Home() {
       <OffersSection />
 
       {/* Tour Services Section (Tabs + Dynamic Content) */}
-      <Outlet />
+      <TourServicesLayout />
 
       <Testimonials />
       <Footer />

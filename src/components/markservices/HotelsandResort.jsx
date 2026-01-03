@@ -89,10 +89,9 @@ export default function HotelsandResort() {
         onClick={() => scroll("left")}
         disabled={!canScrollLeft}
         className={`absolute left-8 top-1/2 -translate-y-1/2 p-2 rounded-full shadow z-20
-          ${
-            canScrollLeft
-              ? "bg-[#EDF957] text-black"
-              : "bg-white text-gray-300 cursor-not-allowed"
+          ${canScrollLeft
+            ? "bg-[#EDF957] text-black"
+            : "bg-white text-gray-300 cursor-not-allowed"
           }`}
       >
         <ChevronLeft size={22} />
@@ -103,10 +102,9 @@ export default function HotelsandResort() {
         onClick={() => scroll("right")}
         disabled={!canScrollRight}
         className={`absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-full shadow z-20
-          ${
-            canScrollRight
-              ? "bg-[#EDF957] text-black"
-              : "bg-white text-gray-300 cursor-not-allowed"
+          ${canScrollRight
+            ? "bg-[#EDF957] text-black"
+            : "bg-white text-gray-300 cursor-not-allowed"
           }`}
       >
         <ChevronRight size={22} />
@@ -151,9 +149,8 @@ export default function HotelsandResort() {
                   size={16}
                   stroke={liked[i] ? "#ef4444" : "#6b7280"}
                   fill={liked[i] ? "#ef4444" : "none"}
-                  className={`transition-all duration-300 ${
-                    liked[i] ? "scale-125" : "scale-100"
-                  }`}
+                  className={`transition-all duration-300 ${liked[i] ? "scale-125" : "scale-100"
+                    }`}
                 />
               </button>
 
@@ -161,29 +158,7 @@ export default function HotelsandResort() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 text-center px-4">
                 <h3 className="font-semibold text-lg">{h.title}</h3>
 
-                {/* STARS */}
-                <div className="flex gap-1 mt-2">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, idx) => (
-                      <svg
-                        key={idx}
-                        viewBox="0 0 24 24"
-                        fill="#EEFB56"
-                        className="
-                          w-4 h-4
-                          opacity-0 scale-75
-                          group-hover:opacity-100
-                          group-hover:scale-100
-                          group-hover:drop-shadow-[0_0_6px_#EEFB56]
-                          transition-all duration-500
-                        "
-                        style={{ transitionDelay: `${idx * 120}ms` }}
-                      >
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                      </svg>
-                    ))}
-                </div>
+
               </div>
             </div>
           </div>

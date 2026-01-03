@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 export default function SearchBar() {
   const [form, setForm] = useState({
@@ -51,7 +53,7 @@ export default function SearchBar() {
     <div className="hidden md:block w-full px-4 sm:px-6 2xl:px-20 mt-8">
       {/* ✅ Heading */}
       <h2 className="hidden md:block text-center text-2xl sm:text-3xl font-bold text-black mb-6">
-       PLAN YOUR TRIP
+        PLAN YOUR TRIP
       </h2>
 
       <div className="w-full flex justify-center">
@@ -99,6 +101,20 @@ export default function SearchBar() {
             />
           </div>
 
+          {/* Pincode */}
+          <div className="flex flex-col gap-2">
+            <label className="font-semibold">Pincode</label>
+            <input
+              name="pincode"
+              placeholder="Enter Pincode"
+              value={form.pincode}
+              onChange={handleChange}
+              inputMode="numeric"
+              maxLength={6}
+              className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 outline-none"
+            />
+          </div>
+
           {/* Email */}
           <div className="flex flex-col gap-2">
             <label className="font-semibold">Email</label>
@@ -114,33 +130,25 @@ export default function SearchBar() {
           {/* Destination */}
           <div className="flex flex-col gap-2">
             <label className="font-semibold">Destination</label>
-            <select
-              name="destination"
-              value={form.destination}
-              onChange={handleChange}
-              className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 outline-none"
-            >
-              <option value="">Select Destination</option>
-              <option value="Dubai">Dubai</option>
-              <option value="Bali">Bali</option>
-              <option value="Thailand">Thailand</option>
-              <option value="Kerala">Kerala</option>
-              <option value="Malaysia">Malaysia</option>
-            </select>
-          </div>
-
-          {/* Pincode */}
-          <div className="flex flex-col gap-2">
-            <label className="font-semibold">Pincode</label>
-            <input
-              name="pincode"
-              placeholder="Enter Pincode"
-              value={form.pincode}
-              onChange={handleChange}
-              inputMode="numeric"
-              maxLength={6}
-              className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 outline-none"
-            />
+            <div className="relative">
+              <select
+                name="destination"
+                value={form.destination}
+                onChange={handleChange}
+                className="w-full bg-white border border-gray-700 rounded-lg px-4 py-2 outline-none appearance-none pr-10 cursor-pointer"
+              >
+                <option value="">Select Destination</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Bali">Bali</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Malaysia">Malaysia</option>
+              </select>
+              <ChevronDown
+                className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500"
+                size={20}
+              />
+            </div>
           </div>
 
           {/* Submit */}
