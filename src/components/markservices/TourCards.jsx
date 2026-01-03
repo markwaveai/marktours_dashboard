@@ -18,12 +18,13 @@ import BookNowButton from "../BookNowButton";
 import BookingModal from "../BookingModal";
 
 const packages = [
-  { name: "Singapore", image: singapore },
-  { name: "Malaysia", image: malaysia },
-  { name: "Bali", image: bali },
-  { name: "Thailand", image: thailand },
-  { name: "Srilanka", image: srilanka },
-  { name: "Dubai", image: dubai },
+  { name: "Singapore", image: singapore, duration: "3N/4D" },
+  { name: "Malaysia", image: malaysia, duration: "3N/4D" },
+  { name: "Bali", image: bali, duration: "4N/5D" },
+  { name: "Thailand", image: thailand, duration: "4N/5D" },
+  { name: "Srilanka", image: srilanka, duration: "4N/5D" },
+  { name: "Dubai", image: dubai, duration: "4N/5D" },
+  { name: "Vietnam", image: thailand, duration: "4N/5D" },
 ];
 
 export default function TourCards() {
@@ -126,19 +127,19 @@ export default function TourCards() {
                 <div className="absolute bottom-6 left-0 right-0 px-4 z-[4]">
                   <div className="flex justify-between text-white text-[11px]">
                     <div className="flex flex-col items-center gap-1">
-                      <FontAwesomeIcon icon={faClock} />
-                      <span>2N / 3D</span>
+                      <FontAwesomeIcon icon={faClock} className="w-5 h-5 mb-1" />
+                      <span>{item.duration}</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <FontAwesomeIcon icon={faPlane} />
+                      <FontAwesomeIcon icon={faPlane} className="w-5 h-5 mb-1" />
                       <span>Flight</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <FontAwesomeIcon icon={faStar} />
+                      <FontAwesomeIcon icon={faStar} className="w-5 h-5 mb-1" />
                       <span>Hotels</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <FontAwesomeIcon icon={faCar} />
+                      <FontAwesomeIcon icon={faCar} className="w-5 h-5 mb-1" />
                       <span>Transport</span>
                     </div>
                   </div>

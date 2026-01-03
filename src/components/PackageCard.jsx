@@ -16,7 +16,7 @@ const PackageCard = ({ image, name, tours, video }) => {
   };
 
   return (
-    <div 
+    <div
       className="min-w-[200px] flex flex-col items-center text-center cursor-pointer group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -61,10 +61,10 @@ const PackageCard = ({ image, name, tours, video }) => {
       </div>
 
       {/* TEXT */}
-      <h4 className="mt-2 text-sm font-semibold text-indigo-600">
+      <h4 className="mt-3 text-sm font-bold text-[#6A2CF3] uppercase tracking-wide">
         {name}
       </h4>
-      <p className="text-xs text-gray-500">{tours}</p>
+      {tours && <p className="text-xs font-bold text-black mt-1">{tours}</p>}
     </div>
   );
 };

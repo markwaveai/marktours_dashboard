@@ -55,61 +55,85 @@ const HolidayPackages = () => {
           <PackageCard
             video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
             name="Bali"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Malaysia.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
             name="Malaysia"
+            tours="3N/4D"
           />
           <PackageCard
             image="/assets/images/Singapore.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
             name="Singapore"
+            tours="3N/4D"
           />
           <PackageCard
             image="/assets/images/Dubai.png"
             video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
             name="Dubai"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Phuket.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
             name="Phuket"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Srilanka.png"
             video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
             name="Srilanka"
+            tours="4N/5D"
+          />
+          <PackageCard
+            image="/assets/images/Phuket.png"
+            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
+            name="Vietnam"
+            tours="4N/5D"
           />
 
           <PackageCard
             video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
             name="Bali"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Malaysia.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
             name="Malaysia"
+            tours="3N/4D"
           />
           <PackageCard
             image="/assets/images/Singapore.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
             name="Singapore"
+            tours="3N/4D"
           />
           <PackageCard
             image="/assets/images/Dubai.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
             name="Dubai"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Phuket.png"
             video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
             name="Phuket"
+            tours="4N/5D"
           />
           <PackageCard
             image="/assets/images/Srilanka.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
+            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
             name="Srilanka"
+            tours="4N/5D"
+          />
+          <PackageCard
+            image="/assets/images/Phuket.png"
+            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
+            name="Vietnam"
+            tours="4N/5D"
           />
         </AutoScroller>
       </div>

@@ -17,7 +17,7 @@ export default function DreamsBanner() {
       <section className="w-full flex justify-center px-4 sm:px-6 py-12 sm:py-16">
         {/* ================= MOBILE VIEW (NEW DESIGN) ================= */}
         <div className="md:hidden relative w-full aspect-[4/5] bg-[#4E13F8] rounded-3xl overflow-hidden text-white shadow-2xl">
-          
+
           <div className="relative z-10 flex flex-col items-center pt-14 w-full">
             {/* 🔥 MOVING MAIN HEADING (MOBILE) */}
             <div className="w-full overflow-hidden">
@@ -26,9 +26,9 @@ export default function DreamsBanner() {
               </h1>
             </div>
             <p className="text-[0.7rem] font-bold tracking-wide mt-1">World Best Travel Agency Company</p>
-            
-            <BookNowButton 
-              variant="yellow" 
+
+            <BookNowButton
+              variant="yellow"
               className="mt-8 px-8 py-3 rounded-full uppercase text-xs font-bold tracking-wider"
               onClick={() => setOpenModal(true)}
             />
@@ -45,11 +45,11 @@ export default function DreamsBanner() {
 
           {/* Bottom/Side Sketches */}
           {/* Left Tower */}
-          <img src={dream1} alt="Tower" className="absolute left-6 bottom-24 w-8 opacity-70 brightness-0 invert" /> 
-          
+          <img src={dream1} alt="Tower" className="absolute left-6 bottom-24 w-8 opacity-70 brightness-0 invert" />
+
           {/* Sketchy Colosseum (Left Bottom) */}
           <img src={dream4} alt="Colosseum" className="absolute -left-6 bottom-0 w-36 opacity-50 brightness-0 invert" />
-          
+
           {/* Pyramid (Right Bottom) */}
           <img src={dream3} alt="Pyramid" className="absolute -right-4 bottom-0 w-32 opacity-50 brightness-0 invert" />
         </div>
@@ -86,9 +86,7 @@ export default function DreamsBanner() {
               World Best Travel Agency Company
             </p>
 
-            <p className="mt-2 text-xl sm:text-2xl md:text-3xl">
-              Since 2023
-            </p>
+
 
             {/* ✅ BOOK NOW BUTTON (REPLACED READ MORE) */}
             <BookNowButton
