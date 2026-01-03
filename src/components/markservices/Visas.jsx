@@ -1,7 +1,7 @@
-import visaImg from "/assets/images/visas.png"; 
+import visaImg from "/assets/images/visas.png";
 export default function Visas() {
   return (
-    <div className="w-full rounded-[28px] p-10 md:p-14 flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-between  border">
+    <div className="w-full relative flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-between p-4 px-2 md:px-8">
 
       {/* LEFT CONTENT */}
       <div className="max-w-xl">
@@ -10,8 +10,8 @@ export default function Visas() {
         </h2>
 
         <p className="text-sm leading-relaxed text-black/90 mb-6">
-          Planning your dream trip is exciting, but visa paperwork can feel confusing. 
-          Our Visa Assistance team helps you understand requirements, prepare documents, 
+          Planning your dream trip is exciting, but visa paperwork can feel confusing.
+          Our Visa Assistance team helps you understand requirements, prepare documents,
           and submit your application correctly for a smooth approval process.
         </p>
 

@@ -2,8 +2,8 @@ import airplane from "/assets/packages/airplane.png";
 import BookNowButton from "../BookNowButton";
 export default function AirTicketing() {
   return (
-    <div className="relative bg-white rounded-[32px] px-6 md:px-10 py-12 border overflow-hidden">
-      <section className="w-full px-4 md:px-10 py-16">
+    <div className="relative w-full overflow-hidden">
+      <section className="w-full px-4 md:px-10 py-6">
         <div
           className="
           

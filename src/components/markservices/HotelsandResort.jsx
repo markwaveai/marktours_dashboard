@@ -79,7 +79,7 @@ export default function HotelsandResort() {
   }, []);
 
   return (
-    <div className="rounded-[28px] p-10 relative border bg-white">
+    <div className="w-full relative">
       <h2 className="text-blue-700 font-semibold mb-6 ml-4">
         Hotels & Resorts Planning
       </h2>

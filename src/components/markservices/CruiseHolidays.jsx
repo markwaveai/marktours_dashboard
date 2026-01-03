@@ -76,7 +76,7 @@ export default function CruiseHolidays() {
   }, []);
 
   return (
-    <div className="rounded-[28px] p-10 relative border bg-white">
+    <div className="w-full relative">
       <h2 className="text-blue-700 font-semibold mb-6 ml-4">
         Cruise Holidays
       </h2>
@@ -86,10 +86,9 @@ export default function CruiseHolidays() {
         onClick={() => scroll("left")}
         disabled={!canScrollLeft}
         className={`absolute left-8 top-1/2 -translate-y-1/2 p-2 rounded-full shadow z-20
-          ${
-            canScrollLeft
-              ? "bg-[#EDF957] text-black"
-              : "bg-white text-gray-300 cursor-not-allowed"
+          ${canScrollLeft
+            ? "bg-[#EDF957] text-black"
+            : "bg-white text-gray-300 cursor-not-allowed"
           }`}
       >
         <ChevronLeft size={22} />
@@ -100,10 +99,9 @@ export default function CruiseHolidays() {
         onClick={() => scroll("right")}
         disabled={!canScrollRight}
         className={`absolute right-8 top-1/2 -translate-y-1/2 p-2 rounded-full shadow z-20
-          ${
-            canScrollRight
-              ? "bg-[#EDF957] text-black"
-              : "bg-white text-gray-300 cursor-not-allowed"
+          ${canScrollRight
+            ? "bg-[#EDF957] text-black"
+            : "bg-white text-gray-300 cursor-not-allowed"
           }`}
       >
         <ChevronRight size={22} />

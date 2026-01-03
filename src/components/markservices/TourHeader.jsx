@@ -16,19 +16,60 @@ export default function TourHeader({ activeTab, setActiveTab }) {
         </h2>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-6 py-2 rounded-full border text-sm transition ${activeTab === tab.id
-                ? "bg-white shadow font-semibold"
-                : "bg-gray-100 hover:bg-white"
-              }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+      <div className="flex flex-wrap justify-start items-end gap-0 px-4 md:px-8 w-full max-w-7xl mx-auto -mb-[1px]">
+        {tabs.map((tab, index) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`
+                relative px-6 md:px-8 py-3 md:py-4 rounded-t-[30px] text-sm md:text-base transition-all duration-200
+                ${isActive
+                  ? "bg-white text-black font-bold border-t border-l border-r border-gray-300 z-20"
+                  : "bg-transparent text-gray-500 font-medium hover:text-black hover:bg-gray-50 mb-1"
+                }
+              `}
+              style={{
+                // Hide bottom border for active tab by overlapping
+                marginBottom: isActive ? "-1px" : "0",
+              }}
+            >
+              {tab.label}
+
+              {/* Inverted Border Curves for Active Tab (The "Folder" look) */}
+              {isActive && (
+                <>
+                  {/* Left Curve */}
+                  <svg
+                    className="absolute bottom-[-1px] -left-[20px] pointer-events-none"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M20 20H0C11.0457 20 20 11.0457 20 0V20Z" fill="white" />
+                    <path d="M0 20C11.0457 20 20 11.0457 20 0" stroke="#d1d5db" />
+                  </svg>
+
+                  {/* Right Curve */}
+                  <svg
+                    className="absolute bottom-[-1px] -right-[20px] pointer-events-none"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 20H20C8.9543 20 0 11.0457 0 0V20Z" fill="white" />
+                    <path d="M20 20C8.9543 20 0 11.0457 0 0" stroke="#d1d5db" />
+                  </svg>
+                </>
+              )}
+            </button>
+          );
+        })}
       </div>
     </>
   );

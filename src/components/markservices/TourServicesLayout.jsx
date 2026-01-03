@@ -10,10 +10,10 @@ export default function TourServicesLayout() {
   const [activeTab, setActiveTab] = useState("packages");
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-0 md:px-10 py-8 md:py-16">
+    <section className="w-full max-w-7xl mx-auto px-0 md:px-10 py-4 md:py-8">
       <TourHeader activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <div className="mt-4">
+      <div className="border border-gray-300 rounded-[32px] p-2 md:p-6 bg-white relative">
         {activeTab === "packages" && <TourCards />}
         {activeTab === "air" && <AirTicketing />}
         {activeTab === "visa" && <Visas />}
