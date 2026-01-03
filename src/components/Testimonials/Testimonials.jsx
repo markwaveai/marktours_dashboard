@@ -1,10 +1,10 @@
 import React from "react";
 
 const cards = [
-  { title: "Hi Everyone!", img: "/assets/images/test/test1.jpeg" },
-  { title: "Hey This is Siddhu", img: "/assets/images/test/test2.jpeg" },
-  { title: "Sanjay Verma", img: "/assets/images/test/test3.jpeg" },
-  { title: "We are Happy to", img: "/assets/images/test/test4.jpeg" },
+  { title: "", img: "/assets/images/test/test1.webp" },
+  { title: "", img: "/assets/images/test/test2.jpeg" },
+  { title: "", img: "/assets/images/test/test3.jpg" },
+  { title: "", img: "/assets/images/test/test4.jpeg" },
 ];
 
 export default function Testimonials() {
