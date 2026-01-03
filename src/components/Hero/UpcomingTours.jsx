@@ -7,28 +7,33 @@ import BookingModal from "../BookingModal";
 const tours = [
   {
     title: "Goa Long Weekend",
-    offer: "Flat 25% Off",
-    image: "/assets/images/adventures/adv1.png",
+
+    image: "/assets/images/adventures/goa1.jpg",
+    backImage: "/assets/images/adventures/goa2.avif",
   },
   {
     title: "Manali Snow Escape",
-    offer: "Flat 30% Off",
-    image: "/assets/images/adventures/adv2.png",
+
+    image: "/assets/images/adventures/manali1.jpg",
+    backImage: "/assets/images/adventures/manali2.jpg",
   },
   {
     title: "Kerala Backwaters",
-    offer: "Flat 30% Off",
-    image: "/assets/images/adventures/adv3.png",
+
+    image: "/assets/images/adventures/kerala1.jpg",
+    backImage: "/assets/images/adventures/kerala2.jpg",
   },
   {
     title: "Dubai Shopping Festival",
-    offer: "Flat 30% Off",
-    image: "/assets/images/adventures/adv4.png",
+
+    image: "/assets/images/adventures/dubai1.jpg",
+    backImage: "/assets/images/adventures/dubai2.jpg",
   },
   {
     title: "Bali Island Escape",
-    offer: "Flat 20% Off",
-    image: "/assets/images/adventures/adv5.png",
+
+    image: "/assets/images/adventures/bali1.jpg",
+    backImage: "/assets/images/adventures/bali2.jpg",
   },
 ];
 
@@ -161,25 +166,38 @@ export default function UpcomingTours() {
 
                     {/* Back */}
                     <div
-                      className="absolute inset-0 rounded-2xl bg-indigo-950 text-white flex flex-col justify-center items-center text-center px-6"
+                      className={`absolute inset-0 rounded-2xl ${tour.backImage ? "bg-black" : "bg-indigo-950"
+                        } text-white flex flex-col justify-center items-center text-center px-6 overflow-hidden`}
                       style={{
                         backfaceVisibility: "hidden",
                         transform: "rotateY(180deg)",
                       }}
                     >
-                      <h3 className="text-xl font-bold mb-2">
-                        {tour.title}
-                      </h3>
-                      <p className="text-yellow-400 mb-4">
-                        {tour.offer}
-                      </p>
-                      <BookNowButton
-                        variant="yellow"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setOpenModal(true);
-                        }}
-                      />
+                      {tour.backImage && (
+                        <>
+                          <img
+                            src={tour.backImage}
+                            alt={tour.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          {/* Overlay to ensure text readability */}
+                          <div className="absolute inset-0 bg-black/50" />
+                        </>
+                      )}
+
+                      <div className="relative z-10 flex flex-col items-center">
+                        <h3 className="text-xl font-bold mb-2">
+                          {tour.title}
+                        </h3>
+
+                        <BookNowButton
+                          variant="yellow"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenModal(true);
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

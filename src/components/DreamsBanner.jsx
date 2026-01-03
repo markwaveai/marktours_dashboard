@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import dream1 from "/assets/dreams-images/dream1.png";
 import dream3 from "/assets/dreams-images/dreams3.png";
 import dream4 from "/assets/dreams-images/dreams4.png";
-import dream5 from "/assets/dreams-images/Clipart.png";
+import dream5 from "/assets/dreams-images/Tajmahal.gif";
 import dream6 from "/assets/dreams-images/dream6.png";
+import dream7 from "/assets/dreams-images/icon_2.gif";
+import dream8 from "/assets/dreams-images/icon_3.gif";
+import dream9 from "/assets/dreams-images/icon_4.gif";
+import dream10 from "/assets/dreams-images/icon_5.gif";
+import dream11 from "/assets/dreams-images/icon_6.gif";
+import dream12 from "/assets/dreams-images/icon_7.gif";
 
 import BookNowButton from "./BookNowButton";     // ✅ adjust path if needed
 import BookingModal from "./BookingModal";       // ✅ same modal used earlier
 
 export default function DreamsBanner() {
   const [openModal, setOpenModal] = useState(false); // ✅ modal state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const dreamImages = [dream5, dream7, dream8, dream9, dream10, dream11, dream12];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % dreamImages.length);
+    }, 2000); // Change image every 2 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       <section className="w-full flex justify-center px-4 sm:px-6 py-12 sm:py-16">
         {/* ================= MOBILE VIEW (NEW DESIGN) ================= */}
-        <div className="md:hidden relative w-full aspect-[4/5] bg-[#4E13F8] rounded-3xl overflow-hidden text-white shadow-2xl">
+        <div className="md:hidden relative   w-full h-[700px] bg-[#4E13F8] rounded-3xl overflow-visible text-white shadow-2xl">
 
           <div className="relative z-10 flex flex-col items-center pt-14 w-full">
             {/* 🔥 MOVING MAIN HEADING (MOBILE) */}
@@ -35,8 +52,15 @@ export default function DreamsBanner() {
           </div>
 
           {/* Central Image (Taj Mahal / Clipart) */}
-          <div className="absolute inset-x-0 bottom-[20%]  flex justify-center  z-10">
-            <img src={dream5} alt="Dream Destination" className="w-[40%] object-contain h-[80%] mr-50" />
+          <div className="absolute inset-x-0 bottom-[5%] flex justify-center z-10 h-[550px]">
+            {dreamImages.map((imgSrc, index) => (
+              <img
+                key={index}
+                src={imgSrc}
+                className={`absolute w-[1200px] max-w-none object-contain transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+                  }`}
+              />
+            ))}
           </div>
 
           <div className="absolute inset-x-0 bottom-[35%] flex justify-end mr-5 z-10">
@@ -127,11 +151,15 @@ export default function DreamsBanner() {
           />
 
           {/* Clipart */}
-          <img
-            src={dream5}
-            alt="Clipart"
-            className="absolute right-16 sm:right-60 bottom-5 w-28 sm:w-60"
-          />
+          {dreamImages.map((imgSrc, index) => (
+            <img
+              key={index}
+              src={imgSrc}
+              alt="Clipart"
+              className={`absolute right-16 sm:right-10 -bottom-52 w-48 sm:w-[500px] transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+            />
+          ))}
         </div>
       </section>
 

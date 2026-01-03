@@ -149,17 +149,23 @@ const HolidayPackages = () => {
         </div>
 
         <AutoScroller>
+          {/* First Set */}
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Kerala.mp4" name="Kerala Summer Spl Tour" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Rajasthan%20Delights.mp4" name="Rajasthan Delights" />
           <PackageCard video="/assets/DOMASTIC_VIDEOS/gate.mp4" name="Gate Way Of India" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/raj.mp4" name="Rajasthan Delights" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/kerala.mp4" name="Kerala Summer Spl Tour" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/ghar.mp4" name="Chardham" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/raj.mp4" name="Best Of Rajasthan" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Andhaman.mp4" name="Andhaman" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/chardham.mp4" name="Chardham" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/darjeeling.mp4" name="Darjeeling" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Goa.mp4" name="Goa" />
 
+          {/* Duplicate Set for Infinite Scroll */}
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Kerala.mp4" name="Kerala Summer Spl Tour" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Rajasthan%20Delights.mp4" name="Rajasthan Delights" />
           <PackageCard video="/assets/DOMASTIC_VIDEOS/gate.mp4" name="Gate Way Of India" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/raj.mp4" name="Rajasthan Delights" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/kerala.mp4" name="Kerala Summer Spl Tour" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/ghar.mp4" name="Chardham" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/raj.mp4" name="Best Of Rajasthan" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Andhaman.mp4" name="Andhaman" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/chardham.mp4" name="Chardham" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/darjeeling.mp4" name="Darjeeling" />
+          <PackageCard video="/assets/DOMASTIC_VIDEOS/Goa.mp4" name="Goa" />
         </AutoScroller>
       </div>
 

@@ -5,7 +5,7 @@ const PackageCard = ({ image, name, tours, video }) => {
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
-      videoRef.current.play().catch((err) => console.log("Video play interrupted", err));
+      videoRef.current.play().catch(() => {});
     }
   };
 
@@ -21,8 +21,7 @@ const PackageCard = ({ image, name, tours, video }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-
-      {/* IMAGE AREA */}
+      {/* IMAGE / VIDEO AREA */}
       <div
         className="
           relative w-[200px] h-[240px]
@@ -31,15 +30,15 @@ const PackageCard = ({ image, name, tours, video }) => {
           group-hover:scale-105
         "
       >
-        {/* BACKGROUND OVAL PNG */}
+        {/* BACKGROUND OVAL */}
         <img
           src="/assets/images/Oval-img.png"
           alt=""
           className="absolute inset-0 w-full h-full object-contain"
         />
 
-        {/* FOREGROUND IMAGE/VIDEO */}
-        <div className="w-[158px] h-[194px] overflow-hidden z-10 rounded-[45%]">
+        {/* FOREGROUND IMAGE / VIDEO */}
+        <div className="w-[158px] h-[194px] overflow-hidden z-10 rounded-[40%] relative">
           {video ? (
             <video
               ref={videoRef}
@@ -57,14 +56,15 @@ const PackageCard = ({ image, name, tours, video }) => {
               className="w-full h-full object-cover"
             />
           )}
+
+          {/* ✅ MOVED EXISTING TEXT HERE (CENTER OVERLAY) */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-black/30">
+            <h4 className="text-sm font-bold uppercase tracking-wide">
+              {name}
+            </h4>
+          </div>
         </div>
       </div>
-
-      {/* TEXT */}
-      <h4 className="mt-3 text-sm font-bold text-[#6A2CF3] uppercase tracking-wide">
-        {name}
-      </h4>
-      {tours && <p className="text-xs font-bold text-black mt-1">{tours}</p>}
     </div>
   );
 };

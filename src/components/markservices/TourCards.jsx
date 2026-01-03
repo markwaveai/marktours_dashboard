@@ -7,12 +7,12 @@ import {
   faCar,
 } from "@fortawesome/free-solid-svg-icons";
 
-import singapore from "/assets/packages/singpoor.png";
-import malaysia from "/assets/packages/malasiyaaa.png";
+import singapore from "/assets/packages/singapore.png";
+import malaysia from "/assets/packages/malasiya.png";
 import bali from "/assets/packages/bali.png";
 import thailand from "/assets/packages/thailand.png";
 import srilanka from "/assets/packages/srilanka.png";
-import dubai from "/assets/packages/dubhai.png";
+import dubai from "/assets/packages/dubai.png";
 
 import BookNowButton from "../BookNowButton";
 import BookingModal from "../BookingModal";

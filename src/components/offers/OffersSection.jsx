@@ -13,10 +13,7 @@ export default function OffersSection() {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
 
-            <img
-              src="/assets/images/logo1.png"
-              className="absolute top-4 left-5 w-5 h-6 z-10"
-            />
+
 
             <div className="absolute inset-0 bg-black/30 transition-opacity duration-500 group-hover:bg-black/50" />
 
@@ -60,7 +57,7 @@ export default function OffersSection() {
             <div className="absolute inset-0 bg-black/20 transition-opacity duration-500 group-hover:bg-black/45" />
 
             <div className="absolute bottom-5 left-5 text-white flex items-center gap-2 transition-all duration-500 group-hover:-translate-y-2">
-              <img src="/assets/images/logo1.png" className="w-10 h-12 mt-1" />
+
               <h3 className="font-semibold text-lg leading-tight">
                 Culinary <br /> Authenticity
               </h3>
@@ -79,9 +76,7 @@ export default function OffersSection() {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
 
-            <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
-              GET 50% OFF
-            </span>
+
 
             <div className="absolute bottom-6 left-6 text-white transition-all duration-500 group-hover:-translate-y-2">
               <h3 className="text-xl font-semibold leading-tight">
@@ -106,9 +101,7 @@ export default function OffersSection() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
-                GET 50% OFF
-              </span>
+
 
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white transition-all duration-500 group-hover:-translate-y-2">
                 <h3 className="text-xl font-semibold leading-tight">
@@ -130,9 +123,7 @@ export default function OffersSection() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
-              <span className="absolute top-4 left-4 bg-[#EDF957] text-black text-xs font-bold px-3 py-1 rounded-md z-10">
-                GET 50% OFF
-              </span>
+
 
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white transition-all duration-500 group-hover:-translate-y-2">
                 <h3 className="text-xl font-semibold leading-tight">
