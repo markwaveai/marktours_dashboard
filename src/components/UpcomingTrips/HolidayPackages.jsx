@@ -37,6 +37,26 @@ const AutoScroller = ({ children }) => {
   );
 };
 
+const internationalPackages = [
+  { video: "/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bali.mp4", name: "Bali" },
+  { video: "/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/Malaysia.mp4", name: "Malaysia" },
+  { video: "/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/Thailand.mp4", name: "Thailand" },
+  { video: "assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai.mp4", name: "Dubai" },
+  { video: "/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/Phuket.mp4", name: "Phuket" },
+  { video: "assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/Srilanka.mp4", name: "Srilanka" },
+  { video: "/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/vietnam.mp4", name: "Vietnam" },
+];
+
+const domesticPackages = [
+  { video: "/assets/DOMASTIC_VIDEOS/Kerala.mp4", name: "Kerala Summer Spl Tour" },
+  { video: "/assets/DOMASTIC_VIDEOS/Rajasthan.mp4", name: "Rajasthan Delights" },
+  { video: "/assets/DOMASTIC_VIDEOS/gate.mp4", name: "Gate Way Of India" },
+  { video: "/assets/DOMASTIC_VIDEOS/Andhaman.mp4", name: "Andhaman" },
+  { video: "/assets/DOMASTIC_VIDEOS/chardham.mp4", name: "Chardham" },
+  { video: "/assets/DOMASTIC_VIDEOS/darjeeling.mp4", name: "Darjeeling" },
+  { video: "/assets/DOMASTIC_VIDEOS/Goa.mp4", name: "Goa" },
+];
+
 const HolidayPackages = () => {
   return (
     <div className="w-full px-4 md:px-10 2xl:px-24 space-y-10 py-10">
@@ -52,89 +72,13 @@ const HolidayPackages = () => {
         </div>
 
         <AutoScroller>
-          <PackageCard
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
-            name="Bali"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Malaysia.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
-            name="Malaysia"
-            tours="3N/4D"
-          />
-          <PackageCard
-            image="/assets/images/Singapore.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
-            name="Singapore"
-            tours="3N/4D"
-          />
-          <PackageCard
-            image="/assets/images/Dubai.png"
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
-            name="Dubai"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Phuket.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
-            name="Phuket"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Srilanka.png"
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
-            name="Srilanka"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Phuket.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
-            name="Vietnam"
-            tours="4N/5D"
-          />
-
-          <PackageCard
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/bb.mp4"
-            name="Bali"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Malaysia.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/malaysia video.mp4"
-            name="Malaysia"
-            tours="3N/4D"
-          />
-          <PackageCard
-            image="/assets/images/Singapore.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/singapore video.mp4"
-            name="Singapore"
-            tours="3N/4D"
-          />
-          <PackageCard
-            image="/assets/images/Dubai.png"
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/dubai video-1.mp4"
-            name="Dubai"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Phuket.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
-            name="Phuket"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Srilanka.png"
-            video="assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/sri lanka video.mp4"
-            name="Srilanka"
-            tours="4N/5D"
-          />
-          <PackageCard
-            image="/assets/images/Phuket.png"
-            video="/assets/INTERNATIONAL VIDEOS/INTERNATIONAL VIDEOS/phuket video.mp4"
-            name="Vietnam"
-            tours="4N/5D"
-          />
+          {[...internationalPackages, ...internationalPackages].map((pkg, index) => (
+            <PackageCard
+              key={index}
+              video={pkg.video}
+              name={pkg.name}
+            />
+          ))}
         </AutoScroller>
       </div>
 
@@ -149,23 +93,15 @@ const HolidayPackages = () => {
         </div>
 
         <AutoScroller>
-          {/* First Set */}
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Kerala.mp4" name="Kerala Summer Spl Tour" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Rajasthan%20Delights.mp4" name="Rajasthan Delights" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/gate.mp4" name="Gate Way Of India" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Andhaman.mp4" name="Andhaman" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/chardham.mp4" name="Chardham" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/darjeeling.mp4" name="Darjeeling" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Goa.mp4" name="Goa" />
-
-          {/* Duplicate Set for Infinite Scroll */}
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Kerala.mp4" name="Kerala Summer Spl Tour" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Rajasthan%20Delights.mp4" name="Rajasthan Delights" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/gate.mp4" name="Gate Way Of India" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Andhaman.mp4" name="Andhaman" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/chardham.mp4" name="Chardham" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/darjeeling.mp4" name="Darjeeling" />
-          <PackageCard video="/assets/DOMASTIC_VIDEOS/Goa.mp4" name="Goa" />
+          {/* First Set and Duplicate Set generated via loop */}
+          {[...domesticPackages, ...domesticPackages].map((pkg, index) => (
+            <PackageCard
+              key={index}
+              video={pkg.video}
+              name={pkg.name}
+            // Add other props if they exist in the array, currently domestic ones only have video and name
+            />
+          ))}
         </AutoScroller>
       </div>
 
