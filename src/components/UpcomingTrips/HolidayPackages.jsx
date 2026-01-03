@@ -48,7 +48,7 @@ const internationalPackages = [
 ];
 
 const domesticPackages = [
-  { video: "/assets/DOMASTIC_VIDEOS/Kerala.mp4", name: "Kerala Summer Spl Tour" },
+  { video: "/assets/DOMASTIC_VIDEOS/kerala.mp4", name: "Kerala Summer Spl Tour" },
   { video: "/assets/DOMASTIC_VIDEOS/Rajasthan.mp4", name: "Rajasthan Delights" },
   { video: "/assets/DOMASTIC_VIDEOS/gate.mp4", name: "Gate Way Of India" },
   { video: "/assets/DOMASTIC_VIDEOS/Andhaman.mp4", name: "Andhaman" },
@@ -62,7 +62,7 @@ const HolidayPackages = () => {
     <div className="w-full px-4 md:px-10 2xl:px-24 space-y-10 py-10">
 
       {/* INTERNATIONAL */}
-      <div>
+      <div id="international-packages">
         <div className="flex items-center justify-between pb-5 px-2">
           <h3 className="text-xl font-bold">International Destinations</h3>
           <BookNowButton
@@ -83,7 +83,7 @@ const HolidayPackages = () => {
       </div>
 
       {/* DOMESTIC */}
-      <div>
+      <div id="domestic-packages">
         <div className="flex items-center justify-between pb-5 px-2">
           <h3 className="text-xl font-bold">Domestic Destinations</h3>
           <BookNowButton

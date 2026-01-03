@@ -22,16 +22,47 @@ export default function NavBar() {
     return () => window.removeEventListener("open-booking", handler);
   }, []);
 
+  const handleScroll = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleNavigation = (item) => {
+    setOpen(false); // Close mobile menu if open
+
+    if (item === "NATIONAL") {
+      handleScroll("domestic-packages");
+    } else if (item === "INTERNATIONAL") {
+      handleScroll("international-packages");
+    } else if (item === "CRUISES") {
+      window.dispatchEvent(new CustomEvent("switch-tour-tab", { detail: { tab: "cruise" } }));
+      setTimeout(() => handleScroll("tour-services"), 100);
+    } else if (item === "VISA") {
+      window.dispatchEvent(new CustomEvent("switch-tour-tab", { detail: { tab: "visa" } }));
+      setTimeout(() => handleScroll("tour-services"), 100);
+    } else if (item === "FLIGHTS") {
+      window.dispatchEvent(new CustomEvent("switch-tour-tab", { detail: { tab: "air" } }));
+      setTimeout(() => handleScroll("tour-services"), 100);
+    } else if (item === "GALLERY") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <nav className="absolute top-0 left-0 w-full z-50 px-4 md:px-10 py-5 flex items-center justify-between">
-
         <img src="/assets/images/logo.png" className="w-[70px] md:w-[90px]" />
 
         <div className="flex items-center gap-4">
           <div className="hidden lg:flex bg-black/40 backdrop-blur-md px-10 py-3 rounded-full gap-10 text-xs font-bold text-white tracking-wider">
             {menuItems.map((item) => (
-              <span key={item} className="cursor-pointer hover:text-[#EEFB56] transition-colors">
+              <span
+                key={item}
+                onClick={() => handleNavigation(item)}
+                className="cursor-pointer hover:text-[#EEFB56] transition-colors"
+              >
                 {item}
               </span>
             ))}
@@ -66,7 +97,11 @@ export default function NavBar() {
 
             <div className="flex flex-col gap-6">
               {menuItems.map((item) => (
-                <span key={item} className="text-lg font-medium text-white active:text-yellow-400 border-b border-white/10 pb-2 cursor-pointer">
+                <span
+                  key={item}
+                  onClick={() => handleNavigation(item)}
+                  className="text-lg font-medium text-white active:text-yellow-400 border-b border-white/10 pb-2 cursor-pointer"
+                >
                   {item}
                 </span>
               ))}

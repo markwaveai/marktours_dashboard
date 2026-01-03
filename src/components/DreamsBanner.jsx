@@ -39,7 +39,7 @@ export default function DreamsBanner() {
             {/* 🔥 MOVING MAIN HEADING (MOBILE) */}
             <div className="w-full overflow-hidden">
               <h1 className="whitespace-nowrap font-black tracking-tight text-[3rem] leading-tight animate-main-move text-center">
-                FROM DREAMS TO DESTINATION &nbsp; FROM DREAMS TO DESTINATION
+                FROM DREAMS TO DESTINATIONS &nbsp; FROM DREAMS TO DESTINATIONS
               </h1>
             </div>
             <p className="text-[0.7rem] font-bold tracking-wide mt-1">World Best Travel Agency Company</p>
@@ -100,7 +100,7 @@ export default function DreamsBanner() {
                 animate-main-move
               "
             >
-              FROM DREAMS TO DESTINATION &nbsp; FROM DREAMS TO DESTINATION
+              FROM DREAMS TO DESTINATIONS &nbsp; FROM DREAMS TO DESTINATIONS
             </h1>
           </div>
 
