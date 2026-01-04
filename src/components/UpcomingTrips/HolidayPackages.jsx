@@ -48,7 +48,7 @@ const internationalPackages = [
 ];
 
 const domesticPackages = [
-  { video: "/assets/DOMASTIC_VIDEOS/kerala.mp4", name: "Kerala Summer Spl Tour" },
+  { video: "/assets/DOMASTIC_VIDEOS/Kerala.mp4", name: "Kerala Summer Spl Tour" },
   { video: "/assets/DOMASTIC_VIDEOS/Rajasthan.mp4", name: "Rajasthan Delights" },
   { video: "/assets/DOMASTIC_VIDEOS/gate.mp4", name: "Gate Way Of India" },
   { video: "/assets/DOMASTIC_VIDEOS/Andhaman.mp4", name: "Andhaman" },
